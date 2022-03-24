@@ -1,0 +1,22 @@
+<a mat-icon-button
+   (click)="bindPre()"
+   *ngIf="action">
+  <mat-icon>chevron_left</mat-icon>
+</a>
+<mat-form-field [style.width.px]="width" [floatLabel]="floatLabel">
+  <input (click)="picker.open()" [(ngModel)]="value"
+         readonly matInput [matDatepicker]="picker" [placeholder]="label"
+         (dateChange)="change($event)"
+  >
+  <mat-datepicker #picker></mat-datepicker>
+  <!--  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+  <a mat-icon-button matSuffix (click)="clear()">
+    <mat-icon>clear</mat-icon>
+  </a>
+</mat-form-field>
+
+<a mat-icon-button
+   (click)="bindNext()"
+   *ngIf="action">
+  <mat-icon>chevron_right</mat-icon>
+</a>

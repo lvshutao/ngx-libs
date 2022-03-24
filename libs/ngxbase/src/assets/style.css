@@ -1,0 +1,565 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /*height: 100vh;*/
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+}
+
+
+/* 标题 */
+a.title {
+  color: rgba(0, 0, 0, .7);
+  text-decoration: none;
+}
+
+.width-100, .full-width {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex1 {
+  flex: 1;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+
+.line {
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.fixed-bar {
+  position: fixed;
+  width: 100%;
+  background: white;
+  z-index: 20;
+}
+
+
+/* 模仿 mat-table 的样式 */
+table.lib-table {
+  border-spacing: 0;
+  font-size: 14px;
+  width: 100%;
+  background: #fff;
+}
+
+table.lib-table td {
+  padding: 0 0 0 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  color: rgba(0, 0, 0, .87);
+  height: 36px;
+}
+
+table.lib-table th {
+  height: 42px;
+  padding: 0 0 0 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .54);
+}
+
+table.lib-table-header-center th {
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+table.lib-fixed {
+  position: relative;
+}
+
+table.lib-fixed th {
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  background: white;
+}
+
+/*table.lib-table-hover > tr:nth-child(even):hover {}*/
+table.lib-table-hover > tr:hover {
+  background: #eeeeee;
+}
+
+/* 如果最后一列为 mat-button */
+table.lib-table-last-btn th:last-of-type {
+  padding-left: 30px;
+}
+
+table.lib-table-border {
+  border: 1px solid rgba(0, 0, 0, .12);
+}
+
+table.lib-table-border td {
+  border-right: 1px solid rgba(0, 0, 0, .12);
+  /*padding-left: 24px;*/
+  padding: 2px 4px;
+}
+
+/*table.lib-table-border td.mat-cell:last-of-type,*/
+table.lib-table-border td,
+table.lib-table-border th {
+  border-right: 1px solid rgba(0, 0, 0, .12);
+}
+
+
+table.lib-table .active {
+  background: #42A948; /* green */
+}
+
+/* mat-row [ngClass]="{'disabled':xxx}"*/
+table.lib-table .disabled {
+  background: #efefef;
+}
+
+table.lib-table-first {
+}
+
+table.lib-table-first td:first-of-type {
+  color: grey;
+}
+
+table.lib-table-first-right td:first-of-type {
+  color: grey;
+  text-align: right;
+  border-right: 1px solid rgba(0, 0, 0, .12);
+  padding-right: 20px;
+}
+
+table.lib-table-first-center th {
+  text-align: center;
+}
+
+table.lib-table-first-center td:first-of-type {
+  text-align: center;
+}
+
+/* 适用于表格最后操作列 */
+table.lib-table th.action, table.lib-table th.button {
+  padding-left: 30px;
+}
+
+
+.avatar40 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.cover-max150 {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.cover-150 {
+  width: 150px;
+  height: 150px;
+}
+
+/* 封面图，通常为列表左侧显示 */
+.size-cover {
+  width: 200px;
+  height: 200px;
+}
+
+/* 横幅，接近 48:23 => 2:1 */
+.size-banner-large {
+  width: 720px;
+  height: 345px;
+}
+
+.size-banner-middle {
+  width: 360px;
+  height: 172px;
+}
+
+.size-banner-small {
+  width: 100px;
+  height: 48px;
+  border: 1px solid gray;
+}
+
+.size-square {
+  width: 100px;
+  height: 100px;
+  border: 1px solid gray;
+}
+
+/* 广告图 600 * 1000 => 3:5*/
+.size-ad {
+  width: 120px;
+  height: 200px;
+}
+
+/*名片，比例 5:3*/
+.size-card {
+  width: 200px;
+  height: 120px;
+}
+
+/* 对齐 */
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.middle {
+  align-self: center;
+}
+
+.center-vh {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+/* 最左最右为0，中间等距*/
+.row-space-between, .flex-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.row-space-around, .flex-space-around {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.clear-a a {
+  color: #323741;
+  font-size: small;
+  text-decoration: none;
+}
+
+.clear-a a:hover {
+  text-decoration: underline;
+}
+
+a.hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bb-line, .border-bottom-line {
+  border-bottom: 1px solid #b0b0b0;
+}
+
+.link {
+  text-decoration: underline;
+  color: dodgerblue;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+
+/* 图标 */
+button.wechat-bg {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyYWEwMDg1OC0wOGQ4LTRhN2YtYWQ4My0zNzZhNDMxZTEzOTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUZCRkIyRDkxMjNEMTFFNEI1MERFQjkyRkM2NUIyOUYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUZCRkIyRDgxMjNEMTFFNEI1MERFQjkyRkM2NUIyOUYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Y2Y5NWUzYzMtOWQ2My00YzliLWEzZDQtZmNhMTJjODBhNDI1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJhYTAwODU4LTA4ZDgtNGE3Zi1hZDgzLTM3NmE0MzFlMTM5MiIvPiA8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") no-repeat 14px center;
+}
+
+button.google-bg {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAA8JJREFUSImlVm1sU1UYfs656227frFGapktUB0THMZMWBRi3NgYJZiIor8MSojEyVgmiWHwg7GYEDQhgSwjcyXoDxsxGT/wA8hGlKnVhIgDBs66TT669WsbG7Td1s97jz9om+6u7I74/rr3fc/7POe8532fewkWaJH2oyYQxQuEQQklHdG833iDAEwuj8wPeqw6FfQfSd4aLEcwwOfGmEbL+KdLAnTpcqde80QzqatLLphg+mSrJXnn367ElT/KwES5TYKai2P8S+v26hsPOGQJptqP26OuSz+wsaBCFnkWEoXKvqVNv6+lMdddkPsS+fx41Uz3uQuIhOljgQOg5uI4jKaOObyZh0mHw8BcXUEh4FVJF3FLbTPcime7OK2+h3A0nErEy0R/4HXh5tWVLJkANT8VV27YtFa3q/4vaW72BJz/9tm4BJwolVBU2U8Zmpo/yNMx+8OO1srEgPsr5crVW3S76vvznYwAgDjYZEn4ejwzp/U0dTucPjOFcuvbTYaGfUfnrY2MUQBIJccPc8J1qnunD2q7GQCgWF/5+/8FBzIlig7XAACEEFQvdoE+s1mkY7bt+RLazsdKRZ5o5IAZY1N7N6mG0gQeU25QYZmY4N/afTdf4lVfqtczDq0cgdXIogAKKQCw5INZPU8VJq8cgJyFo+CB9B3MmTf6aAkh4vzykjEhDUoBgPCLZumIGBu1PCqRycrbQ1NxEIDMJauso4jdtQKAQDh8EV9jPNG/Z1lD2XaPNLGiVLG7QmAmqf+3wdSRYAhZQTTqaCRLQApX/IgHrp2T3BIcSr6B3nEffZV4vwGwXgpUX6N0Sn3tFxMvj4YxS21NWuoG0iXiNOaDfeqNwo5QDXonfQ93FPhz3eErHfvlStHZyTh3IHVWWroni+jJLAFd9on/DGp/vRcLZxeIjOHCnZ8/O3i59Uu0tOQVv9Y+p+UaDfzT7xXNuf7lizG1ZyPvBHLax3Gr09DtdgWHp/xzxM6qM0efKyq5qFUU/kJBIzEhXjKRCNXeHBsoVxaoyeL7DfD5bcgAvrmW+7DBrnbMIgCAtmvOqu89l366H3s8uS6gHMr59zDQX4mqVYqeQ9tU1ZnYnJ5uu3G6ttvjOhecHuOlMTnbatrpat7wWiUIyd5I3qHp+Nu5xD0+3H052Pe8wARZYKO6SKgurjh2oKKuSRqbdypPXP/6Fe+079Oh0MiakUhQLeZ8n3UFhcxmsN6zGazf6RdpP/6o9N1wPowFjT0AnHJ/q0slp1eLIlFreJV3x6ptQyDyvy3/AdRmXxI/xuPJAAAAAElFTkSuQmCC") no-repeat 14px center;
+}
+
+button.icon-bg {
+  padding-left: 44px;
+  background-size: 24px;
+  font-size: 14px;
+}
+
+.p0 {
+  padding: 0 !important;
+}
+
+.p10 {
+  padding: 10px;
+}
+
+.p15 {
+  padding: 15px;
+}
+
+.p20 {
+  padding: 20px;
+}
+
+.pt8 {
+  padding-top: 8px;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+
+.pt20 {
+  padding-top: 20px;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.ptb10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.pl20 {
+  padding-left: 20px;
+}
+
+.m0 {
+  margin: 0 !important;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.m015 {
+  margin-left: -15px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mtb15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.inline-m5 {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+}
+
+.font, .text {
+  font-size: 0.9em;
+  line-height: 2em;
+}
+
+.float-label {
+  font-size: 12px;
+  color: rgba(0, 0, 0, .54);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.placeholder-title {
+  color: rgba(0, 0, 0, .54);
+  font-weight: bold;
+}
+
+.placeholder {
+  color: rgba(0, 0, 0, .54);
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.small {
+  font-weight: 200;
+  font-size: 0.8em;
+}
+
+
+.lh36 {
+  line-height: 36px;
+}
+
+
+/* 意义明确，需要放在其它样式的后面 */
+.success, a.success {
+  color: #155724;
+}
+
+.warning, a.warning {
+  color: #856404;
+}
+
+.danger, a.danger {
+  color: red;
+}
+
+.primary, a.primary {
+  color: rgb(25, 137, 250);
+}
+
+.grey, a.grey {
+  color: grey;
+}
+
+.btn {
+  color: #fff;
+  line-height: 22px;
+  padding: 0 6px;
+  margin-right: 6px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn-normal {
+  background-color: #1E9FFF;
+}
+
+.btn-warn {
+  background-color: #ffb800;
+}
+
+.btn-agree {
+  background-color: #42A948;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.image-bg-cover {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+
+.hspace {
+  margin-left: 10px;
+}
+
+.if-desktop, .if-mobile {
+  display: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* iPhone: Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* iPad: Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+@media only screen and (max-width: 1199px) {
+  .if-mobile {
+    display: block;
+  }
+}
+
+/* PC: Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .if-desktop {
+    display: block;
+  }
+}
+
+
+.v-blank {
+  height: 30px;
+  clear: both;
+}
+
+.center-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.skeleton {
+  background: #f2f3f5 linear-gradient(90deg, rgba(255, 255, 255, 0.15) 10%, transparent 25%);
+  animation: skeleton-stripes 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton-stripes {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 20rem 0;
+  }
+}

@@ -1,7 +1,12 @@
 {
   "version": 2,
   "projects": {
-    "website": "apps/website",
-    "website-e2e": "apps/website-e2e"
+    "ngxapp": "libs/ngxapp",
+    "ngxbase": "libs/ngxbase",
+    "ngxeditor": "libs/ngxeditor",
+    "ngxmaz": "libs/ngxmaz",
+    "ngxtc": "libs/ngxtc",
+    "ngxupload": "libs/ngxupload",
+    "website": "apps/website"
   }
 }

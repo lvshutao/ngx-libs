@@ -1,0 +1,55 @@
+<div [fullscreen]="disabled" class="img-container" [style.backgroundColor]="config.containerBackgroundColor"
+     (wheel)="scrollZoom($event)" (dragover)="onDragOver($event)">
+  <img [src]="src[index]" [ngStyle]="style" alt="Image not found..." (dragstart)="onDragStart($event)" (load)="onLoad()"
+       (loadstart)="onLoadStart()"/>
+  <!-- Div below will be used to hide the 'ghost' image when dragging -->
+  <div></div>
+  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <button mat-mini-fab *ngIf="config.btnShow && config.btnShow.rotateCounterClockwise"
+          (click)="rotateCounterClockwise()">
+    <!--    <span [class]="config.btnIcons.rotateCounterClockwise"></span>-->
+    <mat-icon>rotate_left</mat-icon>
+  </button>
+
+  <button mat-mini-fab *ngIf="config.btnShow && config.btnShow.rotateClockwise" (click)="rotateClockwise()">
+    <!--    <span [class]="config.btnIcons.rotateClockwise"></span>-->
+    <mat-icon>rotate_right</mat-icon>
+  </button>
+
+  <!-- 从 button 中移除了以下代码 type="button" [class]="config.btnClass" -->
+  <button mat-mini-fab *ngIf="config.btnShow && config.btnShow.zoomOut" (click)="zoomOut()">
+    <!--    <span [class]="config.btnIcons.zoomOut"></span>-->
+    <mat-icon>zoom_out</mat-icon>
+  </button>
+
+  <button mat-mini-fab *ngIf="config.btnShow && config.btnShow.zoomIn" (click)="zoomIn()">
+    <!--    <span [class]="config.btnIcons.zoomIn"></span>-->
+    <mat-icon>zoom_in</mat-icon>
+  </button>
+
+  <button mat-mini-fab *ngFor="let cBtn of config.customBtns"
+          (click)="fireCustomEvent(cBtn.name, index)">
+    <mat-icon>{{cBtn.icon}}</mat-icon>
+    <!--    <span [class]="cBtn.icon"></span>-->
+  </button>
+
+  <button mat-mini-fab id="ngx-fs-btn" (click)="toggleFullscreen()"
+          *ngIf="config.allowFullscreen">
+    <!--    <span [class]="config.btnIcons.fullscreen"></span>-->
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+
+  <div class="nav-button-container" *ngIf="src.length > 1">
+    <button mat-mini-fab (click)="prevImage($event)" [disabled]="index === 0">
+      <!--      <span [class]="config.btnIcons.prev"></span>-->
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="nextImage($event)" [disabled]="index === src.length - 1">
+      <!--      <span [class]="config.btnIcons.next"></span>-->
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+</div>

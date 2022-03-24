@@ -1,0 +1,36 @@
+<div style="float: left;
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    margin: 0 5px 5px 0;width: 200px;
+    border-radius: 5px;">
+  <!-- 图片信息+上传信息 -->
+  <div *ngIf="showInfo">
+    <div [ngClass]="{failed:updateError}">
+      {{file.name}}({{file.size | bytes}}) <span *ngIf="updateError">Failed</span>
+    </div>
+    <!--        <div>-->
+    <!--            <span class="file-info">{{progressPercentage}}%</span><span> {{loaded | bytes}} of {{total | bytes}}</span>-->
+    <!--        </div>-->
+    <div><span class="file-info">{{progressPercentage | number:'1.0-0'}}%</span>, <span>{{loaded | bytes}}</span>
+    </div>
+  </div>
+  <!-- 预览图片 -->
+  <div *ngIf="src" class="upload-img" id="mat-upload-file">
+    <img mat-card-image [src]="src" style='width: 100%;'>
+  </div>
+  <div>
+    <!--                mode="{{ isUploading ? 'indeterminate':'determinate' }}"-->
+    <mat-progress-bar [value]="progressPercentage"></mat-progress-bar>
+  </div>
+  <!-- 操作按钮 -->
+  <div class="row">
+    <a mat-icon-button (click)="upload()"
+       [disabled]="isUploading || progressPercentage === 100">
+      <mat-icon>file_upload</mat-icon>
+    </a>
+    <span class="fill-space"></span>
+    <a mat-icon-button (click)="remove()" color="warn">
+      <mat-icon>cancel</mat-icon>
+    </a>
+  </div>
+</div>

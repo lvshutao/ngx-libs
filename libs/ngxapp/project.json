@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngxapp",
+  "sourceRoot": "libs/ngxapp/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngxapp"],
+      "options": {
+        "project": "libs/ngxapp/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngxapp/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngxapp/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngxapp"],
+      "options": {
+        "jestConfig": "libs/ngxapp/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngxapp/src/**/*.ts",
+          "libs/ngxapp/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -4,6 +4,14 @@
 
 export const environment = {
   production: false,
+  appBaseConfig: {
+    name: 'admin-local',
+    title: '测试站点',
+    debug: true,
+    origin: 'http://pp.test',
+    manualToken: true,
+    tokenDomains: ['pp.test']
+  }
 };
 
 /*

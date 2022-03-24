@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngxupload",
+  "sourceRoot": "libs/ngxupload/src",
+  "prefix": "fsl",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngxupload"],
+      "options": {
+        "project": "libs/ngxupload/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngxupload/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngxupload/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngxupload"],
+      "options": {
+        "jestConfig": "libs/ngxupload/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngxupload/src/**/*.ts",
+          "libs/ngxupload/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

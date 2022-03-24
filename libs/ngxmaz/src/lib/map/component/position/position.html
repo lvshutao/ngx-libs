@@ -1,0 +1,44 @@
+<div [formGroup]="mo">
+  <div>
+    <mat-form-field floatLabel="auto" class="width200">
+      <mat-select formControlName="province" placeholder="省" (selectionChange)="onAreaChange('province', $event)">
+        <mat-option value="">请选择</mat-option>
+        <mat-option *ngFor="let p of provinceList" [value]="p.name">{{p.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto" class="width200">
+      <mat-select formControlName="city" placeholder="市" (selectionChange)="onAreaChange('city', $event)">
+        <mat-option value="">请选择</mat-option>
+        <mat-option *ngFor="let c of cityList" [value]="c.name">{{c.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto" class="width200">
+      <mat-select formControlName="county" placeholder="区" (selectionChange)="onAreaChange('county', $event)">
+        <mat-option value="">请选择</mat-option>
+        <mat-option *ngFor="let c of countyList" [value]="c.name">{{c.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field floatLabel="never" style="width: 600px">
+      <input id="detail-box" matInput formControlName="detail"
+             [matAutocomplete]="auto"
+             placeholder="请输入详细地区">
+
+      <a matSuffix mat-icon-button aria-label="clear detail" (click)="mo.patchValue({detail:''})">
+        <mat-icon>close</mat-icon>
+      </a>
+
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onDetailChange()">
+        <mat-option *ngFor="let o of addressTips" [value]="o.name">{{o.name}}
+          <span style="color: grey;font-size: small">{{o.district}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</div>
+
+<div *ngIf="map" id="container" class="map" tabindex="0"></div>

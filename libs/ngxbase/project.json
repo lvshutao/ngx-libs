@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngxbase",
+  "sourceRoot": "libs/ngxbase/src",
+  "prefix": "fsl",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngxbase"],
+      "options": {
+        "project": "libs/ngxbase/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngxbase/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngxbase/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngxbase"],
+      "options": {
+        "jestConfig": "libs/ngxbase/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngxbase/src/**/*.ts",
+          "libs/ngxbase/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

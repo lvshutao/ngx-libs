@@ -1,0 +1,15 @@
+<div class="row">
+  <div style="width: 49%;">
+    <lib-date [action]="false"
+              [label]="dateText"
+              [floatLabel]="floatLabel"
+              [initValue]="date"
+              (dateChange)="dateChange($event)"
+    ></lib-date>
+  </div>
+  <div style="width: 49%;">
+    <lib-time [label]="timeText" [floatLabel]="floatLabel" [initValue]="time" (timeChange)="timeChange($event)"></lib-time>
+  </div>
+</div>
+
+

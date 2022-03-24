@@ -1,0 +1,26 @@
+<mat-form-field style="text-align: center" [floatLabel]="floatLabel">
+  <input matInput [placeholder]="label"
+         [(ngModel)]="value"
+         [format]="24"
+         [ngxTimepicker]="default" readonly>
+  <a mat-icon-button matSuffix (click)="clear()">
+    <mat-icon>clear</mat-icon>
+  </a>
+  <ngx-material-timepicker #default
+                           [minutesGap]="5"
+                           [confirmBtnTmpl]="confirmBtn"
+                           [cancelBtnTmpl]="cancelBtn"
+                           [theme]="darkTheme"
+                           (timeSet)="change($event)"
+  ></ngx-material-timepicker>
+</mat-form-field>
+
+
+<ng-template #cancelBtn>
+  <button mat-button>
+    <span style="color: white;">取消</span>
+  </button>
+</ng-template>
+<ng-template #confirmBtn>
+  <button mat-button style="color: white;">确定</button>
+</ng-template>

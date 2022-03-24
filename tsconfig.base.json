@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fsl/ngxapp": ["libs/ngxapp/src/index.ts"],
+      "@fsl/ngxbase": ["libs/ngxbase/src/index.ts"],
+      "@fsl/ngxeditor": ["libs/ngxeditor/src/index.ts"],
+      "@fsl/ngxmaz": ["libs/ngxmaz/src/index.ts"],
+      "@fsl/ngxtc": ["libs/ngxtc/src/index.ts"],
+      "@fsl/ngxupload": ["libs/ngxupload/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

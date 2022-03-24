@@ -1,0 +1,18 @@
+<mat-form-field floatLabel="always" class="width100">
+  <mat-select placeholder="省" [(ngModel)]="province" (selectionChange)="onAreaChange('province', $event)">
+    <mat-option value="">全部</mat-option>
+    <mat-option *ngFor="let p of provinceList" [value]="p.name">{{p.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field floatLabel="always" class="width100">
+  <mat-select placeholder="市" [(ngModel)]="city" (selectionChange)="onAreaChange('city', $event)">
+    <mat-option value="">全部</mat-option>
+    <mat-option *ngFor="let c of cityList" [value]="c.name">{{c.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field floatLabel="always" class="width100">
+  <mat-select placeholder="区" [(ngModel)]="county" (selectionChange)="onAreaChange('county', $event)">
+    <mat-option value="">全部</mat-option>
+    <mat-option *ngFor="let c of countyList" [value]="c.name">{{c.name}}</mat-option>
+  </mat-select>
+</mat-form-field>

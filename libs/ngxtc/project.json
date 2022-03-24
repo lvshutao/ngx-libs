@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngxtc",
+  "sourceRoot": "libs/ngxtc/src",
+  "prefix": "fsl",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngxtc"],
+      "options": {
+        "project": "libs/ngxtc/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngxtc/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngxtc/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngxtc"],
+      "options": {
+        "jestConfig": "libs/ngxtc/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngxtc/src/**/*.ts",
+          "libs/ngxtc/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

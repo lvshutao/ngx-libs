@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ngxmaz",
+  "sourceRoot": "libs/ngxmaz/src",
+  "prefix": "fsl",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ngxmaz"],
+      "options": {
+        "project": "libs/ngxmaz/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngxmaz/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngxmaz/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ngxmaz"],
+      "options": {
+        "jestConfig": "libs/ngxmaz/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngxmaz/src/**/*.ts",
+          "libs/ngxmaz/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

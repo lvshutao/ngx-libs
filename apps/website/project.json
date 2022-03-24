@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/website",
         "index": "apps/website/src/index.html",
@@ -14,9 +16,38 @@
         "polyfills": "apps/website/src/polyfills.ts",
         "tsConfig": "apps/website/tsconfig.app.json",
         "inlineStyleLanguage": "less",
-        "assets": ["apps/website/src/favicon.ico", "apps/website/src/assets"],
-        "styles": ["apps/website/src/styles.less"],
-        "scripts": []
+        "assets": [
+          "apps/website/src/favicon.ico",
+          "apps/website/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/tinymce/skins",
+            "output": "/tinymce/skins/"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/tinymce/themes",
+            "output": "/tinymce/themes/"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/tinymce/plugins",
+            "output": "/tinymce/plugins/"
+          }
+        ],
+        "styles": [
+          "libs/ngxbase/src/assets/preloader.css",
+          "libs/ngxbase/src/assets/style.css",
+          "libs/ngxmaz/src/assets/style.css",
+          "apps/website/src/styles.less"
+        ],
+        "scripts": [
+          "node_modules/tinymce/tinymce.min.js",
+          "libs/ngxeditor/src/assets/zh_CN.js"
+        ],
+        "allowedCommonJsDependencies": [
+          "my-tsbase"
+        ]
       },
       "configurations": {
         "production": {
@@ -80,7 +111,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/website"],
+      "outputs": [
+        "coverage/apps/website"
+      ],
       "options": {
         "jestConfig": "apps/website/jest.config.js",
         "passWithNoTests": true

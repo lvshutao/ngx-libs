@@ -1,0 +1,17 @@
+{
+  "name": "@fsl/ngxmaz",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^13.2.0",
+    "@angular/core": "^13.2.0",
+    "@angular/material": "^13.3.1",
+    "@angular/material-moment-adapter": "^13.3.1",
+    "ngx-material-timepicker": "^5.5.3",
+    "@vant/area-data": "^1.2.3",
+    "ng-http-loader": "^11.0.1",
+    "@amap/amap-jsapi-loader": "^1.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

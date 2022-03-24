@@ -1,0 +1,55 @@
+<lib-auth-layout>
+
+  <mat-tab-group>
+    <mat-tab label="账号登录">
+      <div style="margin-top: 10px;">
+        <form [formGroup]="mo" class="lib-form-full">
+          <mat-form-field>
+            <input matInput formControlName="account" placeholder="邮箱/手机号">
+            <lib-clear matSuffix name="account" [form]="mo"></lib-clear>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" formControlName="password" placeholder="密码">
+            <lib-clear matSuffix name="password" [form]="mo"></lib-clear>
+          </mat-form-field>
+        </form>
+      </div>
+      <lib-captcha [disabled]="isLoading ||mo.invalid"
+                   (success)="bindLogin($event)"
+      >
+        <a mat-flat-button color="primary"
+           class="full-width" [disabled]="isLoading || mo.invalid">登录</a>
+      </lib-captcha>
+    </mat-tab>
+    <mat-tab label="无密登录/注册">
+      <div style="margin-top: 10px;">
+        <form [formGroup]="noMo" class="lib-form-full">
+          <mat-form-field>
+            <input matInput formControlName="account" placeholder="邮箱/手机号">
+            <lib-clear matSuffix name="account" [form]="noMo"></lib-clear>
+            <mat-hint>当前只支持 +86 中国大陆手机号</mat-hint>
+          </mat-form-field>
+
+          <div class="flex">
+            <div class="flex1">
+              <mat-form-field>
+                <input matInput formControlName="code" autocomplete="off" placeholder="验证码" minlength="6" maxlength="6">
+                <lib-clear [form]="noMo" name="code" matSuffix></lib-clear>
+              </mat-form-field>
+            </div>
+            <div style="width: 120px;" class="pt10 right">
+              <lib-captcha
+                [disabled]="isLoading || noMo.get('account')!.invalid"
+                (success)="bindSendCode($event)"
+              >
+                <lib-resend [disabled]="noMo.get('account')!.invalid" [start]="senderState"></lib-resend>
+              </lib-captcha>
+            </div>
+          </div>
+        </form>
+      </div>
+      <a mat-flat-button color="primary" (click)="bindNoPwdLogin()"
+         class="full-width" [disabled]="isLoading || noMo.invalid">登录</a>
+    </mat-tab>
+  </mat-tab-group>
+</lib-auth-layout>
