@@ -16,7 +16,7 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
         <!-- 提示信息 -->
         <ng-content select="[name=message]"></ng-content>
         <div class="display1-content">
-          <router-outlet></router-outlet>
+          <ng-content></ng-content>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

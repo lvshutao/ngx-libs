@@ -20,8 +20,6 @@ personal angularX library.
 
 * import assets, style, script
 
-按需求修改路径
-
 ``` 
 # style.css
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
@@ -47,13 +45,13 @@ personal angularX library.
           }
       ],
       "styles": [
-        "@fsl/ngxbase/src/assets/preloader.css",
-        "@fsl/ngxbase/src/assets/style.css",
-        "@fsl/ngxmaz/src/assets/style.css"
+        "node_modules/@fsl/ngxbase/src/assets/preloader.css",
+        "node_modules/@fsl/ngxbase/src/assets/style.css",
+        "node_modules/@fsl/ngxmaz/src/assets/style.css"
       ],
       "scripts": [
         "node_modules/tinymce/tinymce.min.js",
-        "@fsl/ngxeditor/src/assets/zh_CN.js"
+        "node_modules/@fsl/ngxeditor/src/assets/zh_CN.js"
       ]
   }
 }
@@ -100,3 +98,22 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(res => { // 添加这�
    "my-ngbase/src/assets/preloader.css"
 ],
 ```
+
+# 版本依赖
+
+```
+ngxapp
+  |-- ngxbase
+  |-- ngxupload
+  |-- ngxmaz
+ngxeditor
+  |-- ngxbase
+  |-- ngxupload
+ngxmaz
+  |-- ngxbase
+  |-- ngxupload
+ngxupload
+  |-- ngxbase
+```
+
+全部保持版本一致，更新顺序 `ngxbase -> ngxupload -> ngxeditor -> ngxmaz -> ngxapp`
