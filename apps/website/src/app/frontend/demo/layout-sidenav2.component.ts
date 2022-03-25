@@ -6,21 +6,22 @@ import {navigateBy} from "@fsl/ngxbase";
 
 @Component({
   template: `
-    <lib-layout-sidenav home="首页2">
+    <lib-layout-sidenav home="首页2" (index)="toHome()">
       <ng-container name="left">
         左侧菜单
       </ng-container>
 
       <ng-container name="toolbar">
-
         <lib-signer (roles)="bindRolesChange()"></lib-signer>
       </ng-container>
 
-      <router-outlet></router-outlet>
+      <fsl-checks></fsl-checks>
+      <div>短内容</div>
 
-    </lib-layout-sidenav>`
+    </lib-layout-sidenav>`,
+  providers: [LayoutService],
 })
-export class LayoutSidenavComponent {
+export class LayoutSidenav2Component {
   isAdmin = false;
 
   constructor(public layoutSer: LayoutService,
