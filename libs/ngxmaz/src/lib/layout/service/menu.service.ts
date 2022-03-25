@@ -26,6 +26,10 @@ export class MenuService {
     ) as Observable<NavigationStart>;
   }
 
+  get hasMenus(): boolean {
+    return this.menus && this.menus.length > 0;
+  }
+
   subscribe() {
     if (this.hasSub) {
       return;
@@ -39,6 +43,7 @@ export class MenuService {
       // 获取模块及其子模块
       while (els.length > 0) {
         const name = els.join('/');
+        // eslint-disable-next-line no-prototype-builtins
         if (this.cacheMenus.hasOwnProperty(name)) {
           this.name = name;
           this.menus = this.getMenus(name);

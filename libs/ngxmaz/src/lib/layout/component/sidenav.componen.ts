@@ -4,7 +4,7 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
 @Component({
   selector: 'lib-sidenav',
   template: `
-    <mat-sidenav-container class="row lib-sidenav">
+    <mat-sidenav-container class="row lib-sidenav height-100vh">
       <mat-sidenav #sidenav class="sidenav1"
                    [mode]="mode"
                    [opened]="display"
@@ -24,5 +24,5 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
 })
 export class SidenavComponent {
   @Input() mode: MatDrawerMode = 'side';
-  @Input() display: boolean = true;
+  @Input() display = true;
 }

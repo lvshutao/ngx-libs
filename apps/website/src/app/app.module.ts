@@ -8,7 +8,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 
 import {AppBaseConfig} from "@fsl/ngxbase";
-import {MyNgxMazLayoutModule} from "@fsl/ngxmaz";
+import {LayoutService, MyNgxMazLayoutModule} from "@fsl/ngxmaz";
 import {MyAppxAuthModule, MyNgxAppModule} from "@fsl/ngxapp";
 
 
@@ -18,16 +18,23 @@ import {FrontendHomePage} from "./frontend/home";
 
 import {environment} from "../environments/environment";
 import {NotFound404Page} from "./frontend/404.page";
-import {LayoutSidenavComponent} from "./frontend/layout-sidenav.component";
+import {LayoutSidenavComponent} from "./frontend/demo/layout-sidenav.component";
+import {ChecksComponent} from "./frontend/demo/checks.component";
+import {LayoutSidenav2Component} from "./frontend/demo/layout-sidenav2.component";
+import {Layout2Component} from "./frontend/demo/layout2.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
-    LayoutSidenavComponent, // 与 layoutComponent 二选一
     FrontendHomePage,
     NotFound404Page,
+    // demo test 以下组件及文件可移除
+    ChecksComponent,
+    Layout2Component,
+    LayoutSidenavComponent,
+    LayoutSidenav2Component
   ],
   imports: [
     BrowserModule,
@@ -44,11 +51,10 @@ import {LayoutSidenavComponent} from "./frontend/layout-sidenav.component";
           {path: '', component: FrontendHomePage},
           {path: 'auth', loadChildren: () => import('./frontend/auth.module').then(m => m.AuthModule)}
         ]
-      }, {
-        path: 'sidenav', component: LayoutSidenavComponent, children: [
-          {path: '', component: FrontendHomePage},
-        ]
       },
+      {path: 'layout2', component: Layout2Component},
+      {path: 'sidenav1', component: LayoutSidenavComponent},
+      {path: 'sidenav2', component: LayoutSidenav2Component},
       // 用户管理
       {path: 'user', loadChildren: () => import('./backend/module').then(m => m.BackendModule)},
       {path: '**', component: NotFound404Page},
@@ -57,6 +63,7 @@ import {LayoutSidenavComponent} from "./frontend/layout-sidenav.component";
   ],
   providers: [
     {provide: AppBaseConfig, useValue: environment.appBaseConfig},
+    LayoutService,
   ],
   bootstrap: [AppComponent]
 })

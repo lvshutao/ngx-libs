@@ -26,14 +26,23 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* 布局 */
+.lib-sidenav .sidenav1 {
+  width: 200px;
+}
+
+.lib-sidenav-menus div.mat-expansion-panel-body {
+  padding: 0;
+}
+
+.lib-sidenav-menus span.menus-text {
+  padding-left: 28px;
+}
+
 
 mat-sidenav .mat-expansion-panel:not([class*=mat-elevation-z]) {
   box-shadow: none;
   border-top: 1px solid rgba(0, 0, 0, .10);
-}
-
-mat-sidenav-content {
-  /*padding: 8px;*/
 }
 
 
@@ -241,15 +250,3 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   min-height: 32px;
 }
 
-/* lib/layout/component/sidenav.component.ts */
-.lib-sidenav .sidenav1 {
-  width: 150px;
-}
-
-.lib-sidenav .content1 {
-  height: 100%;
-}
-
-.lib-sidenav .sidenav-content1 {
-  height: calc(100vh - 64px);
-}

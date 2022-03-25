@@ -6,7 +6,7 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
 import {MyBrowser} from "my-tsbase";
 
 import {LayoutService, LibSnackService, MenuService} from "@fsl/ngxmaz";
-import {MyAppxRouteConfig, RoleService, RoleSuperAdmin} from "@fsl/ngxapp";
+import {MyAppxRouteConfig} from "@fsl/ngxapp";
 
 @Component({
   template: `
@@ -40,10 +40,11 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!RoleService.inRoles(RoleSuperAdmin)) {
-      this.showSer.danger('不是超级管理员，没有权限访问')
-      this.location.back();
-    }
+    console.log('user module');
+    // if (!RoleService.inRoles(RoleSuperAdmin)) {
+    //   this.showSer.danger('不是超级管理员，没有权限访问')
+    //   this.location.back();
+    // }
   }
 
   toHome() {
@@ -51,15 +52,11 @@ export class LayoutComponent implements OnInit {
     this.router.navigateByUrl(this.routeConfig.home);
   }
 
-  get hasMenus(): boolean {
-    return this.menuSer.menus && this.menuSer.menus.length > 0;
-  }
-
   get mode(): MatDrawerMode {
     return MyBrowser.isMobile() ? 'over' : 'side';
   }
 
   get display(): boolean {
-    return this.layoutSer.selfLeft && this.hasMenus
+    return this.layoutSer.selfLeft && this.menuSer.hasMenus
   }
 }

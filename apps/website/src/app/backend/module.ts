@@ -23,11 +23,13 @@ import {HomeComponent} from "./home.component";
     ]),
     MyNgxMazLayoutModule,
     MyNgxAppModule
+  ],
+  providers: [
+    LayoutService,
   ]
 })
 export class BackendModule {
-  constructor(private menuSer: MenuService,private layoutSer:LayoutService) {
-    this.layoutSer.reset();
+  constructor(private menuSer: MenuService, private layoutSer: LayoutService) {
     this.layoutSer.selfLeft = true;
 
     const menus: SidenavMenu[] = [
@@ -44,7 +46,15 @@ export class BackendModule {
           {text: '子菜单2', route: 'menu2'},
           {text: '子菜单3', route: 'menu3'},
         ]
+      }, {
+        text: '基本信息', expanded: true, route: '/user/', children: [
+          {text: '我的资料', route: 'account', icon: 'account_circle'},
+          {text: '收件地址', route: 'address', icon: 'place'},
+        ]
+      }, {
+        text: '单项菜单', route: 'abc', icon: 'place',
       }
+
     ]
     this.menuSer.addMenus('user', menus);
   }

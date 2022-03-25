@@ -22,8 +22,8 @@ import {LayoutService} from "../service/layout.service";
           <ng-content select="[name=right]"></ng-content>
         </div>
       </mat-drawer>
-      <!-- height: 100vh;width:100%;display: flex; -->
-      <mat-drawer-content style="" class="column drawer-outlet1">
+      <!-- height: 100vh;width:100%;display: flex;column  -->
+      <mat-drawer-content class="column drawer-outlet1">
         <!-- 顶部工具栏 -->
         <mat-toolbar [color]="color" class="toolbar" role="banner">
           <button mat-icon-button (click)="layoutSer.leftToggle()">
@@ -46,13 +46,14 @@ import {LayoutService} from "../service/layout.service";
         <!-- 底部内容 -->
         <ng-content select="[name=footer]"></ng-content>
       </mat-drawer-content>
+
     </mat-drawer-container>`,
   styles: [`div.side-left1 {
     height: 100vh;
   }
 
   mat-drawer-content.drawer-outlet1 {
-    height: 100vh;
+    /*height: 100vh;*/
     width: 100%;
     display: flex;
   }`]

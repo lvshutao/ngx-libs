@@ -1,6 +1,9 @@
 import {Injectable} from "@angular/core";
 
-@Injectable({providedIn: 'root'})
+@Injectable()
+/**
+ * 每个模块需要单独提供，以免互相影响
+ */
 export class LayoutService {
   /**
    * 是否启用左侧侧边栏

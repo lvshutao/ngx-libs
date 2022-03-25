@@ -19,7 +19,14 @@ ngxupload
   |-- ngxbase
 ```
 
-更新顺序 `ngxbase -> ngxupload -> ngxeditor -> ngxmaz -> ngxapp`
+更新顺序 
+
+```
+ngxbase 
+  -> ngxupload 
+      -> ngxeditor 
+      -> ngxmaz -> ngxapp
+```
 
 
 ### how to start
@@ -81,6 +88,17 @@ npx create-nx-workspace@latest
         "node_modules/@fsl/ngxeditor/src/assets/zh_CN.js"
       ]
   }
+}
+```
+
+* 如果使用布局 lib-sidenav 则可能定义侧边栏宽度
+
+```
+.lib-sidenav .sidenav1 {
+  width: 200px;
+}
+.lib-sidenav-menus div.mat-expansion-panel-body{
+  padding: 0;
 }
 ```
 

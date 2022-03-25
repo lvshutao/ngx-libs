@@ -37,6 +37,7 @@ import {DialogCloseBarComponent} from "./components/dialog-close.component";
 import {ImagesComponent} from "./components/images.component";
 import {ButtonComponent} from "./components/button.component";
 import {ResendComponent} from "./components/resend.component";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 
 const DIALOGS = [
   DialogActionSheetComponent,
@@ -85,6 +86,8 @@ const MODULES = [
 @NgModule({
   declarations: [...DIALOGS, ...COMPONENTS],
   imports: [...MODULES, MatPaginatorModule, MyNgxBaseModule,
+    MatDialogModule,
+    MatBottomSheetModule,
   ],
   exports: [...COMPONENTS, ...MODULES],
   providers: [

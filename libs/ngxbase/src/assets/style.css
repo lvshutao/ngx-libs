@@ -26,6 +26,10 @@ a.title {
   width: 100%;
 }
 
+.height-100vh, .full-height-vh {
+  height: 100vh;
+}
+
 .flex {
   display: flex;
 }
