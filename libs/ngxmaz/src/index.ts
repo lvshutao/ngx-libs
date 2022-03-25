@@ -57,11 +57,14 @@ export * from './lib/image-viewer/component/viewer'
 export * from './lib/layout/module'
 
 export * from './lib/layout/component/layout.component'
+export * from './lib/layout/component/layout-sidenav.component'
 export * from './lib/layout/component/loader.component'
+export * from './lib/layout/component/media-responsive.component'
 export * from './lib/layout/component/sidenav.componen'
 export * from './lib/layout/component/sidenav-menu.component'
 
 export * from './lib/layout/service/layout.service'
+export * from './lib/layout/service/media-responsive.service'
 export * from './lib/layout/service/menu.service'
 
 // map

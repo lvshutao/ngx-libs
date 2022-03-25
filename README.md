@@ -2,12 +2,39 @@
 
 personal angularX library.
 
-# how to use
-
-`depends on 'my-tsbase'. CommonJS or AMD dependencies can cause optimization bailouts.`, add code in angular.json
+### 版本依赖
 
 ```
-# your project's build options
+ngxapp
+  |-- ngxbase
+  |-- ngxupload
+  |-- ngxmaz
+ngxeditor
+  |-- ngxbase
+  |-- ngxupload
+ngxmaz
+  |-- ngxbase
+  |-- ngxupload
+ngxupload
+  |-- ngxbase
+```
+
+更新顺序 `ngxbase -> ngxupload -> ngxeditor -> ngxmaz -> ngxapp`
+
+
+### how to start
+
+```
+npx create-nx-workspace@latest
+✔ Workspace name (e.g., org name)     · app
+✔ What to create in the new workspace · angular
+✔ Application name                    · website
+✔ Default stylesheet format           · less
+✔ Use Nx Cloud? (It's free and doesn't require registration.) · No
+
+直接将 `apps/website` 目录替换掉新建的项目
+
+# angular.json, your project's build options
 
 {
   "options":{
@@ -83,6 +110,9 @@ personal angularX library.
         <div class="cs-loader-inner">
           <div class="logo"></div>
         </div>
+        <div class="cs-loader-inner" style="margin-top: 80px;font-style: italic;">
+          <div style="text-align: center;">公司名称</div>
+        </div>
     </div>
 </div>
 
@@ -99,21 +129,3 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(res => { // 添加这�
 ],
 ```
 
-# 版本依赖
-
-```
-ngxapp
-  |-- ngxbase
-  |-- ngxupload
-  |-- ngxmaz
-ngxeditor
-  |-- ngxbase
-  |-- ngxupload
-ngxmaz
-  |-- ngxbase
-  |-- ngxupload
-ngxupload
-  |-- ngxbase
-```
-
-全部保持版本一致，更新顺序 `ngxbase -> ngxupload -> ngxeditor -> ngxmaz -> ngxapp`

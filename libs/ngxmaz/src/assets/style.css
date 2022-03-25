@@ -240,3 +240,16 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   height: 1px;
   min-height: 32px;
 }
+
+/* lib/layout/component/sidenav.component.ts */
+.lib-sidenav .sidenav1 {
+  width: 150px;
+}
+
+.lib-sidenav .content1 {
+  height: 100%;
+}
+
+.lib-sidenav .sidenav-content1 {
+  height: calc(100vh - 64px);
+}

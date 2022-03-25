@@ -19,7 +19,9 @@ import {MyAppxRouteConfig, RoleService, RoleSuperAdmin} from "@fsl/ngxapp";
         <ng-container name="sidenav">
           <lib-sidenav-menus [menus]="menuSer.menus"></lib-sidenav-menus>
         </ng-container>
-        <div>显示正文内容</div>
+        <div style="padding: 8px;">
+          <router-outlet></router-outlet>
+        </div>
       </lib-sidenav>
     </lib-layout>
   `
@@ -34,8 +36,7 @@ export class LayoutComponent implements OnInit {
     private showSer: LibSnackService,
     private routeConfig: MyAppxRouteConfig,
   ) {
-    this.layoutSer.reset();
-    this.layoutSer.selfLeft = true;
+
   }
 
   ngOnInit() {

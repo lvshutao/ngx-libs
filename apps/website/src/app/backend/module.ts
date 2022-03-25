@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
-import {MenuService, MyNgxMazLayoutModule, SidenavMenu} from "@fsl/ngxmaz";
+import {LayoutService, MenuService, MyNgxMazLayoutModule, SidenavMenu} from "@fsl/ngxmaz";
 import {MyNgxAppModule} from "@fsl/ngxapp";
 
 import {LayoutComponent} from "./layout.component";
@@ -26,7 +26,10 @@ import {HomeComponent} from "./home.component";
   ]
 })
 export class BackendModule {
-  constructor(private menuSer: MenuService) {
+  constructor(private menuSer: MenuService,private layoutSer:LayoutService) {
+    this.layoutSer.reset();
+    this.layoutSer.selfLeft = true;
+
     const menus: SidenavMenu[] = [
       {
         text: '菜单1', expanded: true, route: '/user/menu1/', children: [

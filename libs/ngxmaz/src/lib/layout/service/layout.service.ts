@@ -43,7 +43,11 @@ export class LayoutService {
     })
   }
 
-  assign(obj: { useLeft?: boolean, useRight?: boolean }) {
+  assign(obj: {
+    useLeft?: boolean, useRight?: boolean,
+    leftOpened?: boolean,
+    rightOpened?: boolean
+  }) {
     Object.assign(this, obj);
   }
 }

@@ -18,12 +18,14 @@ import {FrontendHomePage} from "./frontend/home";
 
 import {environment} from "../environments/environment";
 import {NotFound404Page} from "./frontend/404.page";
+import {LayoutSidenavComponent} from "./frontend/layout-sidenav.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+    LayoutSidenavComponent, // 与 layoutComponent 二选一
     FrontendHomePage,
     NotFound404Page,
   ],
@@ -41,6 +43,10 @@ import {NotFound404Page} from "./frontend/404.page";
         path: '', component: LayoutComponent, children: [
           {path: '', component: FrontendHomePage},
           {path: 'auth', loadChildren: () => import('./frontend/auth.module').then(m => m.AuthModule)}
+        ]
+      }, {
+        path: 'sidenav', component: LayoutSidenavComponent, children: [
+          {path: '', component: FrontendHomePage},
         ]
       },
       // 用户管理
