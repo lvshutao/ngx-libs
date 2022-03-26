@@ -26,7 +26,7 @@ export interface RstAddress {
   typecode: string; //
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class GaodeHttpService {
   // 使用原始 httpClient，在为不需要 withCredentials
   constructor(

@@ -1,6 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 import {Kv} from "my-tsbase";
+import {AbstractMazinput} from "./abstract.mazinput";
 
 @Component({
   selector: 'lib-form-select',
@@ -12,14 +13,12 @@ import {Kv} from "my-tsbase";
       </mat-select>
     </mat-form-field>`
 })
-export class MazFormSelectComponent {
+export class MazFormSelectComponent extends AbstractMazinput{
   @Input() form!: FormGroup;
   @Input() kvs!: Kv[];
   @Input() name: string = '';
   @Input() label: string = '';
   @Input() class: string = '';
-  @Input() required: boolean = false;
-  @Input() disabled: boolean = false;
   @Input() defValue: string | number = '';
   @Input() defText = '请选择';
 }

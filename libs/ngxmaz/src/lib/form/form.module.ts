@@ -24,6 +24,7 @@ import {MazFormTextareaComponent} from "./component/textarea.component";
 import {MazFormImageComponent} from "./component/images.component";
 import {MazFormSelectComponent} from "./component/select.component";
 import {ClearComponent} from "./component/clear.component";
+import {AbstractMazinput} from "./component/abstract.mazinput";
 
 
 const COMPONENTS = [
@@ -65,6 +66,7 @@ const MODULES = [
   ],
   declarations: [
     ...COMPONENTS,
+    AbstractMazinput,
   ],
   exports: [
     ...MODULES, ...COMPONENTS,

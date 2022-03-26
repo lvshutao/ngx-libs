@@ -16,7 +16,7 @@ import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
       </mat-autocomplete>
     </mat-form-field>`
 })
-export class MazFormInputtipComponent implements OnInit {
+export class MazFormInputtipComponent  implements OnInit {
   @Input() keyword = '';
 
   // 选项
@@ -28,10 +28,6 @@ export class MazFormInputtipComponent implements OnInit {
 
   @Output() search = new EventEmitter<string>();
   @Output() select = new EventEmitter<string>();
-
-  constructor() {
-
-  }
 
   private listenInput() {
     const searchBox = document.getElementById('keyword-box');

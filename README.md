@@ -19,7 +19,7 @@ ngxupload
   |-- ngxbase
 ```
 
-更新顺序 
+更新顺序，第更新一次，都要更新一下 git
 
 ```
 ngxbase 

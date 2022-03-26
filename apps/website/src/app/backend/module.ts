@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
-import {LayoutService, MenuService, MyNgxMazLayoutModule, SidenavMenu} from "@fsl/ngxmaz";
+import {LayoutService, MenuService, MyNgxMazFormModule, MyNgxMazLayoutModule, SidenavMenu} from "@fsl/ngxmaz";
 import {MyNgxAppModule} from "@fsl/ngxapp";
 
 import {LayoutComponent} from "./layout.component";
@@ -13,17 +13,18 @@ import {HomeComponent} from "./home.component";
     LayoutComponent,
     HomeComponent,
   ],
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '', component: LayoutComponent, children: [
-          {path: '', component: HomeComponent},
-        ], data: {title: '会员管理中心'}
-      }
-    ]),
-    MyNgxMazLayoutModule,
-    MyNgxAppModule
-  ],
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '', component: LayoutComponent, children: [
+                    {path: '', component: HomeComponent},
+                ], data: {title: '会员管理中心'}
+            }
+        ]),
+        MyNgxMazLayoutModule,
+        MyNgxAppModule,
+        MyNgxMazFormModule
+    ],
   providers: [
     LayoutService,
   ]
