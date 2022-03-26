@@ -1,30 +1,45 @@
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 
-import {LayoutService, MenuService, MyNgxMazFormModule, MyNgxMazLayoutModule, SidenavMenu} from "@fsl/ngxmaz";
+import {
+  LayoutService,
+  MenuService,
+  MyNgxMazFormModule,
+  MyNgxMazLayoutModule,
+  MyNgxMazMapModule,
+  SidenavMenu
+} from "@fsl/ngxmaz";
 import {MyNgxAppModule} from "@fsl/ngxapp";
 
 import {LayoutComponent} from "./layout.component";
 import {HomeComponent} from "./home.component";
+import {DemoFormComponent} from "./demo/form.component";
+import {DemoMapComponent} from "./demo/map.component";
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HomeComponent,
+
+    DemoFormComponent,
+    DemoMapComponent,
   ],
-    imports: [
-        RouterModule.forChild([
-            {
-                path: '', component: LayoutComponent, children: [
-                    {path: '', component: HomeComponent},
-                ], data: {title: '会员管理中心'}
-            }
-        ]),
-        MyNgxMazLayoutModule,
-        MyNgxAppModule,
-        MyNgxMazFormModule
-    ],
+  imports: [
+    RouterModule.forChild([
+      {
+        path: '', component: LayoutComponent, children: [
+          {path: '', component: HomeComponent},
+          {path: 'form', component: DemoFormComponent},
+          {path: 'map', component: DemoMapComponent},
+        ], data: {title: '会员管理中心'}
+      }
+    ]),
+    MyNgxMazLayoutModule,
+    MyNgxAppModule,
+    MyNgxMazFormModule,
+    MyNgxMazMapModule
+  ],
   providers: [
     LayoutService,
   ]
@@ -35,10 +50,9 @@ export class BackendModule {
 
     const menus: SidenavMenu[] = [
       {
-        text: '菜单1', expanded: true, route: '/user/menu1/', children: [
-          {text: '子菜单1', route: 'menu1'},
-          {text: '子菜单2', route: 'menu2'},
-          {text: '子菜单3', route: 'menu3'},
+        text: '组件测试', expanded: true, route: '/user/', children: [
+          {text: '表单 FORM', route: 'form'},
+          {text: '地图 MAP', route: 'map'},
         ]
       },
       {

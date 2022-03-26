@@ -11,6 +11,10 @@ export const environment = {
     origin: 'http://pp.test',
     manualToken: true,
     tokenDomains: ['pp.test']
+  },
+  map: {
+    gaodeKey: '82c509bf7f0ee518c5f2d84b2a25700b',
+    debug: false,
   }
 };
 

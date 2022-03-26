@@ -8,7 +8,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 
 import {AppBaseConfig} from "@fsl/ngxbase";
-import {LayoutService, MyNgxMazLayoutModule} from "@fsl/ngxmaz";
+import {LayoutService, MyNgxMazLayoutModule, MyNgxMazMapConfig, MyNgxMazMapModule} from "@fsl/ngxmaz";
 import {MyAppxAuthModule, MyNgxAppModule} from "@fsl/ngxapp";
 
 
@@ -45,6 +45,7 @@ import {Layout2Component} from "./frontend/demo/layout2.component";
     MyNgxAppModule,
     MyAppxAuthModule,
     MyNgxMazLayoutModule,
+    MyNgxMazMapModule,
     RouterModule.forRoot([
       {
         path: '', component: LayoutComponent, children: [
@@ -63,6 +64,7 @@ import {Layout2Component} from "./frontend/demo/layout2.component";
   ],
   providers: [
     {provide: AppBaseConfig, useValue: environment.appBaseConfig},
+    {provide: MyNgxMazMapConfig, useValue: environment.map},
     LayoutService,
   ],
   bootstrap: [AppComponent]

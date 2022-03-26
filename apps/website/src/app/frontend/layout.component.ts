@@ -20,6 +20,8 @@ import {navigateBy} from "@fsl/ngxbase";
       </ng-container>
       <ng-container name="toolbar">
 
+        <a mat-button routerLink="/user">后台</a>
+
         <lib-signer (roles)="bindRolesChange()"></lib-signer>
 
         <a mat-button (click)="layoutSer.rightToggle()">右侧</a>

@@ -4,7 +4,7 @@
 // 修改 package.json 后，自动编译并发布
 
 // 编译的顺序（注意依赖）
-$libDevs = ['ngxbase', 'ngxupload', 'ngxeditor', 'ngxmaz', 'ngxapp'];
+$libDevs = ['ngxbase', "ngxtc", 'ngxupload', 'ngxeditor', 'ngxmaz', 'ngxapp'];
 
 // 当前环境配置
 $workPath = __DIR__;

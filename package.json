@@ -7,7 +7,8 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "install": " npm --registry http://localhost:4873 install"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +26,7 @@
     "@nrwl/angular": "13.9.4",
     "@tinymce/tinymce-angular": "^5.0.1",
     "@vant/area-data": "^1.2.3",
-    "my-tsbase": "^1.0.4",
+    "my-tsbase": "^1.0.5",
     "ng-http-loader": "^11.0.1",
     "ngx-material-timepicker": "^5.5.3",
     "qiniu-js": "^3.4.0",
