@@ -15,12 +15,14 @@ export * from './lib/base/components/close-button.component'
 export * from './lib/base/components/dialog-bar.component'
 export * from './lib/base/components/dialog-close.component'
 export * from './lib/base/components/images.component'
+export * from './lib/base/components/link.component'
 export * from './lib/base/components/listtile.component'
 export * from './lib/base/components/paginator.component'
 export * from './lib/base/components/resend.component'
 
 export * from './lib/base/dialog/dialog.service'
 export * from './lib/base/service/table.service'
+export * from './lib/base/service/location.service'
 
 // datetime
 export * from './lib/datetime/datetime.module'
@@ -38,7 +40,7 @@ export * from './lib/form/form.module'
 
 export * from './lib/form/component/captcha-input.component'
 export * from './lib/form/component/clear.component'
-export * from './lib/form/component/images.component'
+export * from './lib/form/component/image.component'
 export * from './lib/form/component/images-action.component'
 export * from './lib/form/component/input.component'
 export * from './lib/form/component/inputtip.component'

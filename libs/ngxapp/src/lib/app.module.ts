@@ -7,8 +7,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 
-import {ResponseStatusInterceptor} from "./interceptor/response-status.interceptor";
-import {ResponseHttpInterceptor} from "./interceptor/response-http.interceptor";
+import {AppResponseInterceptor} from "./interceptor/app-response.interceptor";
 import {TokenInterceptor} from "./interceptor/token.interceptor";
 
 import {MyAppxAuthModule} from "./logic-module/auth/module";
@@ -36,8 +35,7 @@ const COMPONENTS = [
     ...COMPONENTS,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ResponseStatusInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ResponseHttpInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AppResponseInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ]
 })

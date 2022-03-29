@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 import {SnackComponent} from "./snack.component";
+
 /*
 add the css in the styles.css, copy from Alerts * Bootstrap
 .alert-success {
@@ -29,21 +30,21 @@ export class LibSnackService {
 
   public duration = 3000;
 
-  public success(message: string) {
-    return this.show({data: message, panelClass: 'alert-success'});
+  public success(message: string, duration?: number) {
+    return this.show({data: message, panelClass: 'alert-success', duration});
   }
 
-  public warning(message: string) {
-    return this.show({data: message, panelClass: 'alert-warning'});
+  public warning(message: string, duration?: number) {
+    return this.show({data: message, panelClass: 'alert-warning', duration});
 
   }
 
-  public danger(message: string) {
-    return this.show({data: message, panelClass: 'alert-danger'});
+  public danger(message: string, duration?: number) {
+    return this.show({data: message, panelClass: 'alert-danger', duration});
   }
 
-  public message(msg: string, suc: boolean) {
-    suc ? this.success(msg) : this.danger(msg);
+  public message(msg: string, suc: boolean, duration?: number) {
+    suc ? this.success(msg, duration) : this.danger(msg, duration);
   }
 
   public show(config: {
@@ -56,6 +57,6 @@ export class LibSnackService {
       duration: config.duration || this.duration,
       panelClass: [config.panelClass, 'show-message'],
       horizontalPosition: 'center',
-    });
+    }).afterDismissed();
   }
 }

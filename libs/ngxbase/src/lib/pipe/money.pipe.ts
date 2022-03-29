@@ -3,7 +3,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {MyMoney} from "my-tsbase";
 
 
-@Pipe({name: 'my-money', pure: true})
+@Pipe({name: 'mymoney', pure: true})
 export class MyMoneyPipe implements PipeTransform {
 
   transform(value: number, fixed?: number): string {

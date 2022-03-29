@@ -3,7 +3,7 @@ import {MyAssets, MyDatetime} from "my-tsbase";
 
 const empty = '0001-01-01T00:00:00Z';
 
-@Pipe({name: 'my-date'})
+@Pipe({name: 'mydate'})
 /**
  * utc date
  * 将 golang 返回的时间转为 yyyy-mm-dd
@@ -17,7 +17,7 @@ export class MyDatePipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'my-datetime'})
+@Pipe({name: 'mydatetime'})
 /**
  * utc date time
  * 将 golang 返回的时间转为 yyyy-mm-dd hh:ii
@@ -39,7 +39,7 @@ export class MyDatetimePipe implements PipeTransform {
 }
 
 
-@Pipe({name: 'my-date-week'})
+@Pipe({name: 'mydateweek'})
 /**
  * 将返回的时间转为 yyyy-mm-dd(周几)
  */
@@ -52,7 +52,7 @@ export class MyDateWeekPipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'my-datetime-week'})
+@Pipe({name: 'mydatetimeweek'})
 /**
  * 将返回的时间转为 yyyy-mm-dd hh:MM(周几)
  */

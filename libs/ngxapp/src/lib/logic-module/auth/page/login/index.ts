@@ -3,7 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
 import {MySecret} from "my-tsbase";
-import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword} from "@fsl/ngxbase";
+import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword, navigateBy} from "@fsl/ngxbase";
 import {LibSnackService} from "@fsl/ngxmaz";
 
 import {MyAppxRouteConfig} from "../../../route-config";
@@ -97,8 +97,9 @@ export class PageAuthLogin implements OnInit {
     if (tc.uid) {
       this.http.cert(tc).subscribe(uc => {
         this.certSer.saveCert(uc);
-        this.showSer.success('登录成功');
-        location.href = this.redirect.read(true) || this.routeConfig.home;
+        this.showSer.success('登录成功', 1000).subscribe(() => {
+          location.href = this.redirect.read(true) || this.routeConfig.home;
+        });
       });
     } else {
       this.showSer.danger('临时凭证格式错误');

@@ -110,20 +110,20 @@ export class AppHttpService {
   }
 
   // POST
-  post<T>(middle: string, body: any | null, options = {}): Observable<T> {
+  post<T>(middle: string, body: any, options = {}): Observable<T> {
     return this.http.post('/api/' + middle, body, options);
   }
 
-  postResText(middle: string, data: any) {
-    return this.saveResText(false, middle, data);
+  postResText(middle: string, data: any):Observable<string> {
+    return this.http.post('/api/' + middle, data, httpResponseText);
   }
 
   // PUT
-  put<T>(middle: string, body: any | null, options = {}): Observable<T> {
+  put<T>(middle: string, body: any, options = {}): Observable<T> {
     return this.http.put<T>('/api/' + middle, body, options);
   }
 
-  putResText(middle: string, data: any) {
+  putResText(middle: string, data: any): Observable<string> {
     return this.saveResText(true, middle, data);
   }
 

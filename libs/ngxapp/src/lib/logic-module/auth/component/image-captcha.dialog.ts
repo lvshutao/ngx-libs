@@ -33,6 +33,7 @@ import {MyAppxApiConfig} from "../../api-config";
     </div>
   `
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class ImageCaptchaDialog implements OnInit {
 
   private id = '';
@@ -54,7 +55,7 @@ export class ImageCaptchaDialog implements OnInit {
 
   onReload() {
     this.code = '';
-    this.http.get<any>(this.apiConfig.captchaId, {id: this.id}).subscribe((id: string) => {
+    this.http.getWithText(this.apiConfig.captchaId, {id: this.id}).subscribe((id: string) => {
       this.id = id;
       this.src = this.appConfig.origin + this.apiConfig.captchaSrc + '?id=' + id + '&rnd=' + Math.random();
     })

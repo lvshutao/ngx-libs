@@ -15,9 +15,9 @@ export * from './lib/component/svg.component'
 export * from './lib/directive/fullscreen.directive'
 
 // interceptor
-export * from './lib/interceptor/app-response.interceptor'
+export * from './lib/interceptor/response-demo1.interceptor'
 export * from './lib/interceptor/credentials.interceptor'
-export * from './lib/interceptor/tc-response.interceptor'
+export * from './lib/interceptor/response-demo2.interceptor'
 
 // pipe
 export * from './lib/pipe/datetime.pipe'

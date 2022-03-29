@@ -12,7 +12,8 @@ import {ImageCaptchaDialog} from "./image-captcha.dialog";
 })
 export class LibCaptchaComponent {
   @Input() disabled = true; // 能否点击
-  @Output() success = new EventEmitter<Object>(); // 返回一个对象，与后端相对
+  // eslint-disable-next-line @angular-eslint/no-output-native
+  @Output() success = new EventEmitter<any>(); // 返回一个对象，与后端相对
 
   constructor(
     private dialogSer: MatDialog,

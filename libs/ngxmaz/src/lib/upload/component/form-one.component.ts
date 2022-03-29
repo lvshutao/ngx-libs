@@ -5,11 +5,11 @@ import {FormGroup} from "@angular/forms";
 import {ImagePreview} from '@fsl/ngxbase'
 
 @Component({
-  selector: 'lib-mazupload-form-one',
+  selector: 'lib-uploadmaz-form-one',
   template: `
-    <lib-mazupload-one
+    <lib-uploadmaz-one
       [preview]="preview"
-      [text]="text" [src]="src" (action)="change($event)"></lib-mazupload-one>
+      [text]="text" [src]="src" (action)="change($event)"></lib-uploadmaz-one>
   `,
 })
 export class LibMazUploadFormOneComponent {

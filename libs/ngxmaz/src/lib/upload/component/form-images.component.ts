@@ -7,7 +7,7 @@ import {FormGroup} from '@angular/forms';
 <lib-form-images-action [form]="mo"></lib-form-images-action>
  */
 @Component({
-  selector: 'lib-mazupload-form-images',
+  selector: 'lib-form-images',
   template: `<a mat-stroked-button [disabled]="disabled"
                 (click)="onImageTrigger()">
     <mat-icon>image</mat-icon>

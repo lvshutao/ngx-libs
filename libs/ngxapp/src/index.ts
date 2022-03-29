@@ -8,8 +8,7 @@ export * from './lib/guard/auth.guard'
 export * from './lib/guard/noauth.guard'
 
 // interceptor
-export * from './lib/interceptor/response-http.interceptor'
-export * from './lib/interceptor/response-status.interceptor'
+export * from './lib/interceptor/app-response.interceptor'
 export * from './lib/interceptor/token.interceptor'
 
 // model

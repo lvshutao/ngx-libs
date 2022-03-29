@@ -71,7 +71,7 @@ table.lib-table-border th.mat-header-cell:last-of-type {
 }
 
 
-.lib-form {
+.lib-form, .lib-form-full {
   padding: 0 1em;
 }
 
@@ -79,22 +79,8 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   width: 80%;
 }
 
-.lib-form label.mat-form-field-label {
-  font-weight: bold;
-}
-
-.lib-form .mat-radio-group {
-  display: block;
-}
-
-.lib-form .mat-radio-group > label {
-  color: rgba(0, 0, 0, .54);
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-.lib-form .mat-radio-button {
-  margin: 10px 20px 10px 0;
+.lib-form-full mat-form-field {
+  width: 99%;
 }
 
 
@@ -108,8 +94,7 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   position: relative; /*防止被遮挡*/
   z-index: 2;
   padding-right: 15px;
-  margin-bottom: 1.2em
-;
+  margin-bottom: 1.2em;
 }
 
 /* 普通的 div */
@@ -136,6 +121,7 @@ table.lib-table-border th.mat-header-cell:last-of-type {
 .width70, mat-form-field.width70 {
   width: 70px;
 }
+
 .width100, mat-form-field.width100 {
   width: 100px;
 }
@@ -144,6 +130,19 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   width: 220px;
 }
 
+.group-radio .mat-radio-group {
+  display: block;
+}
+
+.group-radio .mat-radio-group > label {
+  color: rgba(0, 0, 0, .54);
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.group-radio .mat-radio-button {
+  margin: 10px 20px 10px 0;
+}
 
 .group-buttons > a, .group-buttons > button {
   margin-right: 10px;

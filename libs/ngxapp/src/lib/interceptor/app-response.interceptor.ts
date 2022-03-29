@@ -10,7 +10,7 @@ import {ResponseCallbackService} from "../service/response-callback.service";
 /**
  * 根据状态码处理结果
  */
-export class ResponseStatusInterceptor implements HttpInterceptor {
+export class AppResponseInterceptor implements HttpInterceptor {
   constructor(
     private conf: AppBaseConfig,
     private certSer: CertService,

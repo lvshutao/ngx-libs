@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({name: 'my-repeat'})
+@Pipe({name: 'myrepeat'})
 export class MyRepeatPipe implements PipeTransform {
   transform(value: any, times: number) {
     return value.repeat(times);

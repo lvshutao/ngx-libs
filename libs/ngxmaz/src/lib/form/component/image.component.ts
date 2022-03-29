@@ -8,7 +8,7 @@ import {ImagePreview} from "@fsl/ngxbase";
   template: `
     <div class="row" [formGroup]="form">
       <div class="width200">
-        <lib-mazupload-form-one [preview]="preview" [form]="form" [name]="name" [text]="label"></lib-mazupload-form-one>
+        <lib-uploadmaz-form-one [preview]="preview" [form]="form" [name]="name" [text]="label"></lib-uploadmaz-form-one>
       </div>
       <div class="flex1">
         <lib-form-input [form]="form" [name]="name" [label]="label"></lib-form-input>

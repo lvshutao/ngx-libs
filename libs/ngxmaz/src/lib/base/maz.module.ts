@@ -24,7 +24,9 @@ import {DialogShareSheetComponent} from "./dialog/share-sheet";
 import {DialogTextareaComponent} from "./dialog/textarea";
 import {LibDialogService} from "./dialog/dialog.service";
 
-import {ListtileComponent} from "./components/listtile.component";
+import {LibListtileComponent} from "./components/listtile.component";
+import {LibLinkComponent} from "./components/link.component";
+
 import {PaginatorComponent} from "./components/paginator.component";
 import {AddButtonComponent} from "./components/add-button.component";
 import {BackIconComponent} from "./components/back-icon.component";
@@ -61,7 +63,8 @@ const COMPONENTS = [
   DialogBarComponent,
   DialogCloseBarComponent,
   ImagesComponent,
-  ListtileComponent,
+  LibListtileComponent,
+  LibLinkComponent,
   PaginatorComponent,
   ResendComponent,
 ];

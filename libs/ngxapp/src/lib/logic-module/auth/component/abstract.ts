@@ -16,6 +16,7 @@ export class AbstractLoginComponent implements OnInit {
   /**
    * 登录状态更改
    */
+    // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() change = new EventEmitter<boolean>();
   /**
    * 点击退出登录
@@ -49,7 +50,6 @@ export class AbstractLoginComponent implements OnInit {
         this.loginStateSer.isLogin = hasLogin;
         this.change.emit(hasLogin);
         hasLogin || this.certSer.logout();
-      }).add(() => {
       })
     }
   }

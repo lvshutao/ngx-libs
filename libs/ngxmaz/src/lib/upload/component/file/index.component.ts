@@ -6,7 +6,7 @@ import {UploadResult, FileService, MyNgxUploadConfig} from '@fsl/ngxupload';
 import {LibSnackService} from "../../../snack/snack.servic";
 
 @Component({
-  selector: 'lib-mat-upload-file',
+  selector: 'lib-uploadmaz-file',
   templateUrl: 'index.component.html',
   styles: [`.failed {
     text-decoration: line-through;

@@ -17,7 +17,7 @@ interface TcResp {
 }
 
 @Injectable({providedIn: 'root'})
-export class TcResponseInterceptor implements HttpInterceptor {
+export class ResponseDemo2Interceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       map(

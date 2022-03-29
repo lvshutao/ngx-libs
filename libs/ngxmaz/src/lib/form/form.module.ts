@@ -21,7 +21,7 @@ import {NumberInputComponent} from "./component/number-input.component";
 import {MazFormInputtipComponent} from "./component/inputtip.component";
 import {MazFormInputComponent} from "./component/input.component";
 import {MazFormTextareaComponent} from "./component/textarea.component";
-import {MazFormImageComponent} from "./component/images.component";
+import {MazFormImageComponent} from "./component/image.component";
 import {MazFormSelectComponent} from "./component/select.component";
 import {ClearComponent} from "./component/clear.component";
 import {AbstractMazinput} from "./component/abstract.mazinput";

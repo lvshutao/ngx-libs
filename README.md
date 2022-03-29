@@ -4,6 +4,8 @@ personal angularX library.
 
 ### 版本依赖
 
+使用 `/verdaccio.php` 来更新 libs
+
 ```
 ngxapp
   |-- ngxbase

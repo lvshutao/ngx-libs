@@ -13,6 +13,7 @@ import {MatIconRegistry} from '@angular/material/icon';
  *     loadSvgResources(ir, ds, {gifts:'assets/fullscreen-exit.svg'});
  *   }
  * }
+ * <mat-icon svgIcon="gifts"></mat-icon>
  */
 export const loadSvgResources =
   (ir: MatIconRegistry, ds: DomSanitizer, svgList: { [key: string]: string; }) => {

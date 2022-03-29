@@ -5,7 +5,7 @@ export class MyAppxApiConfig {
   /**
    * 退出登录
    */
-  logout = 'base/user/logout';
+  logout = 'base/open/logout';
   /**
    * API 服务器连接
    */

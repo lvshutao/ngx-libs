@@ -16,9 +16,7 @@ interface AppResp {
 }
 
 @Injectable({providedIn: 'root'})
-export class AppResponseInterceptor implements HttpInterceptor {
-  constructor() {
-  }
+export class ResponseDemo1Interceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
