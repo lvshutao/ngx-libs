@@ -9,7 +9,6 @@ import {AbstractMazinput} from "./abstract.mazinput";
       <input matInput type="number" style="text-align: center;"
              [min]="min"
              [required]="required"
-             [readonly]="readonly"
              [formControlName]="name" #input (focus)="input.select()"
              [placeholder]="label"
       >

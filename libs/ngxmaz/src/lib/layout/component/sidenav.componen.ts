@@ -11,8 +11,10 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
       >
         <ng-content select="[name=sidenav]"></ng-content>
       </mat-sidenav>
-<!-- 没有设置 100% 内容区域过长时会出现滚动条，导致双重滚动条 -->
-      <mat-sidenav-content style="width: 100%;" class="sidenav-content1">
+<!-- 没有设置 100% 内容区域过长时会出现滚动条，导致双重滚动条
+设置 100% 后，在扣除左侧栏，否则内容区域又太长
+-->
+      <mat-sidenav-content style="" class="sidenav-content1">
         <div class="content1">
           <ng-content></ng-content>
         </div>

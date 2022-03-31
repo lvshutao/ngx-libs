@@ -47,6 +47,14 @@ export class LibSnackService {
     suc ? this.success(msg, duration) : this.danger(msg, duration);
   }
 
+  public actionSuccess(msg: string) {
+    return this.success(msg, 1000);
+  }
+
+  public actionWaring(msg: string) {
+    return this.warning(msg, 1000);
+  }
+
   public show(config: {
     data: any;
     panelClass: string;

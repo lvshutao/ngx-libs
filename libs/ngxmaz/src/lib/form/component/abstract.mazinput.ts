@@ -16,33 +16,6 @@ export class AbstractMazinput {
   }
 
   private _required = false
-
-  /**
-   * @deprecated 使用 new FormControl({value: '', disabled: true}) 代替
-   */
-  get disabled(): boolean {
-    return this._disabled;
-  }
-
-  @Input()
-  set disabled(value: BooleanInput) {
-    this._disabled = hasTrue(value)
-    console.log('_disabled:', this._disabled)
-  }
-
-  private _disabled = false;
-
-  get readonly(): boolean {
-    return this._readonly;
-  }
-
-  @Input()
-  set readonly(value: BooleanInput) {
-    this._readonly = hasTrue(value)
-    console.log('_readonly:', this._readonly)
-  }
-
-  private _readonly = false;
 }
 
 // 只要有设置值，并且值不为 false，就是真值
