@@ -80,15 +80,25 @@ export class ImagesComponent {
     this.urls.splice(index, 1);
   }
 
+  /**
+   * 同前移动
+   * @param index
+   */
   upward(index: number) {
     if (this.disUpward(index)) {
+      console.log(index,'could not upward')
       return;
     }
     moveItemInArray(this.urls, index, index - 1);
   }
 
+  /**
+   * 向后移动
+   * @param index
+   */
   downward(index: number) {
-    if (this.disUpward(index)) {
+    if (this.disDownward(index)) {
+      console.log(index,'could not downward')
       return;
     }
     moveItemInArray(this.urls, index, index + 1);

@@ -1,0 +1,12 @@
+.group-abtn {
+  padding-left: 8px;
+}
+.group-abtn a{
+  padding: 5px;
+  margin: 5px;
+  text-decoration: underline;
+}
+
+.group-abtn a:hover {
+  cursor: pointer;
+}

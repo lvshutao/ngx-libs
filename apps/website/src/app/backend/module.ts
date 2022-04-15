@@ -15,6 +15,7 @@ import {LayoutComponent} from "./layout.component";
 import {HomeComponent} from "./home.component";
 import {DemoFormComponent} from "./demo/form.component";
 import {DemoMapComponent} from "./demo/map.component";
+import {DemoUploadComponent} from "./demo/upload.component";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {DemoMapComponent} from "./demo/map.component";
 
     DemoFormComponent,
     DemoMapComponent,
+    DemoUploadComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -32,6 +34,7 @@ import {DemoMapComponent} from "./demo/map.component";
           {path: '', component: HomeComponent},
           {path: 'form', component: DemoFormComponent},
           {path: 'map', component: DemoMapComponent},
+          {path: 'upload', component: DemoUploadComponent}
         ], data: {title: '会员管理中心'}
       }
     ]),
@@ -53,15 +56,10 @@ export class BackendModule {
         text: '组件测试', expanded: true, route: '/user/', children: [
           {text: '表单 FORM', route: 'form'},
           {text: '地图 MAP', route: 'map'},
+          {text: '上传 UPLOAD', route: 'upload'},
         ]
       },
       {
-        text: '菜单2', expanded: true, route: '/user/menu2/', children: [
-          {text: '子菜单1', route: 'menu1'},
-          {text: '子菜单2', route: 'menu2'},
-          {text: '子菜单3', route: 'menu3'},
-        ]
-      }, {
         text: '基本信息', expanded: true, route: '/user/', children: [
           {text: '我的资料', route: 'account', icon: 'account_circle'},
           {text: '收件地址', route: 'address', icon: 'place'},

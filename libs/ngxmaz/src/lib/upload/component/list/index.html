@@ -1,0 +1,48 @@
+<!-- 自定义上传图标 -->
+<span #ref>
+    <ng-content></ng-content>
+</span>
+<!-- 默认显示的图片 -->
+<span *ngIf="!hideBtn && !ref.innerHTML.trim()">
+  <label [for]="idName">
+      <mat-icon>cloud_upload</mat-icon>
+  </label>
+</span>
+<!-- 隐藏真正的上传按钮-->
+<input *ngIf="multiple; else single" [id]="idName" multiple="multiple" type="file" style="visibility: hidden;"
+       (change)="change($event)">
+<ng-template #single>
+  <input [id]="idName" type="file" style="visibility: hidden;" (change)="change($event)">
+</ng-template>
+
+<div class="upload-content">
+  <div *ngIf="htmlSer.queue" style="overflow: hidden;">
+    <lib-uploadmaz-file
+      *ngFor="let file of htmlSer.queue;let i = index"
+      [file]="file"
+      [index]="i"
+      [preview]="preview"
+      [toCancel]="toCancel"
+      [toUpload]="toUpload"
+      (whenUpload)="update($event)"
+      (whenRemove)="remove($event)"></lib-uploadmaz-file>
+  </div>
+  <!-- 多文件上传时的操作按钮 -->
+  <div style="margin: 10px 0;" *ngIf="multiple && htmlSer.has">
+    <a mat-stroked-button color="primary" [disabled]="toUpload || htmlSer.complete"
+       (click)="toUpload = true">
+      <span>全部上传</span>
+    </a>
+    &nbsp;
+    <!-- 1.上传完成-->
+    <a mat-stroked-button color="accent" [disabled]="htmlSer.complete || !toUpload"
+       (click)="toCancel = true">
+      <span>取消上传</span>
+    </a>
+    &nbsp;&nbsp;
+    <a mat-stroked-button color="warn"
+       (click)="htmlSer.clear()">
+      <span>全部移除</span>
+    </a>
+  </div>
+</div>

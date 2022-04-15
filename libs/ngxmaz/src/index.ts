@@ -90,7 +90,9 @@ export * from './lib/snack/snack.servic'
 // upload
 export * from './lib/upload/upload.module'
 
+export * from './lib/upload/component/dialog/button.component'
 export * from './lib/upload/component/file/index.component'
+export * from './lib/upload/component/list/index'
 export * from './lib/upload/component/form-images.component'
 export * from './lib/upload/component/form-one.component'
 export * from './lib/upload/component/one.component'

@@ -2,7 +2,12 @@
 
 <?php
 // 修改 package.json 后，自动编译并发布
-
+/*
+ngxbase
+  -> ngxupload
+      -> ngxmaz -> ngxapp
+      -> ngxeditor
+*/
 // 编译的顺序（注意依赖）
 $libDevs = ['ngxbase', "ngxtc", 'ngxupload', 'ngxeditor', 'ngxmaz', 'ngxapp'];
 

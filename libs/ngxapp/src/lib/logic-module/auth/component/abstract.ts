@@ -14,9 +14,8 @@ import {UserHttpService} from "../../service/user-http.service";
 @Component({template: ``})
 export class AbstractLoginComponent implements OnInit {
   /**
-   * 登录状态更改
+   * 登录状态 ping 更改
    */
-    // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() change = new EventEmitter<boolean>();
   /**
    * 点击退出登录

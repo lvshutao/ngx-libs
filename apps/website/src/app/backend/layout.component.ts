@@ -24,6 +24,7 @@ import {MyAppxRouteConfig} from "@fsl/ngxapp";
         </div>
       </lib-sidenav>
     </lib-layout>
+
   `
 })
 export class LayoutComponent implements OnInit {

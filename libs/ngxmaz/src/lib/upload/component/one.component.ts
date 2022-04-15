@@ -4,7 +4,7 @@ import {MySecret} from "my-tsbase";
 import {ImagePreview,getImagePreviewClasses} from '@fsl/ngxbase'
 
 @Component({
-  selector: 'lib-uploadmaz-one',
+  selector: 'lib-upload-one',
   template: `
     <!-- 带有 上传、取消 按钮 -->
     <label for="{{idName}}">

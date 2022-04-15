@@ -15,6 +15,12 @@ export const environment = {
   map: {
     gaodeKey: '82c509bf7f0ee518c5f2d84b2a25700b',
     debug: false,
+  },
+  upload: {
+    isQiniu: true,
+    qiniuTokenUrl: 'http://pp.test/api/base/user/upload-cert', // 七牛证书地址
+    serverUploadUrl: '',
+    debug: true,
   }
 };
 

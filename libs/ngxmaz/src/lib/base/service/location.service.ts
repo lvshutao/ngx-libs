@@ -1,13 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Location} from "@angular/common";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class LocationService {
   constructor(
     public location: Location,
-    public route: ActivatedRoute,
-    public router: Router,
   ) {
   }
 
@@ -15,15 +13,8 @@ export class LocationService {
     this.location.back();
   }
 
-  queryParam(observer: (q: ParamMap) => void) {
-    this.route.queryParamMap.subscribe(observer)
+  queryParam(route: ActivatedRoute, observer: (q: ParamMap) => void) {
+    route.queryParamMap.subscribe(observer)
   }
 
-  navigate(commands: any[], queryParams: any = {}): Promise<boolean> {
-    return this.router.navigate(commands, {
-        relativeTo: this.route,
-        queryParams
-      }
-    )
-  }
 }

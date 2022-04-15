@@ -13,7 +13,7 @@ import {AllowImageType} from "../model";
 /**
  * 包裹自定义上传的组件
  * @example
- * <lib-upload-wrap selector should start with one of these prefixes: "fsl" -upload-wrap>
+ * <lib-upload-wrap>
  * <a mat-stroked-button><mat-icon>image</mat-icon>图片选择</a>
  * </lib-upload-wrap>
  */

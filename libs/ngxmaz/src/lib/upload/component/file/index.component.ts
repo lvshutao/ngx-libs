@@ -19,10 +19,14 @@ import {LibSnackService} from "../../../snack/snack.servic";
     overflow: hidden;
   }`]
 })
-export class LibMazUploadFileComponent implements OnInit, OnDestroy {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  @Input() file: File;
+/**
+ * 此组件不能单独直接使用，需要配合 File 使用
+ */
+export class LibUploadMazFileComponent implements OnInit, OnDestroy {
+  /**
+   * 此属性必须指定
+   */
+  @Input() file!: File;
   @Input() index = -1;
   @Input() showInfo = false; // 是否显示文件名及上传进度
 
@@ -35,7 +39,9 @@ export class LibMazUploadFileComponent implements OnInit, OnDestroy {
 
   @Input()
   set toUpload(yes: boolean) { // 触发上传
-    console.log('prepare to upload:', this.index, ';', yes);
+    if (this.conf.debug) {
+      console.log('prepare to upload:', this.index, ';', yes);
+    }
     if (yes) {
       this.upload();
     }
@@ -43,7 +49,9 @@ export class LibMazUploadFileComponent implements OnInit, OnDestroy {
 
   @Input()
   set toCancel(yes: boolean) { // 触发取消上传
-    console.log('prepare to cancel:', this.index, ';', yes);
+    if (this.conf.debug) {
+      console.log('prepare to cancel:', this.index, ';', yes);
+    }
     if (yes) {
       if (this.fileUploadSubscription) {
         this.fileUploadSubscription.unsubscribe();
@@ -119,7 +127,7 @@ export class LibMazUploadFileComponent implements OnInit, OnDestroy {
         });
       },
       failed: (err: any) => {
-        console.log('upload error:', err);
+        console.error('upload error:', err);
         if (this.fileUploadSubscription) {
           this.fileUploadSubscription.unsubscribe();
         }
@@ -136,7 +144,9 @@ export class LibMazUploadFileComponent implements OnInit, OnDestroy {
           body: res
         });
         if (this.fileUploadSubscription) {
-          console.log('上传完成，直接取消订阅');
+          if (this.conf.debug) {
+            console.log('上传完成，直接取消订阅');
+          }
           this.fileUploadSubscription.unsubscribe();
         }
       }
@@ -147,6 +157,8 @@ export class LibMazUploadFileComponent implements OnInit, OnDestroy {
     if (this.fileUploadSubscription) {
       this.fileUploadSubscription.unsubscribe();
     }
-    console.log('index ' + this.index + ':' + this.file.name + ' destroyed...');
+    if (this.conf.debug) {
+      console.log('index ' + this.index + ':' + this.file.name + ' destroyed...');
+    }
   }
 }

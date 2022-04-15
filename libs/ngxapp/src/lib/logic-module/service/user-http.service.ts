@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 
-import {AppHttpService, httpParams, httpResponseText, httpTextParams} from "@fsl/ngxbase";
+import {AppHttpService, httpResponseText, httpTextParams} from "@fsl/ngxbase";
 import {MyAppxApiConfig} from "../api-config";
 
 @Injectable({providedIn: 'root'})
@@ -17,7 +17,9 @@ export class UserHttpService {
    * @param q {Object} {role:角色名称,name:应用名称}
    */
   access(q: any = {}): Observable<boolean> {
-    return this.http.get<boolean>(this.apiConfig.userAccess, httpTextParams(q));
+    return this.http.get<string>(this.apiConfig.userAccess, httpTextParams(q)).pipe(map(rst=>{
+      return rst === 'true'
+    }))
   }
 
   /**
@@ -39,6 +41,8 @@ export class UserHttpService {
    * ping 是否登录
    */
   ping(): Observable<boolean> {
-    return this.http.get<boolean>(this.apiConfig.ping, httpResponseText)
+    return this.http.get<string>(this.apiConfig.ping, httpResponseText).pipe(map(rst=>{
+      return rst === 'true'
+    }))
   }
 }

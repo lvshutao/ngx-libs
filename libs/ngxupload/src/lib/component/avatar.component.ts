@@ -17,7 +17,7 @@ import {MySecret} from "my-tsbase";
   </label>
 
   <lib-upload-hide [multiple]="false" [idName]="idName"
-                   (action)="action.emit($event)"></lib-upload-hide>
+                   (action)="change($event)"></lib-upload-hide>
   `
 })
 /**
@@ -38,5 +38,10 @@ export class LibUploadAvatarComponent {
       height: this.size + 'px',
       'border-radius': this.radius + '%',
     };
+  }
+
+  change(src: string) {
+    this.action.emit(src);
+    // this.idName = MySecret.randomString(4); // 不会改变
   }
 }

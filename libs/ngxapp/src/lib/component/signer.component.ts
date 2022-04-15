@@ -32,6 +32,7 @@ import {CertService} from "../service/cert.service";
 export class SignerComponent {
   toLogout = false;
   @Output() roles = new EventEmitter();
+  @Output() ping = new EventEmitter<boolean>(); // 登录结果
 
   constructor(
     public loginStateSer: LoginStateService,
@@ -43,9 +44,13 @@ export class SignerComponent {
   }
 
   loginChange(isLogin: boolean) {
+    // console.log('ping RST',isLogin, typeof isLogin)
     this.loginStateSer.isLogin = isLogin;
+    this.ping.emit(isLogin);
     if (isLogin) {
       this.checkIsAdmin();
+    } else {
+      this.certSer.logout();
     }
   }
 

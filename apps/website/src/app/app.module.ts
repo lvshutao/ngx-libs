@@ -22,6 +22,7 @@ import {LayoutSidenavComponent} from "./frontend/demo/layout-sidenav.component";
 import {ChecksComponent} from "./frontend/demo/checks.component";
 import {LayoutSidenav2Component} from "./frontend/demo/layout-sidenav2.component";
 import {Layout2Component} from "./frontend/demo/layout2.component";
+import {MyNgxUploadConfig} from "@fsl/ngxupload";
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {Layout2Component} from "./frontend/demo/layout2.component";
   providers: [
     {provide: AppBaseConfig, useValue: environment.appBaseConfig},
     {provide: MyNgxMazMapConfig, useValue: environment.map},
+    {provide: MyNgxUploadConfig, useValue: environment.upload},
     LayoutService,
   ],
   bootstrap: [AppComponent]
