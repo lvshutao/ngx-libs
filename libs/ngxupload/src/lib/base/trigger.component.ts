@@ -1,26 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 
-import { AlterService } from "@fsl/ngxbase";
+import {AlterService} from "@fsl/ngxbase";
 
-import { AllowFileType, AllowImageType, UploadResultBody, UploadResultQiniuBody, UploadSrcData } from "../model";
-import { FileService } from "../service/file.service";
-import { MyNgxUploadConfig } from "../config";
-import { FileQueueService } from "../service/file-queue.service";
+import {UploadResultBody, UploadResultQiniuBody, UploadSrcData} from "../model";
+
+import {MyNgxUploadConfig, UploadFileConfig} from "../config";
+import {FileActionService} from "../service/file-action.service";
+import {UploadEngine} from "../service/engine";
+
 
 
 @Component({
   selector: 'lib-upload-trigger',
-  template: `<input *ngIf="multiple; else one"
+  template: `<input *ngIf="fileConf.multiple; else one"
                     style="visibility: hidden;width: 0;" type="file" multiple="multiple"
                     [id]="name"
                     (change)="change($event)"
-                    [accept]="allowType">
+                    [accept]="fileConf.allowTypes">
   <ng-template #one>
     <input style="visibility: hidden;width: 0;" type="file"
            [id]="name"
            (change)="change($event)"
-           [accept]="allowType">
+           [accept]="fileConf.allowTypes">
   </ng-template>
   `
 })
@@ -39,32 +40,17 @@ export class LibUploadTriggerComponent implements OnInit {
    * 上传进度
    */
   @Output() percent = new EventEmitter<number>();
-  /**
-   * 允许上传的文件类型，默认 jpg,jpeg,png,gif
-   */
-  @Input() allowType = AllowImageType;
-  /**
-   * 是否允许多选
-   */
-  @Input() multiple = false;
+
   /**
    * input id name
    */
   @Input() name = 'file';
 
-  @Input()
-  /**
-   * 是否允许上传文件，如果是，则支持 pdf, txt, office 文件
-   */
-  set file(yes: boolean) {
-    this.allowType = yes ? AllowFileType : AllowImageType;
-  }
-
-  @Input()
   /**
    * 触发上传事件
    */
-  set trigger(yes: any) {
+  @Input()
+  set trigger(yes: boolean) {
     if (yes !== this.show) {
       this.show = yes;
       const e: HTMLElement = document.getElementById(this.name) as HTMLElement;
@@ -72,36 +58,33 @@ export class LibUploadTriggerComponent implements OnInit {
     }
   }
 
-  private readonly htmlSer = new FileQueueService();
-  private readonly fileSer: FileService;
+  private readonly actSer: FileActionService;
 
-  constructor(private conf: MyNgxUploadConfig,
-    private http: HttpClient,
-    private alterSer: AlterService) {
-    this.fileSer = new FileService(conf, http, this.name);
+  constructor(
+    public fileConf: UploadFileConfig,
+    private engine: UploadEngine,
+    private conf: MyNgxUploadConfig,
+    private alterSer: AlterService,
+  ) {
+    this.actSer = new FileActionService(fileConf);
   }
 
   ngOnInit() {
-    this.htmlSer.allowType = this.allowType;
-    this.htmlSer.multiple = this.multiple;
-    this.fileSer.filedName = this.name;
-    this.fileSer.onInit(msg => {
-      this.alterSer.danger(msg);
-    });
+    this.engine.onInit();
   }
 
   // 选择了文件
   change(event: Event) {
     event.stopPropagation();
-    this.htmlSer.clear();
-    if (this.htmlSer.change(event, msg => {
+    this.actSer.clear();
+    if (this.actSer.change(event, msg => {
       this.alterSer.danger(msg);
     })) {
-      for (let i = 0; i < this.htmlSer.queue.length; i++) {
-        const f = this.htmlSer.fileAt(i);
+      for (let i = 0; i < this.actSer.queue.length; i++) {
+        const f = this.actSer.fileAt(i);
         if (f) {
           // 上传文件
-          this.fileSer.upload(f, {
+          this.engine.upload(f, {
             failed: err => {
               console.error('upload failed:', err);
               this.alterSer.danger(err);
@@ -118,7 +101,7 @@ export class LibUploadTriggerComponent implements OnInit {
             process: (percent: number, loaded: number, total: number) => {
               this.percent.emit(percent);
             }
-          });
+          }, {name: this.name});
         }
       }
     } else {

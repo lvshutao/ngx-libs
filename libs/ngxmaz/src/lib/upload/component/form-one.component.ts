@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Component, Input} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 

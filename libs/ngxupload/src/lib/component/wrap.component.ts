@@ -1,13 +1,12 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {MySecret} from "my-tsbase";
 
-import {AllowImageType} from "../model";
-
 @Component({
   selector: 'lib-upload-wrap',
-  template: `<label for="{{name}}"><ng-content></ng-content></label>
-  <lib-upload-hide [allowType]="allowType" [idName]="name" [multiple]="false"
-                   (action)="action.emit($event)"></lib-upload-hide>
+  template: `<label for="{{name}}">
+    <ng-content></ng-content>
+  </label>
+  <lib-upload-hide [idName]="name" (action)="action.emit($event)"></lib-upload-hide>
   `
 })
 /**
@@ -19,7 +18,6 @@ import {AllowImageType} from "../model";
  */
 export class LibUploadWrapComponent {
   @Input() name = MySecret.randomString(5);
-  @Input() allowType = AllowImageType; // 允许的类型
 
   @Output() action = new EventEmitter<string>();
 }

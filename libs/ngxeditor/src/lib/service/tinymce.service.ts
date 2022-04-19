@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {UploadEngine, QiniuUploadResult} from '@fsl/ngxupload';
+import {UploadEngine} from '@fsl/ngxupload';
 
 export class TinymceService {
   readonly initEditor = {
@@ -36,19 +36,18 @@ export class TinymceService {
     images_upload_handler: (blobInfo, success, failure) => {
       console.log('TinymceService.image_upload_handler running');
       // @ts-ignore
-      this.engine.upload(blobInfo.blob(), 'file', failure)?.subscribe(
-        (res: any) => {
-          console.log('上传进度:', res);
-        },
-        (err: any) => {
+      this.engine.upload(blobInfo.blob(), {
+        failed: err => {
           console.log('错误:', err);
           failure(err);
         },
-        // @ts-ignore
-        (res: QiniuUploadResult | any) => {
-          const r = this.engine.config().domain + '/' + res.key;
-          success(r);
-        });
+        process: (percent, loaded, total) => {
+          console.log('上传进度:', percent)
+        },
+        success: res => {
+          success(res.url)
+        }
+      }, {})
     }
   };
 

@@ -1,12 +1,6 @@
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-
 import {UploadResultBody, UploadResultQiniuBody} from "../model";
-import {MyNgxUploadConfig} from "../config";
-import {ServerEngine} from "./server.engine";
-import {QiniuEngine} from "./qiniu.engine";
-
-
+import {Injectable} from "@angular/core";
 
 export interface UploadCallback {
   process?: (percent: number, loaded: number, total: number) => void;
@@ -15,27 +9,26 @@ export interface UploadCallback {
   preview?: (res: UploadResultBody | UploadResultQiniuBody | any) => void;
 }
 
-export interface UploadEngine {
+@Injectable({providedIn: 'root'})
+export class UploadEngine {
+
+  constructor() {
+    console.warn('不能直接调用 UploadEngine, 请使用 QiniuEngine 或 自己实现 ServerEngine')
+  }
+
+  onInit(): void {
+    console.warn('不能直接调用 UploadEngine onInit')
+  }
+
   /**
-   * 初始化
-   * @param alert
+   * 文件上传
+   * @param file {File}
+   * @param action {UploadCallback} 上传回调
+   * @param conf {Object} 其它配置信息
    */
-  onInit(alert: (message: string) => void): void;
-
-  // 获取配置信息
-  config(): any;
-
-  // 文件上传
-  upload(file: File, name: string, alert: (message: string) => void): Observable<any> | null;
-}
-
-
-export function NewUploadEngine(conf: MyNgxUploadConfig, http: HttpClient): UploadEngine {
-  if (conf.isQiniu) {
-
-    return new QiniuEngine(conf, http);
-  } else {
-    return new ServerEngine(conf, http);
+  upload(file: File, action: UploadCallback, conf: any): Observable<any> | null {
+    console.warn('不能直接调用 UploadEngine upload')
+    return null
   }
 }
 

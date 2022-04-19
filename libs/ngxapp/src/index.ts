@@ -49,6 +49,7 @@ export * from './lib/logic-module/route-config'
 
 // service
 export * from './lib/service/cert.service'
+export * from './lib/service/file-upload.service'
 export * from './lib/service/login-state.service'
 export * from './lib/service/redirect.service'
 export * from './lib/service/response-callback.service'

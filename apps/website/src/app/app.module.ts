@@ -22,7 +22,7 @@ import {LayoutSidenavComponent} from "./frontend/demo/layout-sidenav.component";
 import {ChecksComponent} from "./frontend/demo/checks.component";
 import {LayoutSidenav2Component} from "./frontend/demo/layout-sidenav2.component";
 import {Layout2Component} from "./frontend/demo/layout2.component";
-import {MyNgxUploadConfig} from "@fsl/ngxupload";
+import {MyNgxUploadConfig, QiniuEngine, UploadEngine} from "@fsl/ngxupload";
 
 
 @NgModule({
@@ -67,6 +67,7 @@ import {MyNgxUploadConfig} from "@fsl/ngxupload";
     {provide: AppBaseConfig, useValue: environment.appBaseConfig},
     {provide: MyNgxMazMapConfig, useValue: environment.map},
     {provide: MyNgxUploadConfig, useValue: environment.upload},
+    {provide: UploadEngine, useClass: QiniuEngine},
     LayoutService,
   ],
   bootstrap: [AppComponent]

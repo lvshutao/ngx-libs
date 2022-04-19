@@ -16,6 +16,8 @@ import {HomeComponent} from "./home.component";
 import {DemoFormComponent} from "./demo/form.component";
 import {DemoMapComponent} from "./demo/map.component";
 import {DemoUploadComponent} from "./demo/upload.component";
+import {DemoServerUploadComponent} from "./demo/server-upload.component";
+import {MyNgxEditorModule} from "@fsl/ngxeditor";
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {DemoUploadComponent} from "./demo/upload.component";
     DemoFormComponent,
     DemoMapComponent,
     DemoUploadComponent,
+    DemoServerUploadComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -34,14 +37,16 @@ import {DemoUploadComponent} from "./demo/upload.component";
           {path: '', component: HomeComponent},
           {path: 'form', component: DemoFormComponent},
           {path: 'map', component: DemoMapComponent},
-          {path: 'upload', component: DemoUploadComponent}
+          {path: 'upload', component: DemoUploadComponent},
+          {path: 'server-upload', component: DemoServerUploadComponent},
         ], data: {title: '会员管理中心'}
       }
     ]),
     MyNgxMazLayoutModule,
     MyNgxAppModule,
     MyNgxMazFormModule,
-    MyNgxMazMapModule
+    MyNgxMazMapModule,
+    MyNgxEditorModule
   ],
   providers: [
     LayoutService,
@@ -56,7 +61,8 @@ export class BackendModule {
         text: '组件测试', expanded: true, route: '/user/', children: [
           {text: '表单 FORM', route: 'form'},
           {text: '地图 MAP', route: 'map'},
-          {text: '上传 UPLOAD', route: 'upload'},
+          {text: '七牛文件上传', route: 'upload'},
+          {text: '服务器文件上传', route: 'server-upload'},
         ]
       },
       {

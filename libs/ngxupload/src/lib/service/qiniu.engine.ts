@@ -1,8 +1,10 @@
+import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import * as qiniu from 'qiniu-js';
-import {Observable} from "rxjs";
 
-import {UploadEngine} from "./engine";
+import * as qiniu from 'qiniu-js';
+import {AlterService} from "@fsl/ngxbase";
+
+import {UploadCallback, UploadEngine} from "./engine";
 import {MyNgxUploadConfig} from "../config";
 
 interface QiniuCert {
@@ -25,6 +27,11 @@ export interface QiniuUploadResult {
 let _isRequest = false;
 const cacheKey = '_uploadKey'
 
+
+@Injectable()
+/**
+ * 七牛上传
+ */
 export class QiniuEngine implements UploadEngine {
   // 缓存数据
   private qcCache: QiniuCert = {token: '', expire: 0, domain: '', scope: ''};
@@ -41,7 +48,9 @@ export class QiniuEngine implements UploadEngine {
     region: qiniu.region.z2
   };
 
-  constructor(private readonly conf: MyNgxUploadConfig, private readonly http: HttpClient) {
+  constructor(private conf: MyNgxUploadConfig,
+              private alter: AlterService,
+              private http: HttpClient) {
     this.reload();
   }
 
@@ -54,24 +63,17 @@ export class QiniuEngine implements UploadEngine {
     }
   }
 
-  onInit(alert: (message: string) => void) {
-    return this.loadToken(alert);
-  }
-
-  config(): any {
-    return this.qcCache;
+  onInit() {
+    return this.loadToken();
   }
 
 
-  private loadToken(alert: (message: string) => void) {
+  private loadToken() {
     if (this.conf.qiniuTokenUrl == '') {
-      alert('配置错误: qiniuTokenUrl is empty');
+      this.alter.danger('配置错误: qiniuTokenUrl is empty');
       return;
     }
     if (this.tokenExpires()) {
-      if (this.conf.debug) {
-        console.log('准备刷新上传 token');
-      }
       if (!_isRequest) {
         _isRequest = true;
         if (this.conf.debug) {
@@ -79,9 +81,6 @@ export class QiniuEngine implements UploadEngine {
         }
         this.http.get<QiniuCert>(this.conf.qiniuTokenUrl).subscribe(res => {
           this.qcCache = res;
-          if (this.conf.debug) {
-            console.log('新的 qiniu token:', this.qcCache);
-          }
           localStorage.setItem(cacheKey, JSON.stringify(res));
         }).add(() => {
           _isRequest = false;
@@ -93,17 +92,25 @@ export class QiniuEngine implements UploadEngine {
     return '';
   }
 
+  // 检查当前缓存的 token 是否过期
+  private tokenExpires(): boolean {
+    const now = new Date().getTime() / 1000;
+    return this.qcCache.expire - now < 3600;
+  }
 
-  /*
-    upload(file).subscribe(
-      (res: any) => { console.log('上传进度:', res); },
-      (err: any) => { },
-      (res: QiniuUploadResult) => {
+  /**
+   * 上传结果
+   * @param file {File} 上传文件
+   * @param conf {Object} 其它配置信息
+   * @example
+   upload(file).subscribe(
+   (res: any) => { console.log('上传进度:', res); },
+   (err: any) => { },
+   (res: QiniuUploadResult) => {
         // 上传结果
-      }
-    )
+   })
    */
-  upload(file: File, name: string, alert: (message: string) => void): Observable<any> | null {
+  upload(file: File, action: UploadCallback, conf: any = {}): null {
     /**
      * @param file Blob 对象，上传的文件；如果文件md5一样，那么在七牛云只会保存一份，同样的文件名
      * @param key 文件资源名
@@ -116,18 +123,28 @@ export class QiniuEngine implements UploadEngine {
       this.reload();
     }
     token = this.qcCache.token;
-    if (this.conf.debug) {
-      console.log('qiniuToken:', token);
-    }
+
     // @ts-ignore
-    return qiniu.upload(file, null, token, this.uploadPutExtra, this.uploadConfig);
+    return qiniu.upload(file, null, token, this.uploadPutExtra, this.uploadConfig).subscribe(
+      (res: any) => {
+        // console.log('next:', res); // total: {loaded: 42973, size: 42973, percent: 100}
+        if (action.process) {
+          action.process(res.total.percent, res.total.loaded, res.total.size);
+        }
+      },
+      (err: any) => action.failed(err),
+      // @ts-ignore
+      (res: QiniuUploadResult) => {
+        // 预览地址 http://media.emm365.com/FgHnqMq9XQvxgy9dvACoXrYu0cF0 前面的域名不是返回的
+        // 如果没有设置文件名，那么 hash 和 key 都是一样的
+        // FgHnqMq9XQvxgy9dvACoXrYu0cF0
+
+        action.success({
+          url: this.qcCache.domain + '/' + res.key,
+          scope: this.qcCache.scope,
+          key: res.key,
+        });
+      }
+    );
   }
-
-
-  // 检查当前缓存的 token 是否过期
-  private tokenExpires(): boolean {
-    const now = new Date().getTime() / 1000;
-    return this.qcCache.expire - now < 3600;
-  }
-
 }

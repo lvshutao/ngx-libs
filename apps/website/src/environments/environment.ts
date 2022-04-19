@@ -17,9 +17,8 @@ export const environment = {
     debug: false,
   },
   upload: {
-    isQiniu: true,
     qiniuTokenUrl: 'http://pp.test/api/base/user/upload-cert', // 七牛证书地址
-    serverUploadUrl: '',
+    serverUploadUrl: 'http://pp.test/api/base/user/upload', // 文件上传地址
     debug: true,
   }
 };

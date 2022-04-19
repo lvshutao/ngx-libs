@@ -25,7 +25,7 @@ import {ImagePreview,getImagePreviewClasses} from '@fsl/ngxbase'
     </div>
 
     <!-- 隐藏的上传按钮 -->
-    <lib-upload-hide [idName]="idName" [multiple]="false" (action)="action.emit($event)"></lib-upload-hide>
+    <lib-upload-hide [idName]="idName" (action)="action.emit($event)"></lib-upload-hide>
   `,
   styles: [`.lib-image {
     background-size: cover;

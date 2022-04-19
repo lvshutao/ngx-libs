@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, NgZone, OnDestroy, OnInit, Output} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 
-import {UploadResult, FileService, MyNgxUploadConfig} from '@fsl/ngxupload';
+import {UploadResult, MyNgxUploadConfig, getFileLocalURL, UploadEngine} from '@fsl/ngxupload';
 
 import {LibSnackService} from "../../../snack/snack.servic";
 
@@ -30,10 +30,12 @@ export class LibUploadMazFileComponent implements OnInit, OnDestroy {
   @Input() index = -1;
   @Input() showInfo = false; // 是否显示文件名及上传进度
 
+
   @Input()
   set preview(yes: boolean) { // 使用图片预览
+    console.log('preview:', yes, this.file.type)
     if (yes && this.file.type.indexOf('image') === 0) {
-      this.fileSer.getLocalURL(this.file, url => this.src = url);
+      getFileLocalURL(this.file, url => this.src = url)
     }
   }
 
@@ -71,21 +73,19 @@ export class LibUploadMazFileComponent implements OnInit, OnDestroy {
   // 内部
   private fileUploadSubscription: any;
   private test = false;
-  private readonly fileSer: FileService;
+
 
   constructor(
+    private readonly engine: UploadEngine,
     private readonly conf: MyNgxUploadConfig,
     private readonly http: HttpClient,
     private readonly showSer: LibSnackService,
     private ngZone: NgZone,
   ) {
-    this.fileSer = new FileService(this.conf, this.http);
   }
 
   ngOnInit() {
-    this.fileSer.onInit(msg => {
-      this.showSer.danger(msg);
-    });
+    this.engine.onInit();
   }
 
   public remove(): void {
@@ -118,7 +118,7 @@ export class LibUploadMazFileComponent implements OnInit, OnDestroy {
       return;
     }
     this.isUploading = true;
-    this.fileUploadSubscription = this.fileSer.upload(this.file, {
+    this.fileUploadSubscription = this.engine.upload(this.file, {
       process: (percent: number, loaded: number, total: number) => {
         this.ngZone.run(() => { // 异步界面刷新
           this.progressPercentage = percent;
@@ -150,7 +150,7 @@ export class LibUploadMazFileComponent implements OnInit, OnDestroy {
           this.fileUploadSubscription.unsubscribe();
         }
       }
-    });
+    }, {name: 'file'});
   }
 
   ngOnDestroy(): void {

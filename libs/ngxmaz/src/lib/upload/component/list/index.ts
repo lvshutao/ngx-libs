@@ -1,7 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 import {MySecret} from "my-tsbase";
-import {FileQueueService, UploadResult, UploadResultQiniuBody} from "@fsl/ngxupload";
+import {
+  FileActionService,
+  MyNgxUploadConfig,
+  UploadFileConfig,
+  UploadResult,
+  UploadResultQiniuBody
+} from "@fsl/ngxupload";
 
 import {LibSnackService} from "../../../../index";
 
@@ -9,7 +15,7 @@ import {LibSnackService} from "../../../../index";
   selector: 'lib-uploadmaz-list',
   templateUrl: 'index.html',
 })
-export class LibUploadMazFileListComponent implements OnInit {
+export class LibUploadMazFileListComponent {
   /**
    * 多文件上传
    */
@@ -30,10 +36,7 @@ export class LibUploadMazFileListComponent implements OnInit {
    * 默认的 id
    */
   @Input() idName = MySecret.randomString(6);
-  /**
-   * 是否使用七牛上传
-   */
-  @Input() useQiniu = true; // 是否使用七牛上传
+
   /**
    * 上传成功，参数示例
    * {
@@ -52,15 +55,13 @@ export class LibUploadMazFileListComponent implements OnInit {
    */
   @Output() whenFinish = new EventEmitter<boolean>();
 
-  public readonly htmlSer = new FileQueueService();
+  public readonly htmlSer: FileActionService;
+
   public toUpload = false; // 开始全部上传
   public toCancel = false; // 取消全部上传
 
-  constructor(private showSer: LibSnackService) {
-  }
-
-  ngOnInit(): void {
-    this.htmlSer.multiple = this.multiple;
+  constructor(private showSer: LibSnackService, private cf: UploadFileConfig, private config: MyNgxUploadConfig) {
+    this.htmlSer = new FileActionService(cf)
   }
 
   // 选择了图片
@@ -84,7 +85,9 @@ export class LibUploadMazFileListComponent implements OnInit {
 
   // 上传成功回调
   update(data: UploadResult) {
-    console.log('成功回调:', data);
+    if (this.config.debug) {
+      console.log('成功回调:', data);
+    }
     this.whenUpload.emit(data.body); // 通常返回 name 和 url
     this.htmlSer.uploadSuccess(data.index);
     this.finishEvent();

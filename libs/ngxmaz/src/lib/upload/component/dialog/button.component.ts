@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {AllowImageType, UploadResultBody} from "@fsl/ngxupload";
-import {MazUploadDialogComponent} from "./dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+
+import {UploadFileConfig, UploadResultBody} from "@fsl/ngxupload";
+import {MazUploadDialogComponent} from "./dialog.component";
 
 @Component({
   template: `<a mat-button *ngIf="text;else icon;" (click)="openDialog()">{{text}}</a>
@@ -13,12 +14,9 @@ import {MatDialog} from "@angular/material/dialog";
   selector: 'lib-uploadmaz-button',
 })
 export class LibUploadMazDialogButtonComponent {
-
-  @Input() multiple = true; // 多文件上传
-  @Input() autoClose = true; // 上传完成后自动关闭
-  @Input() allowType = AllowImageType; // 允许的类型
-  @Input() preview = true; // 预览
   @Input() text = ''; // 使用按钮文字
+  @Input() autoClose = false;
+
 
   /**
    * 响应结果
@@ -37,16 +35,16 @@ export class LibUploadMazDialogButtonComponent {
    */
   @Output() whenSuccess = new EventEmitter<UploadResultBody[]>();
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private fileConfig: UploadFileConfig) {
   }
 
   openDialog(): void {
     this.dialog.open(MazUploadDialogComponent, {
       width: '90%', data: {
-        multiple: this.multiple,
+        multiple: true,
         autoClose: this.autoClose,
-        allowType: this.allowType,
-        preview: this.preview,
+        allowType: this.fileConfig.allowTypes,
+        preview: true,
       },
     }).afterClosed().subscribe((body: any) => {
       if (body) {

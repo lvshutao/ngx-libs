@@ -21,18 +21,8 @@
           "apps/website/src/assets",
           {
             "glob": "**/*",
-            "input": "node_modules/tinymce/skins",
-            "output": "/tinymce/skins/"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/tinymce/themes",
-            "output": "/tinymce/themes/"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/tinymce/plugins",
-            "output": "/tinymce/plugins/"
+            "input": "node_modules/tinymce",
+            "output": "/tinymce/"
           }
         ],
         "styles": [

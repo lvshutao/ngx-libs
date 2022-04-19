@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FileQueueService, FileService, MyNgxUploadConfig, UploadResult} from "@fsl/ngxupload";
-import {HttpClient} from "@angular/common/http";
+
+import {FileActionService, MyNgxUploadConfig, UploadEngine, UploadResult} from "@fsl/ngxupload";
 import {LibSnackService} from "../../../../index";
 
 export interface MazUploadDialogConfig {
@@ -23,7 +23,7 @@ export interface MazUploadDialogConfig {
           *ngFor="let file of htmlSer.queue;let i = index"
           [file]="file"
           [index]="i"
-          [preview]="data.preview"
+          [preview]="true"
           [toCancel]="toCancel"
           [toUpload]="toUpload"
           (whenUpload)="update($event)"
@@ -62,29 +62,26 @@ export interface MazUploadDialogConfig {
 })
 export class MazUploadDialogComponent implements OnInit {
 
-  readonly fileSer: FileService;
-
-  constructor(
-    public dialogRef: MatDialogRef<MazUploadDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: MazUploadDialogConfig,
-    private showSer: LibSnackService,
-    private readonly conf: MyNgxUploadConfig,
-    private readonly http: HttpClient,
-  ) {
-    this.fileSer = new FileService(this.conf, this.http);
-  }
-
+  public htmlSer: FileActionService;
   public toUpload = false; // 全部上传，能否显示 "全部上传" 按钮
   public toCancel = false; // 取消上传，能否显示 "取消上传" 按钮
-  public htmlSer = new FileQueueService();
+
   private bodys: any[] = []; // 保存上传的结果
 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: MazUploadDialogConfig,
+    private readonly conf: MyNgxUploadConfig,
+    private engine: UploadEngine,
+    private dialogRef: MatDialogRef<MazUploadDialogComponent>,
+    private showSer: LibSnackService,
+  ) {
+    console.log('data:',data);
+    this.htmlSer = new FileActionService({multiple: this.data.multiple, allowTypes: this.data.allowType})
+  }
+
+
   ngOnInit(): void {
-    this.fileSer.onInit(msg => {
-      this.showSer.danger(msg);
-    });
-    this.htmlSer.multiple = this.data.multiple;
-    this.htmlSer.allowType = this.data.allowType;
+    this.engine.onInit();
   }
 
   change(event: Event) {

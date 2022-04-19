@@ -16,7 +16,7 @@ import {MySecret} from "my-tsbase";
     </div>
   </label>
 
-  <lib-upload-hide [multiple]="false" [idName]="idName"
+  <lib-upload-hide  [idName]="idName"
                    (action)="change($event)"></lib-upload-hide>
   `
 })
@@ -24,7 +24,7 @@ import {MySecret} from "my-tsbase";
  * 圆形的头像
  */
 export class LibUploadAvatarComponent {
-  @Output() action = new EventEmitter<string>(); // 需要
+  @Output() action = new EventEmitter<string>();
 
   @Input() src = ''; // 需要
   @Input() size = 100;
@@ -42,6 +42,5 @@ export class LibUploadAvatarComponent {
 
   change(src: string) {
     this.action.emit(src);
-    // this.idName = MySecret.randomString(4); // 不会改变
   }
 }

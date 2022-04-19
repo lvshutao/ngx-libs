@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 
-import {LibUploadTriggerComponent} from "./component/trigger.component";
-import {LibUploadHideComponent} from "./component/hide.component";
+import {LibUploadTriggerComponent} from "./base/trigger.component";
+import {LibUploadHideComponent} from "./base/hide.component";
+
 import {LibUploadAvatarComponent} from "./component/avatar.component";
 import {LibUploadWrapComponent} from "./component/wrap.component";
 

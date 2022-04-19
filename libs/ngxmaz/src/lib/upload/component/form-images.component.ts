@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {setUploadFileConfig, UploadFileConfig} from "@fsl/ngxupload";
 
 /*
 <lib-form-images [form]="mo"></lib-form-images>
@@ -15,14 +16,16 @@ import {FormGroup} from '@angular/forms';
   <lib-upload-trigger
     *ngIf="upload"
     [trigger]="open"
-    [multiple]="true"
     (action)="onImageUpload($event)"></lib-upload-trigger>
   <div style="margin-bottom: 5px;"></div>
-  `
+  `,
+  providers: [
+    {provide: UploadFileConfig, useValue: setUploadFileConfig({multiple: true})}
+  ]
 })
 export class LibMazUploadFormImagesComponent {
-
   open = false;
+
   // @ts-ignore
   @Input() form: FormGroup;
   @Input() name = 'images';

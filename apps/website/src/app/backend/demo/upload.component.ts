@@ -101,7 +101,7 @@ import {FormBuilder} from "@angular/forms";
       <tr>
         <td>lib-uploadmaz-button</td>
         <td>批量上传对话框 <br>
-          (注：不能跟 lib-form-images 一起使用)
+          (注：不能跟 lib-form-images 一起使用，否则可能无法使用预览)
         </td>
         <td>
           <lib-uploadmaz-button (whenSuccess)="onPrint('dialog',$event)"></lib-uploadmaz-button>

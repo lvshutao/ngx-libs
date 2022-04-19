@@ -9,9 +9,10 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
       </mat-form-field>
       <lib-form-input [form]="mo" name="name" required label="NAME"></lib-form-input>
       <lib-form-input [form]="mo" name="title" disabled label="TITLE"></lib-form-input>
-      <lib-form-input [form]="mo" name="desc" readonly label="DESC"></lib-form-input>
+      <lib-form-input [form]="mo" name="desc" label="DESC"></lib-form-input>
       <lib-form-input [form]="mo" name="remark" label="REMARK"></lib-form-input>
 
+      <lib-editor [form]="mo" name="body"></lib-editor>
 
       <div>值:{{mo.value|json}}</div>
     </form>
@@ -25,6 +26,7 @@ export class DemoFormComponent implements OnInit {
     desc: ['描述, 只读'],
     age: [1],
     remark: [''],
+    body: ['']
   })
 
   constructor(

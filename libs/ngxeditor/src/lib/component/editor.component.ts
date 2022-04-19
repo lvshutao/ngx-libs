@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {FormGroup} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
 
 import {AlterService} from "@fsl/ngxbase";
-import {UploadEngine, MyNgxUploadConfig, NewUploadEngine} from '@fsl/ngxupload';
+import {UploadEngine} from '@fsl/ngxupload';
 
 import {TinymceService} from "../service/tinymce.service";
 
@@ -22,16 +21,8 @@ export class LibEditorComponent implements OnInit {
   @Input() height = 0; // 默认 600
 
   public readonly editor: TinymceService;
-  private readonly engine: UploadEngine;
 
-  constructor(private conf: MyNgxUploadConfig, private http: HttpClient, private showSer: AlterService) {
-    if (!this.conf.isQiniu) {
-      console.error('Tinymce editor must use qiniu to upload');
-    }
-    this.engine = NewUploadEngine(
-      Object.assign({}, conf, {isQiniu: true}),
-      http,
-    );
+  constructor(private engine: UploadEngine, private showSer: AlterService) {
     this.editor = new TinymceService(this.engine);
   }
 
@@ -41,8 +32,6 @@ export class LibEditorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.engine.onInit(msg => {
-      this.showSer.danger(msg);
-    });
+    this.engine.onInit();
   }
 }
