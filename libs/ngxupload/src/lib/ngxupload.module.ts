@@ -8,12 +8,14 @@ import {LibUploadAvatarComponent} from "./component/avatar.component";
 import {LibUploadWrapComponent} from "./component/wrap.component";
 
 import {BytesPipe} from "./pipe/bytes.pipe";
+import {LibUploadSelectComponent} from "./base/select.component";
 
 const COMPONENTS = [
   LibUploadAvatarComponent,
   LibUploadTriggerComponent,
   LibUploadHideComponent,
   LibUploadWrapComponent,
+  LibUploadSelectComponent,
   BytesPipe,
 ]
 
@@ -29,4 +31,5 @@ const COMPONENTS = [
     CommonModule,
   ]
 })
-export class MyNgxUploadModule {}
+export class MyNgxUploadModule {
+}

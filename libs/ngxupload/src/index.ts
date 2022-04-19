@@ -1,5 +1,6 @@
 // component
 export * from './lib/base/hide.component'
+export * from './lib/base/select.component'
 export * from './lib/base/trigger.component'
 
 export * from './lib/component/avatar.component'

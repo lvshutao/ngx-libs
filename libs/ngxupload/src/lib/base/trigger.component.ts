@@ -9,7 +9,12 @@ import {FileActionService} from "../service/file-action.service";
 import {UploadEngine} from "../service/engine";
 
 
-
+/**
+ * 触发上传（不是等待上传）
+ * @example 使用示例
+ <lib-trigger-upload [trigger]="showWindow" (action)="onSrcChange($event)">
+ </lib-trigger-upload>
+ */
 @Component({
   selector: 'lib-upload-trigger',
   template: `<input *ngIf="fileConf.multiple; else one"
@@ -25,11 +30,6 @@ import {UploadEngine} from "../service/engine";
   </ng-template>
   `
 })
-/**
- 使用示例
- <lib-trigger-upload [trigger]="showWindow" (action)="onSrcChange($event)">
- </lib-trigger-upload>
- */
 export class LibUploadTriggerComponent implements OnInit {
   show = false;
   /**

@@ -35,6 +35,7 @@ export * from './lib/service/win.service'
 
 // util
 export * from './lib/util/base-http.service'
+export * from './lib/util/formdata'
 export * from './lib/util/http.service'
 export * from './lib/util/function'
 export * from './lib/util/html'
