@@ -77,9 +77,7 @@ export class LibUploadTriggerComponent implements OnInit {
   change(event: Event) {
     event.stopPropagation();
     this.actSer.clear();
-    if (this.actSer.change(event, msg => {
-      this.alterSer.danger(msg);
-    })) {
+    if (this.actSer.change(event, msg => this.alterSer.danger(msg))) {
       for (let i = 0; i < this.actSer.queue.length; i++) {
         const f = this.actSer.fileAt(i);
         if (f) {

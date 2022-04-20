@@ -22,7 +22,11 @@ export class FileActionService {
   constructor(private cf: UploadFileConfig) {
   }
 
-  // 修改了文件
+  /**
+   * 修改了文件
+   * @param event
+   * @param alert {Function} 注意调用时作用域
+   */
   change(event: Event, alert ?: (msg: string) => void): boolean {
     const element = (event.target as HTMLInputElement);
     const filesLen = element.files ? element.files.length : 0;
@@ -54,7 +58,7 @@ export class FileActionService {
 
   private checkFileType(file: File): string {
     if (this.cf.allowTypes.length < 1) { // 不需要检查
-      console.warn('file allowType is empty.');
+      console.warn('file allowTypes is empty.');
       return '';
     }
     const filetype = file.type.toLowerCase();
@@ -62,11 +66,14 @@ export class FileActionService {
       if (file.name == '') {
         return '文件名不能为空';
       }
-      const ext = file.name.substring(file.name.lastIndexOf('.'));
+      // 文件扩展名
+      const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
       if (this.cf.allowTypes.indexOf(ext) < 0) {
-        return '不允许上传的文件类型';
+        console.warn('current file ext not in allowTypes:', ext)
+        return '不允许上传的文件扩展名';
       }
     } else if (this.cf.allowTypes.indexOf(filetype) < 0) {
+      console.warn('current filetype not in allowTypes:', filetype)
       return '不允许上传的文件类型';
     }
 

@@ -75,7 +75,7 @@ export class MazUploadDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<MazUploadDialogComponent>,
     private showSer: LibSnackService,
   ) {
-    console.log('data:',data);
+    console.log('data:', data);
     this.htmlSer = new FileActionService({multiple: this.data.multiple, allowTypes: this.data.allowType})
   }
 
@@ -86,9 +86,7 @@ export class MazUploadDialogComponent implements OnInit {
 
   change(event: Event) {
     event.stopPropagation();
-    this.htmlSer.change(event, msg => {
-      this.showSer.danger(msg);
-    });
+    this.htmlSer.change(event, msg => this.showSer.danger(msg));
   }
 
   // 移除队列

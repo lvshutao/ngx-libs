@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, NgZone, OnDestroy, OnInit, Output} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
 
 import {UploadResult, MyNgxUploadConfig, getFileLocalURL, UploadEngine} from '@fsl/ngxupload';
 
-import {LibSnackService} from "../../../snack/snack.servic";
 
 @Component({
   selector: 'lib-uploadmaz-file',
@@ -78,8 +76,6 @@ export class LibUploadMazFileComponent implements OnInit, OnDestroy {
   constructor(
     private readonly engine: UploadEngine,
     private readonly conf: MyNgxUploadConfig,
-    private readonly http: HttpClient,
-    private readonly showSer: LibSnackService,
     private ngZone: NgZone,
   ) {
   }

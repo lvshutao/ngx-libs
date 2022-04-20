@@ -67,9 +67,7 @@ export class LibUploadMazFileListComponent {
   // 选择了图片
   change(event: Event) {
     event.stopPropagation();
-    if (this.htmlSer.change(event, msg => {
-      this.showSer.danger(msg);
-    })) {
+    if (this.htmlSer.change(event, msg => this.showSer.danger(msg))) {
       if (this.autoUpload) {
         this.toUpload = true;
       }

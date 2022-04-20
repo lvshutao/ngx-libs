@@ -31,7 +31,7 @@ export class LibUploadSelectComponent {
 
   change(e: Event) {
     e.stopPropagation();
-    if (!this.fileAction.change(e, this.alert.danger)) {
+    if (!this.fileAction.change(e, (msg: string) => this.alert.danger(msg))) {
       console.error('上传队列校验失败')
       return
     }

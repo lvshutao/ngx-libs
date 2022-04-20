@@ -32,7 +32,7 @@ export const ImageType = [
 ];
 export const AllowImageType = ImageType.join(';');
 export const FileType = [
-  'text/plain',
+  'text/plain','text/csv',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   'application/pdf'
 ];
