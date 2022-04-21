@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 import {SnackComponent} from "./snack.component";
+import {ToastrService} from "ngx-toastr";
 
 /*
 add the css in the styles.css, copy from Alerts * Bootstrap
@@ -25,7 +26,7 @@ add the css in the styles.css, copy from Alerts * Bootstrap
 
 @Injectable()
 export class LibSnackService {
-  constructor(private snackBar: MatSnackBar) {
+  constructor(public snackBar: MatSnackBar, public toastr: ToastrService) {
   }
 
   public duration = 3000;
@@ -34,25 +35,28 @@ export class LibSnackService {
     return this.show({data: message, panelClass: 'alert-success', duration});
   }
 
-  public warning(message: string, duration?: number) {
-    return this.show({data: message, panelClass: 'alert-warning', duration});
-
+  public warning(message: string, title?: string) {
+    // return this.show({data: message, panelClass: 'alert-warning', duration});
+    this.toastr.warning(message, title, {
+      closeButton: true, tapToDismiss: true, newestOnTop: true,
+      timeOut: 0,
+    })
   }
 
-  public danger(message: string, duration?: number) {
-    return this.show({data: message, panelClass: 'alert-danger', duration});
+  public danger(message: string, title?: string) {
+    this.toastr.error(message, title, {
+      closeButton: true, tapToDismiss: true, newestOnTop: true,
+      timeOut: 0,
+    })
+    // return this.snackBar.open(message,'关闭').afterDismissed()
   }
 
-  public message(msg: string, suc: boolean, duration?: number) {
-    suc ? this.success(msg, duration) : this.danger(msg, duration);
+  public message(msg: string, success: boolean, duration?: number) {
+    success ? this.success(msg, duration) : this.danger(msg);
   }
 
   public actionSuccess(msg: string) {
     return this.success(msg, 1000);
-  }
-
-  public actionWaring(msg: string) {
-    return this.warning(msg, 1000);
   }
 
   public show(config: {

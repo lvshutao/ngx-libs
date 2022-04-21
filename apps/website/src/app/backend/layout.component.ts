@@ -30,9 +30,9 @@ import {MyAppxRouteConfig} from "@fsl/ngxapp";
 export class LayoutComponent implements OnInit {
 
   constructor(
+    public menuSer: MenuService,
     private router: Router,
     private location: Location,
-    public menuSer: MenuService,
     private layoutSer: LayoutService,
     private showSer: LibSnackService,
     private routeConfig: MyAppxRouteConfig,

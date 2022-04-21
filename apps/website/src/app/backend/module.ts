@@ -18,6 +18,7 @@ import {DemoMapComponent} from "./demo/map.component";
 import {DemoUploadComponent} from "./demo/upload.component";
 import {DemoServerUploadComponent} from "./demo/server-upload.component";
 import {MyNgxEditorModule} from "@fsl/ngxeditor";
+import {DemoAlterComponent} from "./demo/alter.component";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {MyNgxEditorModule} from "@fsl/ngxeditor";
     DemoMapComponent,
     DemoUploadComponent,
     DemoServerUploadComponent,
+    DemoAlterComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -39,6 +41,7 @@ import {MyNgxEditorModule} from "@fsl/ngxeditor";
           {path: 'map', component: DemoMapComponent},
           {path: 'upload', component: DemoUploadComponent},
           {path: 'server-upload', component: DemoServerUploadComponent},
+          {path: 'alter', component: DemoAlterComponent},
         ], data: {title: '会员管理中心'}
       }
     ]),
@@ -63,6 +66,7 @@ export class BackendModule {
           {text: '地图 MAP', route: 'map'},
           {text: '七牛文件上传', route: 'upload'},
           {text: '服务器文件上传', route: 'server-upload'},
+          {text: '提示信息', route: 'alter'},
         ]
       },
       {

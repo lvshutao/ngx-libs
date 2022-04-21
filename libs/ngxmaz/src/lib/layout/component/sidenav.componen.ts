@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {MatDrawerMode} from "@angular/material/sidenav/drawer";
+import {LayoutService} from "../service/layout.service";
 
 @Component({
   selector: 'lib-sidenav',
@@ -9,6 +10,7 @@ import {MatDrawerMode} from "@angular/material/sidenav/drawer";
       <mat-sidenav class="sidenav1"
                    [mode]="mode"
                    [opened]="display"
+                   (openedChange)="openChange($event)"
       >
         <ng-content select="[name=sidenav]"></ng-content>
       </mat-sidenav>
@@ -42,7 +44,16 @@ export class SidenavComponent {
    */
   @Input() calc = true;
 
+  constructor(
+    private layoutSer: LayoutService,
+  ) {
+  }
+
   get ngClass() {
     return this.calc ? 'auto-lib-sidenav' : '';
+  }
+
+  openChange(open: boolean) {
+    this.layoutSer.selfLeft = open
   }
 }

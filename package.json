@@ -29,6 +29,7 @@
     "my-tsbase": "^1.0.5",
     "ng-http-loader": "^11.0.1",
     "ngx-material-timepicker": "^5.5.3",
+    "ngx-toastr": "^14.3.0",
     "qiniu-js": "^3.4.0",
     "rxjs": "~7.4.0",
     "screenfull": "^6.0.1",

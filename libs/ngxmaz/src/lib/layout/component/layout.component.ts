@@ -9,7 +9,8 @@ import {LayoutService} from "../service/layout.service";
     <mat-drawer-container class="lib-layout">
       <!-- 左侧内容 -->
 
-      <mat-drawer *ngIf="layoutSer.useLeft" mode="over" position="start" [(opened)]="layoutSer.leftOpened">
+      <mat-drawer *ngIf="layoutSer.useLeft" mode="over" position="start"
+                  [(opened)]="layoutSer.leftOpened">
         <!-- height:100vh; -->
         <div class="column side-left1">
           <ng-content select="[name=left]"></ng-content>
@@ -17,7 +18,8 @@ import {LayoutService} from "../service/layout.service";
       </mat-drawer>
 
       <!-- 右侧内容 -->
-      <mat-drawer *ngIf="layoutSer.useRight" mode="over" position="end" [(opened)]="layoutSer.rightOpened">
+      <mat-drawer *ngIf="layoutSer.useRight" mode="over" position="end"
+                  [(opened)]="layoutSer.rightOpened">
         <div class="column side-right1">
           <ng-content select="[name=right]"></ng-content>
         </div>
@@ -65,5 +67,9 @@ export class LibLayoutComponent {
   @Output() index = new EventEmitter();
 
   constructor(public layoutSer: LayoutService) {
+  }
+
+  openChange(which: string, open: boolean) {
+    console.log('open', which, open)
   }
 }

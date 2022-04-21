@@ -1,5 +1,7 @@
 import {NgModule} from "@angular/core";
+
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ToastrModule} from "ngx-toastr";
 
 import {AlterService} from '@fsl/ngxbase'
 
@@ -17,6 +19,7 @@ const MODULES = [
   ],
   imports: [
     ...MODULES,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: AlterService, useClass: LibSnackService},
