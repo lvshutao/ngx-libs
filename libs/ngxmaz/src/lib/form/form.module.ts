@@ -17,7 +17,7 @@ import {MyNgxMazUploadModule} from "../upload/upload.module";
 import {CaptchaInputComponent} from "./component/captcha-input.component";
 import {ImagesActionComponent} from "./component/images-action.component";
 import {TagsComponent} from "./component/tags.component";
-import {NumberInputComponent} from "./component/number-input.component";
+import {NumberInputComponent, PriceInputComponent} from "./component/number-input.component";
 import {MazFormInputtipComponent} from "./component/inputtip.component";
 import {MazFormInputComponent} from "./component/input.component";
 import {MazFormTextareaComponent} from "./component/textarea.component";
@@ -39,6 +39,7 @@ const COMPONENTS = [
   MazFormInputtipComponent,
 
   NumberInputComponent,
+  PriceInputComponent,
   MazFormSelectComponent,
 
   TagsComponent,

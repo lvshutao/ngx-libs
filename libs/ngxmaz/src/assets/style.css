@@ -75,10 +75,6 @@ table.lib-table-border th.mat-header-cell:last-of-type {
   width: 99%;
 }
 
-.lib-form, .lib-form-full {
-  padding: 0 1em;
-}
-
 .lib-form mat-form-field, .lib-form-full mat-form-field {
   width: 99%;
 }

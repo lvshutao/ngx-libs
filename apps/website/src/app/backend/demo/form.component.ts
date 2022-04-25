@@ -12,7 +12,13 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
       <lib-form-input [form]="mo" name="desc" label="DESC"></lib-form-input>
       <lib-form-input [form]="mo" name="remark" label="REMARK"></lib-form-input>
 
-      <lib-editor [form]="mo" name="body"></lib-editor>
+      <lib-form-price [form]="mo" name="price" label="价格(元)"></lib-form-price>
+      <lib-hspace></lib-hspace>
+      <a mat-stroked-button (click)="mo.patchValue({price:200})">更改价格</a>
+
+
+      <lib-editor [form]="mo" name="body" [height]="100"></lib-editor>
+
 
       <div>值:{{mo.value|json}}</div>
     </form>
@@ -26,7 +32,8 @@ export class DemoFormComponent implements OnInit {
     desc: ['描述, 只读'],
     age: [1],
     remark: [''],
-    body: ['']
+    body: [''],
+    price: [10000]
   })
 
   constructor(
