@@ -36,16 +36,17 @@ export class LibSnackService {
   }
 
   public warning(message: string, title?: string) {
-    // return this.show({data: message, panelClass: 'alert-warning', duration});
-    this.toastr.warning(message, title, {
-      closeButton: true, tapToDismiss: true, newestOnTop: true,
-      timeOut: 0,
-    })
+    return this.show({data: message, panelClass: 'alert-warning', duration: this.duration});
+    // this.toastr.warning(message, title, {
+    //   closeButton: true, tapToDismiss: true, newestOnTop: true,
+    //   timeOut: 0,
+    // })
   }
 
   public danger(message: string, title?: string) {
     this.toastr.error(message, title, {
       closeButton: true, tapToDismiss: true, newestOnTop: true,
+      positionClass: 'toast-bottom-center',
       timeOut: 0,
     })
     // return this.snackBar.open(message,'关闭').afterDismissed()
@@ -53,10 +54,6 @@ export class LibSnackService {
 
   public message(msg: string, success: boolean, duration?: number) {
     success ? this.success(msg, duration) : this.danger(msg);
-  }
-
-  public actionSuccess(msg: string) {
-    return this.success(msg, 1000);
   }
 
   public show(config: {

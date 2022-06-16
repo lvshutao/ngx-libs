@@ -7,9 +7,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 
-import {AppBaseConfig} from "@fsl/ngxbase";
+import {AppBaseConfig, ResponseJsonInterceptor} from "@fsl/ngxbase";
 import {LayoutService, MyNgxMazLayoutModule, MyNgxMazMapConfig, MyNgxMazMapModule} from "@fsl/ngxmaz";
-import {MyAppxAuthModule, MyNgxAppModule} from "@fsl/ngxapp";
+import {MyAppxAuthModule, MyNgxAppModule, TokenInterceptor} from "@fsl/ngxapp";
 
 
 import {AppComponent} from './app.component';
@@ -23,6 +23,7 @@ import {ChecksComponent} from "./frontend/demo/checks.component";
 import {LayoutSidenav2Component} from "./frontend/demo/layout-sidenav2.component";
 import {Layout2Component} from "./frontend/demo/layout2.component";
 import {MyNgxUploadConfig, QiniuEngine, UploadEngine} from "@fsl/ngxupload";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 
 @NgModule({
@@ -69,6 +70,8 @@ import {MyNgxUploadConfig, QiniuEngine, UploadEngine} from "@fsl/ngxupload";
     {provide: MyNgxUploadConfig, useValue: environment.upload},
     {provide: UploadEngine, useClass: QiniuEngine},
     LayoutService,
+    {provide: HTTP_INTERCEPTORS, useClass: ResponseJsonInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

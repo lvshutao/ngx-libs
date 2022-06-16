@@ -30,7 +30,7 @@ export class CertService {
    * 保存凭证
    */
   saveCert(cert: UserCert): boolean {
-    if (MyAssets.isEmpty(cert.token)) {
+    if (MyAssets.isEmpty(cert.accessToken)) {
       console.error('保存登录凭证时错误', cert)
       return false;
     }
@@ -44,7 +44,7 @@ export class CertService {
    * 生成请求签名
    */
   headerToken(): string | null {
-    return this.cert?.token;
+    return this.cert?.accessToken;
   }
 
 }

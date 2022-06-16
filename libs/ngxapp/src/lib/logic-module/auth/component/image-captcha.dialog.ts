@@ -55,9 +55,10 @@ export class ImageCaptchaDialog implements OnInit {
 
   onReload() {
     this.code = '';
-    this.http.getWithText(this.apiConfig.captchaId, {id: this.id}).subscribe((id: string) => {
-      this.id = id;
-      this.src = this.appConfig.origin + this.apiConfig.captchaSrc + '?id=' + id + '&rnd=' + Math.random();
+    this.http.getWith<{ id: string }>(this.apiConfig.captchaId, {id: this.id}).subscribe(rst => {
+      this.id = rst.id;
+      this.src = this.appConfig.origin + this.apiConfig.captchaSrc + '?id=' + rst.id + '&rnd=' + Math.random();
+      // console.log('src:',this.src)
     })
   }
 

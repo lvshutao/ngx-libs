@@ -47,10 +47,7 @@ export class MyAppxApiConfig {
    * 验证码图片地址
    */
   captchaSrc = '/api/base/open/captcha';
-  /**
-   * 用户角色
-   */
-  userRoles = 'base/user/roles';
+
   /**
    * 用户能否访问
    */

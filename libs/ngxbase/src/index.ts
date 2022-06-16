@@ -15,9 +15,8 @@ export * from './lib/component/svg.component'
 export * from './lib/directive/fullscreen.directive'
 
 // interceptor
-export * from './lib/interceptor/response-demo1.interceptor'
+export * from './lib/interceptor/response-json.interceptor'
 export * from './lib/interceptor/credentials.interceptor'
-export * from './lib/interceptor/response-demo2.interceptor'
 
 // pipe
 export * from './lib/pipe/datetime.pipe'
@@ -34,7 +33,6 @@ export * from './lib/service/http-error.service'
 export * from './lib/service/win.service'
 
 // util
-export * from './lib/util/base-http.service'
 export * from './lib/util/formdata'
 export * from './lib/util/http.service'
 export * from './lib/util/function'

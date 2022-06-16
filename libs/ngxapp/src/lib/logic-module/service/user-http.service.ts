@@ -3,6 +3,13 @@ import {map, Observable} from "rxjs";
 
 import {AppHttpService, httpResponseText, httpTextParams} from "@fsl/ngxbase";
 import {MyAppxApiConfig} from "../api-config";
+import {UserBase} from "../../model/user.model";
+
+export interface PingRst {
+  login: boolean;
+  roles: string[];
+  info: UserBase;
+}
 
 @Injectable({providedIn: 'root'})
 export class UserHttpService {
@@ -17,17 +24,9 @@ export class UserHttpService {
    * @param q {Object} {role:角色名称,name:应用名称}
    */
   access(q: any = {}): Observable<boolean> {
-    return this.http.get<string>(this.apiConfig.userAccess, httpTextParams(q)).pipe(map(rst=>{
+    return this.http.get<string>(this.apiConfig.userAccess, httpTextParams(q)).pipe(map(rst => {
       return rst === 'true'
     }))
-  }
-
-  /**
-   * 获取用户的角色
-   * @param q {Object} 示例 {name:应用名称}
-   */
-  roles(q: any = {}): Observable<string[]> {
-    return this.http.get<string[]>(this.apiConfig.userRoles, q);
   }
 
   /**
@@ -40,9 +39,7 @@ export class UserHttpService {
   /**
    * ping 是否登录
    */
-  ping(): Observable<boolean> {
-    return this.http.get<string>(this.apiConfig.ping, httpResponseText).pipe(map(rst=>{
-      return rst === 'true'
-    }))
+  ping(): Observable<PingRst> {
+    return this.http.get(this.apiConfig.ping);
   }
 }

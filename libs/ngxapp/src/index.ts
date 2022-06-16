@@ -13,6 +13,7 @@ export * from './lib/interceptor/token.interceptor'
 
 // model
 export * from './lib/model/cert.model'
+export * from './lib/model/user.model'
 
 // logic-module
 // component
@@ -54,6 +55,7 @@ export * from './lib/service/login-state.service'
 export * from './lib/service/redirect.service'
 export * from './lib/service/response-callback.service'
 export * from './lib/service/role.service'
+export * from './lib/service/userinfo.service'
 
 // module
 export * from './lib/app.module'

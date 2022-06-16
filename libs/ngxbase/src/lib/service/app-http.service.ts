@@ -4,9 +4,8 @@ import {Observable} from "rxjs";
 import {ResListResult} from 'my-tsbase'
 
 import {AppBaseConfig} from "../config";
-import {HttpErrorService} from "./http-error.service";
 import {HttpService} from "../util/http.service";
-import {httpParams, httpResponseText, httpTextParams} from "../util/http";
+import {httpParams} from "../util/http";
 
 
 @Injectable({providedIn: 'root'})
@@ -20,13 +19,11 @@ export class AppHttpService {
   constructor(
     private conf: AppBaseConfig,
     private httpClient: HttpClient,
-    private httpErr: HttpErrorService,
   ) {
     if (conf.debug) {
       console.log('app config:', conf);
     }
-    this.http = new HttpService(this.conf.name, httpClient, httpErr)
-    this.http.setOrigin(conf.origin);
+    this.http = new HttpService(conf.origin,httpClient)
   }
 
 
@@ -54,22 +51,22 @@ export class AppHttpService {
    * @param id {number}
    * @param status {string}
    */
-  changeStatus(middle: string, id: number, status: string): Observable<string> {
+  changeStatus(middle: string, id: number, status: string): Observable<any> {
     return this.changeStatusWith(middle, {id, status});
   }
 
   /**
    * 修改状态
    */
-  changeStatusWith(middle: string, data: any): Observable<string> {
-    return this.http.put(`/api/${middle}/status`, data, httpResponseText);
+  changeStatusWith(middle: string, data: any): Observable<any> {
+    return this.http.put(`/api/${middle}/status`, data);
   }
 
   /**
    * 修改审核状态
    */
-  changeState(middle: string, data: any): Observable<string> {
-    return this.http.put(`/api/${middle}/state`, data, httpResponseText);
+  changeState(middle: string, data: any): Observable<any> {
+    return this.http.put(`/api/${middle}/state`, data);
   }
 
   /**
@@ -93,20 +90,9 @@ export class AppHttpService {
     return this.http.get(`/api/${middle}`, httpParams(q));
   }
 
-  /**
-   * 查询记录，返回文字
-   */
-  getWithText(middle: string, q?: any): Observable<string> {
-    return this.http.get(`/api/${middle}`, httpTextParams(q));
-  }
-
   // SAVE
   save<T>(isPut: boolean, middle: string, data: any): Observable<T> {
     return this.http.save(isPut, `/api/${middle}`, data);
-  }
-
-  saveResText(isPut: boolean, middle: string, data: any): Observable<string> {
-    return this.http.save(isPut, `/api/${middle}`, data, httpResponseText);
   }
 
   // POST
@@ -114,29 +100,17 @@ export class AppHttpService {
     return this.http.post('/api/' + middle, body, options);
   }
 
-  postResText(middle: string, data: any):Observable<string> {
-    return this.http.post('/api/' + middle, data, httpResponseText);
-  }
-
   // PUT
   put<T>(middle: string, body: any, options = {}): Observable<T> {
     return this.http.put<T>('/api/' + middle, body, options);
   }
 
-  putResText(middle: string, data: any): Observable<string> {
-    return this.saveResText(true, middle, data);
-  }
-
   // DELETE
-  delete<T>(middle: string, options = {}): Observable<T> {
-    return this.http.delete('/api/' + middle, options);
+  delete<T>(middle: string, q?:any): Observable<T> {
+    return this.http.delete('/api/' + middle, httpParams(q));
   }
 
   deleteWithId<T>(middle: string, id: number): Observable<T> {
     return this.delete<T>(middle, {id});
-  }
-
-  deleteResText(middle: string, q: any): Observable<string> {
-    return this.http.delete(`/api/${middle}`, httpTextParams(q));
   }
 }

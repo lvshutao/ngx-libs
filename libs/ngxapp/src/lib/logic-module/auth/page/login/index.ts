@@ -8,7 +8,7 @@ import {LibSnackService} from "@fsl/ngxmaz";
 
 import {MyAppxRouteConfig} from "../../../route-config";
 
-import {TmpCert} from "../../../../model/cert.model";
+import {UserCert} from "../../../../model/cert.model";
 import {KEY_REDIRECT, RedirectService} from "../../../../service/redirect.service";
 import {LoginHttpService} from "../../service/login.service";
 import {CertService} from "../../../../service/cert.service";
@@ -73,9 +73,11 @@ export class PageAuthLogin implements OnInit {
    * 发送手机、邮箱 验证码
    */
   bindSendCode(rst: any) {
-    const data = Object.assign({name: this.name}, rst, {account: this.noMo.get('account')!.value});
+    const account = this.noMo.get('account')?.value
+    const data = Object.assign({name: this.name}, rst, {account});
     this.isLoading = true;
     this.http.noPwdLoinCode(data).subscribe(() => {
+      this.showSer.success('验证码发送成功');
       this.senderState = !this.senderState;
     }).add(() => {
       this.isLoading = false;
@@ -93,16 +95,14 @@ export class PageAuthLogin implements OnInit {
     });
   }
 
-  private loginSuccess(tc: TmpCert) {
-    if (tc.uid) {
-      this.http.cert(tc).subscribe(uc => {
-        this.certSer.saveCert(uc);
-        this.showSer.success('登录成功', 1000).subscribe(() => {
-          location.href = this.redirect.read(true) || this.routeConfig.home;
-        });
+  private loginSuccess(uc: UserCert) {
+    if (uc.uid) {
+      this.certSer.saveCert(uc);
+      this.showSer.success('登录成功', 1000).subscribe(() => {
+        location.href = this.redirect.read(true) || this.routeConfig.home;
       });
     } else {
-      this.showSer.danger('临时凭证格式错误');
+      this.showSer.danger('登录凭证错误');
     }
   }
 }

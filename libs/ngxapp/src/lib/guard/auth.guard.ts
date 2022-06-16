@@ -2,11 +2,10 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot} from "@angular/router";
 
 import {AlterService} from "@fsl/ngxbase";
+import {Observable} from "rxjs";
 
 import {LoginStateService} from "../service/login-state.service";
 import {ResponseCallbackService} from "../service/response-callback.service";
-import {UserHttpService} from "../logic-module/service/user-http.service";
-import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 /**
@@ -17,7 +16,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private loginState: LoginStateService,
     private showSer: AlterService,
     private callback: ResponseCallbackService,
-    private userHttp: UserHttpService,
   ) {
   }
 
@@ -25,13 +23,13 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     // 检查链接地址 state.url
     if (this.loginState.isLogin) {
       return true;
-    } else if (this.loginState.shouldPing) {
-      this.loginState.hasPing = true;
-      return this.userHttp.ping()
     }
-    this.showSer.danger('你还没有登录');
-    this.callback.status401(location.href);
-    return false;
+    return this.loginState.ping(rst => {
+      if (!rst.login) {
+        this.showSer.danger('你还没有登录');
+        this.callback.status401(location.href);
+      }
+    })
   }
 
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<any> {

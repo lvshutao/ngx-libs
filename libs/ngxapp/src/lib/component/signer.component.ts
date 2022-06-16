@@ -4,10 +4,9 @@ import {Router} from "@angular/router";
 import {navigateBy} from '@fsl/ngxbase'
 
 import {LoginStateService} from "../service/login-state.service";
-import {RoleService} from "../service/role.service";
 import {UserHttpService} from "../logic-module/service/user-http.service";
 import {MyAppxRouteConfig} from "../logic-module/route-config";
-import {CertService} from "../service/cert.service";
+import {LibSnackService} from "@fsl/ngxmaz";
 
 
 @Component({
@@ -26,12 +25,9 @@ import {CertService} from "../service/cert.service";
       </mat-menu>
 
     </ng-container>
-    <lib-login-btn [showLogout]="false" [isLogout]="toLogout"
-                   (change)="loginChange($event)" (logout)="onLogout()"></lib-login-btn>`
+    <lib-login-btn (change)="loginChange($event)" (logout)="onLogout()"></lib-login-btn>`
 })
 export class SignerComponent {
-  toLogout = false;
-  @Output() roles = new EventEmitter();
   @Output() ping = new EventEmitter<boolean>(); // 登录结果
 
   constructor(
@@ -39,7 +35,7 @@ export class SignerComponent {
     public routeConfig: MyAppxRouteConfig,
     public http: UserHttpService,
     public router: Router,
-    public certSer: CertService,
+    public showSer: LibSnackService,
   ) {
   }
 
@@ -47,28 +43,12 @@ export class SignerComponent {
     // console.log('ping RST',isLogin, typeof isLogin)
     this.loginStateSer.isLogin = isLogin;
     this.ping.emit(isLogin);
-    if (isLogin) {
-      this.checkIsAdmin();
-    } else {
-      this.certSer.logout();
-    }
-  }
-
-  private checkIsAdmin() {
-    this.http.roles().subscribe(roles => {
-      RoleService.saveRoles(roles);
-      this.roles.emit();
-    })
   }
 
   onLogout() {
-    Object.assign(this, {toLogout: true});
-    this.http.logout().subscribe(_ => {
-    }).add(() => {
-      this.loginStateSer.isLogin = false;
-      this.certSer.logout();
-      RoleService.clear();
-
+    this.loginStateSer.logout(() => {
+      this.showSer.success('退出成功');
+      this.ping.emit(false)
       navigateBy(this.router, this.routeConfig.home)
     })
   }

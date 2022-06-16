@@ -16,7 +16,7 @@ export class WinService {
     }
     let _win = window.open(url, '_blank',
       'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-    let _winTime = setInterval(() => {
+    const _winTime = setInterval(() => {
       if (_win && _win.closed) {
         clearInterval(_winTime);
         _win = null;

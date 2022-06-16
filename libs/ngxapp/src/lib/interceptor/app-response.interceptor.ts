@@ -3,7 +3,6 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {catchError, Observable, throwError} from "rxjs";
 import {AppBaseConfig} from "@fsl/ngxbase";
 
-import {CertService} from "../service/cert.service";
 import {ResponseCallbackService} from "../service/response-callback.service";
 
 @Injectable({providedIn: 'root'})
@@ -13,7 +12,6 @@ import {ResponseCallbackService} from "../service/response-callback.service";
 export class AppResponseInterceptor implements HttpInterceptor {
   constructor(
     private conf: AppBaseConfig,
-    private certSer: CertService,
     private callback: ResponseCallbackService,
   ) {
   }

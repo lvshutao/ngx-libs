@@ -17,8 +17,8 @@ export class LoginHttpService {
    * 账号密码登录
    * @param data
    */
-  login(data: any): Observable<TmpCert> {
-    return this.http.post<TmpCert>(this.config.login, data);
+  login(data: any): Observable<UserCert> {
+    return this.http.post<UserCert>(this.config.login, data);
   }
 
   /**
@@ -26,15 +26,15 @@ export class LoginHttpService {
    * @param data
    */
   noPwdLoinCode(data: any): Observable<string> {
-    return this.http.postResText(this.config.autoLoginCode, data);
+    return this.http.post(this.config.autoLoginCode, data);
   }
 
   /**
    * 无密登录，账号+验证码
    * @param data
    */
-  noPwdLogin(data: any): Observable<TmpCert> {
-    return this.http.post<TmpCert>(this.config.autoLogin, data);
+  noPwdLogin(data: any): Observable<UserCert> {
+    return this.http.post<UserCert>(this.config.autoLogin, data);
   }
 
   /**

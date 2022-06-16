@@ -22,7 +22,7 @@ import {navigateBy} from "@fsl/ngxbase";
 
         <a mat-button routerLink="/user">后台</a>
 
-        <lib-signer (roles)="bindRolesChange()"></lib-signer>
+        <lib-signer (ping)="pingChange($event)"></lib-signer>
 
         <a mat-button (click)="layoutSer.rightToggle()">右侧</a>
       </ng-container>
@@ -56,7 +56,11 @@ export class LayoutComponent implements OnInit {
     navigateBy(this.router, this.routeConfig.home);
   }
 
-  bindRolesChange() {
-    this.isAdmin = RoleService.inRoles(RoleAdmin);
+  pingChange(isLogin: boolean) {
+    if (isLogin) {
+      this.isAdmin = RoleService.inRoles(RoleAdmin);
+    } else {
+      this.isAdmin = false;
+    }
   }
 }

@@ -9,16 +9,15 @@ import {MyAppxRouteConfig} from "../../route-config";
 
 import {CertService} from "../../../service/cert.service";
 import {LoginStateService} from "../../../service/login-state.service";
-import {UserHttpService} from "../../service/user-http.service";
 
 @Component({template: ``})
 export class AbstractLoginComponent implements OnInit {
   /**
-   * 登录状态 ping 更改
+   * 登录状态更改
    */
   @Output() change = new EventEmitter<boolean>();
   /**
-   * 点击退出登录
+   * 成功退出登录后
    */
   @Output() logout = new EventEmitter();
 
@@ -31,7 +30,6 @@ export class AbstractLoginComponent implements OnInit {
     public certSer: CertService,
     public loginStateSer: LoginStateService,
     public showSer: LibSnackService,
-    public userHttp: UserHttpService,
   ) {
   }
 
@@ -43,28 +41,19 @@ export class AbstractLoginComponent implements OnInit {
    * 检查登录状态
    */
   onCheckLoginState() {
-    if (this.loginStateSer.shouldPing) {
-      this.loginStateSer.hasPing = true;
-      this.userHttp.ping().subscribe(hasLogin => {
-        this.loginStateSer.isLogin = hasLogin;
-        this.change.emit(hasLogin);
-        hasLogin || this.certSer.logout();
-      })
-    }
+    this.loginStateSer.ping(rst => {
+      this.change.emit(rst.login);
+      rst.login || this.certSer.logout();
+    }).subscribe();
   }
 
   /**
    * 退出登录
-   * @param emit
    */
-  onLogout(emit = true) {
-    this.http.get(this.apiConfig.logout).subscribe(_ => {
-    }).add(() => {
-      this.loginStateSer.isLogin = false;
-      this.certSer.logout();
-
-      emit && this.logout.emit();
+  onLogout() {
+    this.loginStateSer.logout(() => {
       this.showSer.success('退出成功');
-    })
+      this.logout.emit();
+    });
   }
 }
