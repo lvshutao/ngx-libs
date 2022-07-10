@@ -10,14 +10,14 @@ import {MyAssets, MyObject, MyTableService, MyTypecast, ReqPagParam} from "my-ts
 @Component({
   selector: 'lib-paginator',
   template: `
-    <mat-paginator *ngIf="pagLength > 0;else empty" [pageSize]="pageSize"
-                   [pageIndex]="pageIndex"
-                   [length]="pagLength"
-                   [showFirstLastButtons]="true"
-                   (page)="pageChange($event)"></mat-paginator>
-    <ng-template #empty>
-      <div class="center ptb10 placeholder">{{placeholder}}</div>
-    </ng-template>
+      <mat-paginator *ngIf="pagLength > 0;else empty" [pageSize]="pageSize"
+                     [pageIndex]="pageIndex"
+                     [length]="pagLength"
+                     [showFirstLastButtons]="true"
+                     (page)="pageChange($event)"></mat-paginator>
+      <ng-template #empty>
+          <div class="center py10 placeholder">{{placeholder}}</div>
+      </ng-template>
   `
 })
 /**

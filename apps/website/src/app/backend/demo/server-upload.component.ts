@@ -9,13 +9,13 @@ import {MyFormData} from "@fsl/ngxbase";
   template: `<h3>服务器文件上传</h3>
   <lib-upload-one text="文件选择" (action)="rst = $event" idName="file"></lib-upload-one>
 
-  <div class="ptb10">上传结果:{{rst|json}}</div>
+  <div class="py10">上传结果:{{rst|json}}</div>
 
   <h3>文件选择上传</h3>
   <form class="lib-form" (ngSubmit)="onSubmit()">
-    <lib-form-input label="Name" class="width150" [form]="mo" name="name"></lib-form-input>
-    <lib-upload-select (files)="files = $event"></lib-upload-select>
-    <lib-back-submit [disabled]="mo.invalid"></lib-back-submit>
+      <lib-form-input label="Name" class="width150" [form]="mo" name="name"></lib-form-input>
+      <lib-upload-select (files)="files = $event"></lib-upload-select>
+      <lib-back-submit [disabled]="mo.invalid"></lib-back-submit>
   </form>
   `,
   providers: [

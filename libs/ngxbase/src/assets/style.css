@@ -180,18 +180,18 @@ table.lib-table th.action, table.lib-table th.button {
   border-radius: 50%;
 }
 
-.cover-max150 {
+.cover150-max {
   max-width: 150px;
   max-height: 150px;
 }
 
-.cover-150 {
+.cover150 {
   width: 150px;
   height: 150px;
 }
 
 /* 封面图，通常为列表左侧显示 */
-.size-cover {
+.cover200, .size-cover {
   width: 200px;
   height: 200px;
 }
@@ -213,7 +213,7 @@ table.lib-table th.action, table.lib-table th.button {
   border: 1px solid gray;
 }
 
-.size-square {
+.cover100, .size-square {
   width: 100px;
   height: 100px;
   border: 1px solid gray;
@@ -354,7 +354,7 @@ button.icon-bg {
   padding-bottom: 10px;
 }
 
-.ptb10 {
+.py10 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -375,7 +375,7 @@ button.icon-bg {
   margin-bottom: 20px;
 }
 
-.m015 {
+.mln15 {
   margin-left: -15px;
 }
 
@@ -387,16 +387,16 @@ button.icon-bg {
   margin-left: 10px;
 }
 
-.mtb15 {
+.my15 {
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.inline {
+.d-inline {
   display: inline-block;
 }
 
-.inline-m5 {
+.d-inline-m5 {
   display: inline-block;
   vertical-align: middle;
   margin: 5px;

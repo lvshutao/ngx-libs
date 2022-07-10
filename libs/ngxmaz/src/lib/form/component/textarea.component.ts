@@ -6,7 +6,7 @@ import {AbstractMazinput} from "./abstract.mazinput";
 @Component({
   selector: 'lib-form-textarea',
   template: `
-    <mat-form-field floatLabel="always" [formGroup]="form">
+    <mat-form-field floatLabel="always" [formGroup]="form" class="width-100">
       <textarea rows="5" matInput
                 [required]="required"
                 [formControlName]="name" [placeholder]="label">
