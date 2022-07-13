@@ -1,4 +1,4 @@
-import {AbstractControl, FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 /**
  * @example
@@ -7,60 +7,55 @@ import {AbstractControl, FormArray, FormBuilder, FormGroup} from "@angular/forms
  *   marches: this.fb.array([]),
  * });
  *
- * public nfa: NgFormArrayObjSer;
+ * public nfa: NgFormArrayService;
  * name = 'marches';
  *
  * constructor(private fb: FormBuilder) {
- *   this.nfa = new NgFormArrayObjSer(this.fb);
+ *   this.nfa = new NgFormArrayService(this.fb);
  * }
  *
  * ngOnInit(): void {
  *   this.nfa.bind(this.m, this.name, () => {
- *     return {
- *       subject: ['', [Validators.required]],
- *     };
+ *     return this.fb.group({...}) ; // 或者 this.fb.control('')
  *   });
  *   // 常见错误
  *   // 1. api 返回的 marches 的值为 null 而不是 []
  * }
  *
- * // html 模板
- *
- * <div>
- *   <div class="row">
- *     <h3 class="flex pt8">您的标题</h3>
- *     <div class="flex1">
- *       <a mat-icon-button (click)="nfa.insertItem()">
- *         <mat-icon>add_circle_outline</mat-icon>
- *       </a>
- *     </div>
- *   </div>
- *   <div [formArrayName]="name">
- *     <div *ngFor="let c of nfa.controllers; let i = index;">
- *       <div [formGroup]="c" class="row">
- *         <div class="flex1">
- *           <lib-row-title4 label="主题">
- *             <mat-form-field floatLabel="never">
- *               <input matInput formControlName="subject" placeholder="请填写行程主题">
- *             </mat-form-field>
- *           </lib-row-title4>
- *         </div>
- *         <div style="width: 80px" class="flex pt8">
- *           <a mat-icon-button *ngIf="nfa.hasMore"
- *              color="warn" (click)="nfa.removeItem(i)">
- *             <mat-icon>remove_circle_outline</mat-icon>
- *           </a>
- *         </div>
+ * // html 对象模板
+ *  <div>
+ *    您的标题 <a mat-icon-button (click)="nfa.insertItem()"><mat-icon>add_circle_outline</mat-icon></a>
+ *  </div>
+ *  <div [formArrayName]="name">
+ *   <div *ngFor="let c of nfa.controllers; let i = index;">
+ *     <div [formGroup]="nfa.toFormGroup(c)" class="row">
+ *       <div class="flex1">
+ *         <mat-form-field floatLabel="never">
+ *           <input matInput formControlName="subject" placeholder="请填写行程主题">
+ *         </mat-form-field>
+ *       </div>
+ *       <div style="width: 80px" class="flex pt8">
+ *         <a mat-icon-button *ngIf="nfa.hasMore" color="warn" (click)="nfa.removeItem(i)">
+ *           <mat-icon>remove_circle_outline</mat-icon>
+ *         </a>
  *       </div>
  *     </div>
  *   </div>
  * </div>
+ * // html 数组模板
+ * <div *ngFor="let alias of nfa.controllers; let i=index">
+ *    <input type="text" [formControlName]="i">
+ *    <a mat-icon-button *ngIf="nfa.hasMore" color="warn" (click)="nfa.removeItem(i)">
+ *       <mat-icon>remove_circle_outline</mat-icon>
+ *    </a>
+ * </div>
+ * 支持 FormControl 和 FormGroup
  */
-export class NgFormArrayObjSer {
+export class NgFormArrayService {
 
   private form!: FormGroup;
   private name!: string;
-  private itemFunc!: () => any;
+  private itemFunc!: () => FormControl | FormGroup;
   private cache!: FormArray;
 
   constructor(public fb: FormBuilder) {
@@ -72,7 +67,7 @@ export class NgFormArrayObjSer {
    * @param name {string}
    * @param itemFunc
    */
-  bind(form: FormGroup, name: string, itemFunc?: () => any) {
+  bind(form: FormGroup, name: string, itemFunc?: () => FormControl | FormGroup) {
     this.form = form;
     this.name = name;
     if (itemFunc) {
@@ -104,8 +99,8 @@ export class NgFormArrayObjSer {
    * 添加指定的 item
    * @param item
    */
-  insertWith(item: any) {
-    this.getItems().push(this.fb.group(item));
+  insertWith(item: FormControl | FormGroup) {
+    this.getItems().push(item);
   }
 
   /**
@@ -155,20 +150,40 @@ export class NgFormArrayObjSer {
    * 如果要重置，可以直接使用 this.m.patchValue({[this.key]:items});
    * @param items
    */
-  addItems(items: any[]) {
+  addItems(items: FormControl[] | FormGroup[]) {
     if (items) {
       items.forEach(e => {
-        this.getItems().push(this.fb.group(e));
+        this.getItems().push(e);
       });
     }
+  }
+
+  /**
+   * 适用于 control 子项(例如字符串数组)
+   * @param vs
+   */
+  addItemsOfFormControlValues(vs: any[]) {
+    vs.map(v => {
+      this.getItems().push(this.fb.control(v))
+    })
+  }
+
+  /**
+   * 使用于对象
+   * @param vs
+   */
+  addItemsOfFormGroupValues(vs: any[]) {
+    vs.map(v => {
+      this.getItems().push(this.fb.group(v));
+    })
   }
 
   /**
    * 追加一个 item
    * @param item
    */
-  push(item: any) {
-    this.getItems().push(this.fb.group(item));
+  push(item: FormControl | FormGroup) {
+    this.getItems().push(item);
   }
 
   /**
@@ -182,10 +197,10 @@ export class NgFormArrayObjSer {
   /**
    * 用在 html 模板中
    * @example
-   * <div *ngFor="let m of moreControllers; let i = index;">
+   * <div *ngFor="let m of nfa.controllers; let i = index;">
    */
   get controllers() {
-    return this.getItems().controls;
+    return this.getItems()['controls'];
   }
 
   /**
@@ -197,7 +212,7 @@ export class NgFormArrayObjSer {
   }
 
   /**
-   * 重置全部 items 的属性值
+   * 重置全部 items 中指定的属性值
    * @param keyName {string} 属性
    * @param value {Object} 值
    */

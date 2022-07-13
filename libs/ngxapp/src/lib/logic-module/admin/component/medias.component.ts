@@ -3,7 +3,7 @@ import {FormGroup} from "@angular/forms";
 
 import {MyTypecast} from "my-tsbase";
 
-import {NgFormArrayObjSer} from "@fsl/ngxbase";
+import {NgFormArrayService} from "@fsl/ngxbase";
 import {UploadSrcData} from "@fsl/ngxupload";
 import {LibDialogService} from '@fsl/ngxmaz'
 
@@ -139,7 +139,7 @@ export class MazFormMediasComponent {
   @Input() name = ArticleMediaKey;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  @Input() nfa: NgFormArrayObjSer;
+  @Input() nfa: NgFormArrayService;
 
   @Input() event = false;
 

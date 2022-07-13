@@ -2,7 +2,10 @@ import {AbstractControl, FormGroup} from "@angular/forms";
 import {Component, Input} from "@angular/core";
 
 import {ImagePreview} from '@fsl/ngxbase'
-
+/**
+ * 图片调整
+ * 通常跟 <lib-images [from]="m"></lib-images> 搭配使用
+ */
 @Component({
   selector: 'lib-form-images-action',
   template: `
@@ -10,10 +13,6 @@ import {ImagePreview} from '@fsl/ngxbase'
                 [showAction]="true"
                 [urls]="urls"></lib-images>`
 })
-/**
- * 图片调整
- * 通常跟 <lib-images [from]="m"></lib-images> 搭配使用
- */
 export class ImagesActionComponent {
   @Input() form!: FormGroup | AbstractControl;
   @Input() name = 'images';

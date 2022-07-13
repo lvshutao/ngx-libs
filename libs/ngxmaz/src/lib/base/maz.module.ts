@@ -30,7 +30,7 @@ import {LibLinkComponent} from "./components/link.component";
 import {PaginatorComponent} from "./components/paginator.component";
 import {AddButtonComponent} from "./components/add-button.component";
 import {BackIconComponent} from "./components/back-icon.component";
-import {BackBarComponent} from "./components/back-bar.component";
+import {BackBarComponent, BackBarSubmitComponent} from "./components/back-bar.component";
 import {BackSubmitComponent} from "./components/back-submit.component";
 import {CardComponent} from "./components/card.component";
 import {CloseButtonComponent} from "./components/close-button.component";
@@ -55,6 +55,7 @@ const DIALOGS = [
 const COMPONENTS = [
   AddButtonComponent,
   BackBarComponent,
+  BackBarSubmitComponent,
   BackIconComponent,
   BackSubmitComponent,
   ButtonComponent,
