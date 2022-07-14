@@ -7,7 +7,7 @@ import {
   MyNgxMazFormModule,
   MyNgxMazLayoutModule,
   MyNgxMazMapModule,
-  SidenavMenu, WhereModule
+  SidenavMenu, MyMazWhereModule
 } from "@fsl/ngxmaz";
 import {MyNgxAppModule} from "@fsl/ngxapp";
 import {MyNgxEditorModule} from "@fsl/ngxeditor";
@@ -53,7 +53,7 @@ import {DemoWhereComponent} from "./demo/where.component";
     MyNgxMazFormModule,
     MyNgxMazMapModule,
     MyNgxEditorModule,
-    WhereModule
+    MyMazWhereModule
   ],
   providers: [
     LayoutService,

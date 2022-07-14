@@ -1,11 +1,8 @@
 import {Component} from "@angular/core";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 
-import {AppHttpService} from "@fsl/ngxbase";
 import {MyTableService, MyTextService} from "my-tsbase";
-
-import {LibSnackService} from "../snack/snack.servic";
-import {LibDialogService} from "../base/dialog/dialog.service";
+import {LibWhereService} from "./where.service";
 
 export interface ListPageConfig<T> {
   /**
@@ -44,6 +41,7 @@ export interface ListPageConfig<T> {
 export class AbstractListPageComponent<T> {
 
   public table = new MyTableService<T>()
+  public libTextSer = MyTextService;
 
   /**
    * you need to overwrite this method
@@ -56,35 +54,32 @@ export class AbstractListPageComponent<T> {
   }
 
   constructor(
-    protected http: AppHttpService,
-    protected route: ActivatedRoute,
-    protected router: Router,
-    protected dialogSer: LibDialogService,
-    protected showSer: LibSnackService,
+    protected ws: LibWhereService,
+    protected route:ActivatedRoute,
   ) {
     this.table.setBackupWhere(this.config().backupWhere);
   }
 
   public onSearch(q: any) {
-    this.http.search<T>(this.config().path, q).subscribe(rst => this.table.listResponseAndAssignWhere(rst, q))
+    this.ws.http.search<T>(this.config().path, q).subscribe(rst => this.table.listResponseAndAssignWhere(rst, q))
   }
 
   public onEdit(o: T) {
-    const path = this.config().editPath || 'edit';
+    const path = this.config().editPath || './edit';
     const p = this.config().editParams;
-    this.router.navigate([path], {
+    this.ws.router.navigate([path], {
       relativeTo: this.route,
       queryParams: p ? p(o) : null,
     })
   }
 
   public onDelete(o: T) {
-    this.dialogSer.confirm({content: this.config().content || '你确定要移除当前记录吗？'}).subscribe(yes => {
+    this.ws.dialogSer.confirm({content: this.config().content || '你确定要移除当前记录吗？'}).subscribe(yes => {
       if (yes) {
         const q = this.config().deleteParams;
-        this.http.delete(this.config().path, q ? q(o) : {}).subscribe(() => {
+        this.ws.http.delete(this.config().path, q ? q(o) : {}).subscribe(() => {
           this.table.itemRemove(o);
-          this.showSer.success('移除成功');
+          this.ws.showSer.success('移除成功');
         })
       }
     })
@@ -96,7 +91,7 @@ export class AbstractListPageComponent<T> {
     const status = MyTextService.nextStatus(o['status']);
     // @ts-ignore
     const p = Object.assign({status}, q(o))
-    this.http.changeStatusWith(this.config().path, p).subscribe(() => {
+    this.ws.http.changeStatusWith(this.config().path, p).subscribe(() => {
       // @ts-ignore
       o['status'] = status;
     })

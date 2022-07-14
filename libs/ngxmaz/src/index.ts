@@ -103,10 +103,14 @@ export * from './lib/util/svg'
 
 // where
 export * from './lib/where/module'
+export * from './lib/where/bool.component'
 export * from './lib/where/action.component'
 export * from './lib/where/input.component'
+export * from './lib/where/keyword.component'
 export * from './lib/where/list-page.component'
 export * from './lib/where/edit-page.component'
 export * from './lib/where/select.component'
 export * from './lib/where/status.component'
 export * from './lib/where/state.component'
+
+export * from './lib/where/where.service'

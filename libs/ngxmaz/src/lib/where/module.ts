@@ -14,6 +14,8 @@ import {LibWhereSelectComponent} from "./select.component";
 import {LibWhereInputComponent} from "./input.component";
 import {LibWhereActionComponent} from "./action.component";
 import {AbstractEditPageComponent} from "./edit-page.component";
+import {LibWhereBoolComponent} from "./bool.component";
+import {LibWhereKeywordComponent} from "./keyword.component";
 
 const COMPONENTS = [
   AbstractListPageComponent,
@@ -24,6 +26,8 @@ const COMPONENTS = [
   LibWhereSelectComponent,
   LibWhereInputComponent,
   LibWhereActionComponent,
+  LibWhereBoolComponent,
+  LibWhereKeywordComponent,
 ];
 
 @NgModule({
@@ -42,6 +46,6 @@ const COMPONENTS = [
     MatIconModule
   ]
 })
-export class WhereModule {
+export class MyMazWhereModule {
 
 }
