@@ -1,6 +1,6 @@
 {
   "name": "@fsl/ngxmaz",
-  "version": "0.2.9",
+  "version": "0.2.11",
   "peerDependencies": {
     "@angular/common": "^13.2.0",
     "@angular/core": "^13.2.0",

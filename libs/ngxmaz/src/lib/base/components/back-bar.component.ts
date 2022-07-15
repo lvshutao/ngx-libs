@@ -50,7 +50,7 @@ export class BackBarComponent implements OnInit {
     <lib-back-bar>
       <span>{{isSave ? '更新' : '添加'}}{{label}}</span>
       <lib-hspace></lib-hspace>
-      <a mat-button (click)="action.emit()" [disabled]="disabled">{{text}}</a>
+      <a mat-button mat-stroked-button color="primary" (click)="action.emit()" [disabled]="disabled">{{text}}</a>
     </lib-back-bar>`
 })
 export class BackBarSubmitComponent {

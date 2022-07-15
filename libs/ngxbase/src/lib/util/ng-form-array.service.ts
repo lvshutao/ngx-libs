@@ -30,24 +30,16 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@
  *   <div *ngFor="let c of nfa.controllers; let i = index;">
  *     <div [formGroup]="nfa.toFormGroup(c)" class="row">
  *       <div class="flex1">
- *         <mat-form-field floatLabel="never">
- *           <input matInput formControlName="subject" placeholder="请填写行程主题">
- *         </mat-form-field>
+ *         <!-- 组件代码 -->
  *       </div>
- *       <div style="width: 80px" class="flex pt8">
- *         <a mat-icon-button *ngIf="nfa.hasMore" color="warn" (click)="nfa.removeItem(i)">
- *           <mat-icon>remove_circle_outline</mat-icon>
- *         </a>
- *       </div>
+ *       <lib-form-array-action [ser]="nfa" [index]="i"></lib-form-array-action>
  *     </div>
  *   </div>
  * </div>
  * // html 数组模板
  * <div *ngFor="let alias of nfa.controllers; let i=index">
  *    <input type="text" [formControlName]="i">
- *    <a mat-icon-button *ngIf="nfa.hasMore" color="warn" (click)="nfa.removeItem(i)">
- *       <mat-icon>remove_circle_outline</mat-icon>
- *    </a>
+ *    <lib-form-array-action [ser]="nfa" [index]="i"></lib-form-array-action>
  * </div>
  * 支持 FormControl 和 FormGroup
  */

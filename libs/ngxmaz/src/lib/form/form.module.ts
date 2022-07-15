@@ -13,7 +13,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MyNgxMazModule} from "../base/maz.module";
 import {MyNgxMazUploadModule} from "../upload/upload.module";
 
-
+import {LibFormArrayActionComponent} from "./component/array-action.component";
 import {CaptchaInputComponent} from "./component/captcha-input.component";
 import {ImagesActionComponent} from "./component/images-action.component";
 import {TagsComponent} from "./component/tags.component";
@@ -28,6 +28,7 @@ import {AbstractMazinput} from "./component/abstract.mazinput";
 
 
 const COMPONENTS = [
+  LibFormArrayActionComponent,
 
   CaptchaInputComponent,
   ClearComponent,

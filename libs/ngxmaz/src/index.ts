@@ -38,6 +38,7 @@ export * from './lib/datetime/time-range.component'
 // form
 export * from './lib/form/form.module'
 
+export * from './lib/form/component/array-action.component'
 export * from './lib/form/component/captcha-input.component'
 export * from './lib/form/component/clear.component'
 export * from './lib/form/component/image.component'
