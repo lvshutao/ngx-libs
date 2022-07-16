@@ -17,34 +17,34 @@ export * from './lib/model/user.model'
 
 // logic-module
 // component
-export * from './lib/logic-module/auth/component/abstract'
-export * from './lib/logic-module/auth/component/auth-layout.component'
-export * from './lib/logic-module/auth/component/captcha.component'
-export * from './lib/logic-module/auth/component/btn-login.component'
-export * from './lib/logic-module/auth/component/btn-login-wechat.component'
-export * from './lib/logic-module/auth/component/btn-login-wxwork.component'
+export * from './lib/login/auth/component/abstract'
+export * from './lib/login/auth/component/auth-layout.component'
+export * from './lib/login/auth/component/captcha.component'
+export * from './lib/login/auth/component/btn-login.component'
+export * from './lib/login/auth/component/btn-login-wechat.component'
+export * from './lib/login/auth/component/btn-login-wxwork.component'
 
 // page
-export * from './lib/logic-module/auth/page/login/index'
-export * from './lib/logic-module/auth/page/token.page'
+export * from './lib/login/auth/page/login/index'
+export * from './lib/login/auth/page/token.page'
 
 // service
-export * from './lib/logic-module/auth/service/login.service'
+export * from './lib/login/auth/service/login.service'
 
 // model
-export * from './lib/logic-module/auth/model'
+export * from './lib/login/auth/model'
 
 // module
-export * from './lib/logic-module/auth/module'
+export * from './lib/login/auth/module'
 
 // -----------------------------------
 // service
-export * from './lib/logic-module/service/user-http.service'
+export * from './lib/login/service/user-http.service'
 
 // config
-export * from './lib/logic-module/api-config'
-export * from './lib/logic-module/authpage-config'
-export * from './lib/logic-module/route-config'
+export * from './lib/login/api-config'
+export * from './lib/login/authpage-config'
+export * from './lib/login/route-config'
 
 
 // service

@@ -40,6 +40,7 @@ import {DialogCloseBarComponent} from "./components/dialog-close.component";
 
 import {ButtonResendComponent} from "./components/button-resend.component";
 import {BackBarSubmitComponent} from "./components/back-bar-submit.component";
+import {LibImagesComponent} from "./components/images.component";
 
 
 const DIALOGS = [
@@ -66,6 +67,8 @@ const COMPONENTS = [
   CardComponent,
   DialogBarComponent,
   DialogCloseBarComponent,
+
+  LibImagesComponent,
 
   ListtileComponent,
   LinkComponent,

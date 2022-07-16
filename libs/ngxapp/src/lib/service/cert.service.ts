@@ -29,22 +29,22 @@ export class CertService {
   /**
    * 保存凭证
    */
-  saveCert(cert: UserCert): boolean {
-    if (MyAssets.isEmpty(cert.accessToken)) {
-      console.error('保存登录凭证时错误', cert)
-      return false;
+  saveCert(cert: UserCert): { success: boolean, msg: string } {
+    if (MyAssets.isEmpty(cert.access_token)) {
+      console.error('saveCert failed', cert)
+      return {success: false, msg: '保存登录凭证时错误'};
     }
 
     this.cache.write(cert)
     this.cert = cert;
-    return true;
+    return {success: true, msg: ''};
   }
 
   /**
    * 生成请求签名
    */
   headerToken(): string | null {
-    return this.cert?.accessToken;
+    return this.cert?.access_token;
   }
 
 }

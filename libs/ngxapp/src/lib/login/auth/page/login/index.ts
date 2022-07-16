@@ -97,10 +97,14 @@ export class PageAuthLogin implements OnInit {
 
   private loginSuccess(uc: UserCert) {
     if (uc.uid) {
-      this.certSer.saveCert(uc);
-      this.showSer.success('登录成功', 1000).subscribe(() => {
-        location.href = this.redirect.read(true) || this.routeConfig.home;
-      });
+      const {success, msg} = this.certSer.saveCert(uc);
+      if (success) {
+        this.showSer.success('登录成功', 1000).subscribe(() => {
+          location.href = this.redirect.read(true) || this.routeConfig.home;
+        });
+      } else {
+        this.showSer.danger(msg);
+      }
     } else {
       this.showSer.danger('登录凭证错误');
     }

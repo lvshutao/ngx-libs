@@ -7,7 +7,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 
 
-import {MyAppxAuthModule} from "./logic-module/auth/module";
+import {MyAppxAuthModule} from "./login/auth/module";
 
 import {SignerComponent} from "./component/signer.component";
 

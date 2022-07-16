@@ -5,8 +5,8 @@ import {navigateBy} from '@fsl/ngxbase'
 import {LibSnackService} from "@fsl/ngxmaz";
 
 import {LoginStateService} from "../service/login-state.service";
-import {UserHttpService} from "../logic-module/service/user-http.service";
-import {MyAppxRouteConfig} from "../logic-module/route-config";
+import {UserHttpService} from "../login/service/user-http.service";
+import {MyAppxRouteConfig} from "../login/route-config";
 
 
 @Component({

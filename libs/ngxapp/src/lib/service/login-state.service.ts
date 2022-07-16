@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {map, Observable, of} from "rxjs";
 
-import {PingRst, UserHttpService} from "../logic-module/service/user-http.service";
+import {PingRst, UserHttpService} from "../login/service/user-http.service";
 import {CertService} from "./cert.service";
 import {RoleService} from "./role.service";
 import {UserinfoService} from "./userinfo.service";

@@ -12,8 +12,8 @@ export class TmpCert {
  * 用户登录凭证
  */
 export class UserCert {
-  accessToken = '';
-  accessExpire = 0;
-  refreshAfter = 0;
+  access_token = '';
+  access_expire = 0;
+  refresh_after = 0;
   uid = '';
 }

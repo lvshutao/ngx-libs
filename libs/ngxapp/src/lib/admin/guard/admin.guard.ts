@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapsh
 import {map, Observable} from "rxjs";
 
 import {LibSnackService} from '@fsl/ngxmaz'
-import {UserHttpService} from "../../service/user-http.service";
+import {UserHttpService} from "../../login/service/user-http.service";
 
 
 

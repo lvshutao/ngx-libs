@@ -39,10 +39,15 @@ export class PageAuthToken implements OnInit {
         const app_sign = q.get('app_sign') || '';
 
         this.http.cert({uid, user_sign, app_name, app_sign}).subscribe(uc => {
-          this.certSer.saveCert(uc)
-          this.msgSer.success('授权成功');
-          const path = this.redirect.read(true) || this.routeConfig.home;
-          navigateBy(this.router, path)
+          const {success, msg} = this.certSer.saveCert(uc)
+          if (success) {
+            this.msgSer.success('授权成功');
+            const path = this.redirect.read(true) || this.routeConfig.home;
+            navigateBy(this.router, path)
+          } else {
+            this.text = msg;
+            this.msgSer.danger(msg);
+          }
         });
       } else {
         this.text = '授权参数错误';
