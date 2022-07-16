@@ -23,7 +23,11 @@ export class AppHttpService {
     if (conf.debug) {
       console.log('app config:', conf);
     }
-    this.http = new HttpService(conf.origin,httpClient)
+    this.http = new HttpService(conf.origin, httpClient)
+  }
+
+  get origin(): string {
+    return this.conf.origin;
   }
 
 
@@ -106,7 +110,7 @@ export class AppHttpService {
   }
 
   // DELETE
-  delete<T>(middle: string, q?:any): Observable<T> {
+  delete<T>(middle: string, q?: any): Observable<T> {
     return this.http.delete('/api/' + middle, httpParams(q));
   }
 

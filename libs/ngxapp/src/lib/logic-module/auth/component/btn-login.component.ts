@@ -11,8 +11,9 @@ import {AbstractLoginComponent} from "./abstract";
   </ng-template>
   `
 })
-export class LoginBtnComponent extends AbstractLoginComponent {
+export class BtnLoginComponent extends AbstractLoginComponent {
   @Input() logoutBtn = false;
+
   gotoLogin() {
     navigateBy(this.router, this.routeConfig.login)
   }

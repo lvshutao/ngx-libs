@@ -1,4 +1,5 @@
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {moveItemInArray} from "@angular/cdk/drag-drop";
 
 /**
  * @example
@@ -308,5 +309,40 @@ export class NgFormArrayService {
     const item = cc.at(i);
     cc.removeAt(i);
     cc.insert(i + 1, item);
+  }
+}
+
+export class ArrayService {
+
+
+  static disUpward(index: number, items: Array<any>) {
+    return index == 0 || items.length < 2;
+  }
+
+  static disDownward(index: number, items: Array<any>) {
+    return items.length < 2 || index == items.length - 1;
+  }
+
+  /**
+   * @param index
+   */
+  static onDelete(index: number, items: Array<any>) {
+    items.splice(index, 1);
+  }
+
+  static onUpward(index: number, items: Array<any>) {
+    if (this.disUpward(index, items)) {
+      console.log(index, 'could not upward')
+      return;
+    }
+    moveItemInArray(items, index, index - 1);
+  }
+
+  static onDownward(index: number, items: Array<any>) {
+    if (this.disDownward(index, items)) {
+      console.log(index, 'could not downward')
+      return;
+    }
+    moveItemInArray(items, index, index + 1);
   }
 }

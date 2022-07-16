@@ -9,14 +9,14 @@ import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
     <mat-form-field floatLabel="always" style="width: 150px">
       <input id="keyword-box" matInput [(ngModel)]="keyword"
              [matAutocomplete]="auto" [placeholder]="label">
-      <lib-clear-button matSuffix (click)="clear()"></lib-clear-button>
+      <lib-close-button matSuffix (click)="clear()"></lib-close-button>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionChange()">
         <mat-option *ngFor="let text of options;" [value]="text">{{text}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>`
 })
-export class MazFormInputtipComponent  implements OnInit {
+export class MazFormInputtipComponent implements OnInit {
   @Input() keyword = '';
 
   // 选项
@@ -27,6 +27,7 @@ export class MazFormInputtipComponent  implements OnInit {
   @Input() debounce = 1500; // 防抖 1.5 s
 
   @Output() search = new EventEmitter<string>();
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() select = new EventEmitter<string>();
 
   private listenInput() {

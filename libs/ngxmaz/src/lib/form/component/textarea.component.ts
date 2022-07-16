@@ -11,7 +11,7 @@ import {AbstractMazinput} from "./abstract.mazinput";
                 [required]="required"
                 [formControlName]="name" [placeholder]="label">
       </textarea>
-      <lib-clear matSuffix [form]="form" [name]="name"></lib-clear>
+      <lib-form-clear matSuffix [form]="form" [name]="name"></lib-form-clear>
     </mat-form-field>`
 })
 export class MazFormTextareaComponent extends AbstractMazinput {

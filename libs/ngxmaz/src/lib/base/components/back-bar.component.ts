@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -19,8 +18,7 @@ export class BackBarComponent implements OnInit {
   @Output() action = new EventEmitter();
   canBack = false;
 
-  constructor(private location: Location,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute) {
   }
 
@@ -39,25 +37,8 @@ export class BackBarComponent implements OnInit {
     } else if (this.url) {
       this.router.navigateByUrl(this.url);
     } else {
-      this.location.back();
+      history.back();
     }
   }
 }
 
-@Component({
-  selector: 'lib-back-bar-submit',
-  template: `
-    <lib-back-bar>
-      <span>{{isSave ? '更新' : '添加'}}{{label}}</span>
-      <lib-hspace></lib-hspace>
-      <a mat-button mat-stroked-button color="primary" (click)="action.emit()" [disabled]="disabled">{{text}}</a>
-    </lib-back-bar>`
-})
-export class BackBarSubmitComponent {
-  @Input() isSave = false;
-  @Input() label = '';
-  @Input() disabled = false;
-  @Input() text = '提交';
-
-  @Output() action = new EventEmitter();
-}

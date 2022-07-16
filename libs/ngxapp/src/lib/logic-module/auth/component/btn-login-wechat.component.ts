@@ -6,7 +6,7 @@ import {AbstractLoginComponent} from "./abstract";
 import {OauthSrc} from "../model";
 
 @Component({
-  selector: 'lib-wechat-login-btn',
+  selector: 'lib-login-btn-wechat',
   template: `
     <a *ngIf="loginStateSer.isLogin; else login" mat-button color="warn" (click)="onLogout()">退出</a>
     <ng-template #login>
@@ -31,7 +31,7 @@ import {OauthSrc} from "../model";
 /**
  * 单独的微信登录按钮
  */
-export class LibAuthWechatBtnComponent extends AbstractLoginComponent {
+export class BtnLoginWechatComponent extends AbstractLoginComponent {
   bindOauth() {
     const q = {
       name: this.config.name,

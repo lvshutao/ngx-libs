@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
           <div style="width: 80px;line-height: 60px;" class="placeholder">{{label}}</div>
           <div class="flex1" style="position: relative;">
               <lib-datetime [initValue]="value" style="width: 300px;display: inline-block;"
-              (change)="change.emit($event)"></lib-datetime>
-              <div class="hint-filed" style="bottom: 0;position:absolute;" *ngIf="hint">{{hint}}</div>
+                            (change)="change.emit($event)"></lib-datetime>
+              <div class="hint-form-field" style="bottom: 0;position:absolute;" *ngIf="hint">{{hint}}</div>
           </div>
       </div>`
 })

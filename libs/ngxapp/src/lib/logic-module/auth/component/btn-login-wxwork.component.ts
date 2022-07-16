@@ -3,13 +3,13 @@ import {AbstractLoginComponent} from "./abstract";
 import {OauthSrc} from "../model";
 
 @Component({
-  selector: 'lib-wxwork-login-btn',
+  selector: 'lib-login-btn-wxwork',
   template: `<a *ngIf="this.loginStateSer.isLogin; else login" mat-button color="warn" (click)="onLogout()">退出</a>
   <ng-template #login>
     <a mat-button (click)="openLogin()">登录</a>
   </ng-template>`
 })
-export class LibWxWorkSrcBtnComponent extends AbstractLoginComponent {
+export class BtnLoginWxworkComponent extends AbstractLoginComponent {
   openLogin() {
     this.http.getWith<OauthSrc>(this.apiConfig.authWxWork, {
       name: this.config.name,

@@ -24,7 +24,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
       </div>
     </div>`
 })
-export class LibListtileComponent {
+export class ListtileComponent {
   @Input() src = '';
   @Input() title = '';
   @Input() subtitle = '';

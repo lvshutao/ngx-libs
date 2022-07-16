@@ -15,7 +15,7 @@ const defaultData = {title: '', content: '', cancel: '取消', done: '确定'};
 @Component({
   template: `
     <div mat-dialog-content>
-      <mat-form-field>
+      <mat-form-field class="full-width">
         <input matInput [(ngModel)]="data.content" [placeholder]="data.title">
       </mat-form-field>
     </div>

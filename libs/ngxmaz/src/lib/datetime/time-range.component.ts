@@ -9,14 +9,14 @@ import {FormGroup} from '@angular/forms';
       <div style="width: 150px;">
         <mat-form-field floatLabel="never">
           <input style="text-align: center;" type="time" matInput [formControlName]="beginName">
-          <lib-clear [form]="form" [name]="beginName" matSuffix></lib-clear>
+          <lib-form-clear [form]="form" [name]="beginName" matSuffix></lib-form-clear>
         </mat-form-field>
       </div>
       <div style="width: 70px;line-height: 60px;" class="placeholder">结束时间:</div>
       <div style="width: 150px;">
         <mat-form-field floatLabel="never">
           <input style="text-align: center;" type="time" matInput [formControlName]="endName">
-          <lib-clear [form]="form" [name]="endName" matSuffix></lib-clear>
+          <lib-form-clear [form]="form" [name]="endName" matSuffix></lib-form-clear>
         </mat-form-field>
       </div>
       <div class="flex1">

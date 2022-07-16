@@ -3,7 +3,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
 import {MySecret} from "my-tsbase";
-import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword, navigateBy} from "@fsl/ngxbase";
+import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword} from "@fsl/ngxbase";
 import {LibSnackService} from "@fsl/ngxmaz";
 
 import {MyAppxRouteConfig} from "../../../route-config";

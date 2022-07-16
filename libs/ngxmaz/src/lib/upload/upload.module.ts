@@ -11,9 +11,7 @@ import {MyNgxUploadModule} from '@fsl/ngxupload';
 import {MyNgxMazSnackModule} from "../snack/snack.module";
 
 import {LibUploadMazFileComponent} from "./component/file/index.component";
-import {LibMazUploadFormOneComponent} from "./component/form-one.component";
 import {LibMazUploadOneComponent} from "./component/one.component";
-import {LibMazUploadFormImagesComponent} from "./component/form-images.component";
 import {LibUploadMazFileListComponent} from "./component/list";
 import {MazUploadDialogComponent} from "./component/dialog/dialog.component";
 import {LibUploadMazDialogButtonComponent} from "./component/dialog/button.component";
@@ -29,8 +27,6 @@ const COMPONENTS = [
   LibUploadMazDialogButtonComponent,
 
   LibMazUploadOneComponent,
-  LibMazUploadFormOneComponent,
-  LibMazUploadFormImagesComponent,
 ];
 
 @NgModule({

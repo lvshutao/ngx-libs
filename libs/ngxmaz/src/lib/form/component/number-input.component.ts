@@ -13,7 +13,7 @@ import {MyTypecast} from "my-tsbase";
              [formControlName]="name" #input (focus)="input.select()"
              [placeholder]="label"
       >
-      <lib-clear [form]="form" [name]="name" matSuffix></lib-clear>
+      <lib-form-clear [form]="form" [name]="name" matSuffix></lib-form-clear>
     </mat-form-field>`
 })
 export class NumberInputComponent extends AbstractMazinput {

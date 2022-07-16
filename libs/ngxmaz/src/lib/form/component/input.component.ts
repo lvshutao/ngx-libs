@@ -9,7 +9,7 @@ import {AbstractMazinput} from "./abstract.mazinput";
       <input matInput [formControlName]="name" [placeholder]="label"
              [required]="required"
       >
-      <lib-clear matSuffix [form]="form" [name]="name"></lib-clear>
+      <lib-form-clear matSuffix [form]="form" [name]="name"></lib-form-clear>
     </mat-form-field>`
 })
 export class MazFormInputComponent extends AbstractMazinput {

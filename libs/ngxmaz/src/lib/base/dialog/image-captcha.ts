@@ -1,12 +1,24 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Inject, OnInit} from "@angular/core";
 import {FormBuilder} from "@angular/forms";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 import {MyAssets} from "my-tsbase";
-import {AppBaseConfig, AppHttpService} from "@fsl/ngxbase";
+import {AppHttpService} from "@fsl/ngxbase";
 
-import {MyAppxApiConfig} from "../../api-config";
+export interface ImageCaptchaConfig {
+  /**
+   * 获取 captchaId 接口路径，如 base/open/captcha-id (通过 http 请求，隐藏了前缀 /api)
+   */
+  captchaId: string
+  /**
+   * 图片显示路径，如 /api/base/open/captcha
+   */
+  captchaSrc: string
+}
 
+/**
+ * 图片验证码
+ */
 @Component({
   template: `
     <div mat-dialog-title>验证码</div>
@@ -34,18 +46,17 @@ import {MyAppxApiConfig} from "../../api-config";
   `
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class ImageCaptchaDialog implements OnInit {
+export class DialogImageCaptcha implements OnInit {
 
   private id = '';
   src = '';
   code = '';
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: ImageCaptchaConfig,
     private fb: FormBuilder,
-    private ref: MatDialogRef<ImageCaptchaDialog>,
+    private ref: MatDialogRef<DialogImageCaptcha>,
     private http: AppHttpService,
-    private appConfig: AppBaseConfig,
-    private apiConfig: MyAppxApiConfig,
   ) {
   }
 
@@ -55,9 +66,9 @@ export class ImageCaptchaDialog implements OnInit {
 
   onReload() {
     this.code = '';
-    this.http.getWith<{ id: string }>(this.apiConfig.captchaId, {id: this.id}).subscribe(rst => {
+    this.http.getWith<{ id: string }>(this.data.captchaId, {id: this.id}).subscribe(rst => {
       this.id = rst.id;
-      this.src = this.appConfig.origin + this.apiConfig.captchaSrc + '?id=' + rst.id + '&rnd=' + Math.random();
+      this.src = this.http.origin + this.data.captchaSrc + '?id=' + rst.id + '&rnd=' + Math.random();
       // console.log('src:',this.src)
     })
   }

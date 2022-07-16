@@ -49,13 +49,10 @@ import {FormBuilder} from "@angular/forms";
           </tr>
 
           <tr>
-              <td>lib-upload-one <br>
-                  lib-upload-form-one
-              </td>
-              <td>上传一张图片</td>
+              <td>lib-upload-one</td>
+              <td>上传一张图片(回调)</td>
               <td>
                   <lib-upload-one (action)="mo.patchValue({avatar:$event})"></lib-upload-one>
-                  <lib-upload-form-one [form]="mo"></lib-upload-form-one>
               </td>
           </tr>
 
@@ -69,15 +66,13 @@ import {FormBuilder} from "@angular/forms";
           </tr>
 
           <tr>
-              <td>lib-form-images <br>
-                  lib-form-images-action(lib-images)
+              <td>lib-form-images
               </td>
               <td>Form 图片数组 <br>
                   (注：不能跟 lib-upload-trigger 一起使用)
               </td>
               <td>
                   <lib-form-images [form]="mo" name="images"></lib-form-images>
-                  <lib-form-images-action [form]="mo" name="images"></lib-form-images-action>
               </td>
           </tr>
 

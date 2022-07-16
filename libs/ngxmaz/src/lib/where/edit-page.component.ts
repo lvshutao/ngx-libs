@@ -24,15 +24,16 @@ export interface EditPageConfig {
   postValue: () => any;
 }
 
-export function quickEditPageConfig(path: string, mo: FormGroup, name: string, isInt: boolean): EditPageConfig {
+export function quickEditPageConfig(path: string, mo: FormGroup, name: string, isInt: boolean, queryParam?: (isSave: boolean, q: ParamMap) => void): EditPageConfig {
   return {
     path,
     queryParam: q => {
       const data = q.get(name);
-      return [
-        isInt ? MyTypecast.str2Number(data) > 0 : !MyAssets.isEmpty(data),
-        {[name]: data}
-      ]
+      const save = isInt ? MyTypecast.str2Number(data) > 0 : !MyAssets.isEmpty(data);
+      if (queryParam) {
+        queryParam(save, q);
+      }
+      return [save, {[name]: data}]
     },
     postValue: () => {
       return mo.value;

@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 
 import {MyNgxBaseModule} from '@fsl/ngxbase'
 
@@ -18,56 +19,57 @@ import {DialogActionSheetComponent} from "./dialog/action-sheet";
 import {DialogAlertComponent} from "./dialog/alter";
 import {DialogConfirmComponent} from "./dialog/confirm";
 import {DialogImageComponent} from "./dialog/image";
+import {DialogImageCaptcha} from "./dialog/image-captcha";
 import {DialogInputComponent} from "./dialog/input";
 import {DialogSelectComponent} from "./dialog/select";
 import {DialogShareSheetComponent} from "./dialog/share-sheet";
 import {DialogTextareaComponent} from "./dialog/textarea";
 import {LibDialogService} from "./dialog/dialog.service";
 
-import {LibListtileComponent} from "./components/listtile.component";
-import {LibLinkComponent} from "./components/link.component";
+import {ListtileComponent} from "./components/listtile.component";
+import {LinkComponent} from "./components/link.component";
 
 import {PaginatorComponent} from "./components/paginator.component";
-import {AddButtonComponent} from "./components/add-button.component";
-import {BackIconComponent} from "./components/back-icon.component";
-import {BackBarComponent, BackBarSubmitComponent} from "./components/back-bar.component";
+import {ButtonAddComponent, CircleButtonComponent} from "./components/button-add.component";
+import {BackBarComponent} from "./components/back-bar.component";
 import {BackSubmitComponent} from "./components/back-submit.component";
 import {CardComponent} from "./components/card.component";
-import {CloseButtonComponent} from "./components/close-button.component";
+import {ButtonCloseComponent} from "./components/button-close.component";
 import {DialogBarComponent} from "./components/dialog-bar.component";
 import {DialogCloseBarComponent} from "./components/dialog-close.component";
-import {ImagesComponent} from "./components/images.component";
-import {ButtonComponent} from "./components/button.component";
-import {ResendComponent} from "./components/resend.component";
-import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+
+import {ButtonResendComponent} from "./components/button-resend.component";
+import {BackBarSubmitComponent} from "./components/back-bar-submit.component";
+
 
 const DIALOGS = [
   DialogActionSheetComponent,
   DialogAlertComponent,
   DialogConfirmComponent,
   DialogImageComponent,
+  DialogImageCaptcha,
   DialogInputComponent,
   DialogSelectComponent,
   DialogShareSheetComponent,
   DialogTextareaComponent,
-
 ];
 const COMPONENTS = [
-  AddButtonComponent,
+
   BackBarComponent,
   BackBarSubmitComponent,
-  BackIconComponent,
   BackSubmitComponent,
-  ButtonComponent,
+
+  ButtonAddComponent, CircleButtonComponent,
+  ButtonResendComponent,
+  ButtonCloseComponent,
+
   CardComponent,
-  CloseButtonComponent,
   DialogBarComponent,
   DialogCloseBarComponent,
-  ImagesComponent,
-  LibListtileComponent,
-  LibLinkComponent,
+
+  ListtileComponent,
+  LinkComponent,
   PaginatorComponent,
-  ResendComponent,
 ];
 const MODULES = [
   CommonModule,
@@ -83,8 +85,6 @@ const MODULES = [
   MatButtonModule,
   MatInputModule,
   MatSelectModule,
-
-
 ];
 
 @NgModule({

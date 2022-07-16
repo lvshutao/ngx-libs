@@ -14,6 +14,6 @@ import {Component, EventEmitter, Output} from "@angular/core";
       </div>
     </div>`
 })
-export class LibLinkComponent {
+export class LinkComponent {
   @Output() action = new EventEmitter();
 }

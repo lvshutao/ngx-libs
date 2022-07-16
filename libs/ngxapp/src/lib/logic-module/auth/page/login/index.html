@@ -6,11 +6,11 @@
         <form [formGroup]="mo" class="lib-form-full">
           <mat-form-field>
             <input matInput formControlName="account" placeholder="邮箱/手机号">
-            <lib-clear matSuffix name="account" [form]="mo"></lib-clear>
+            <lib-form-clear matSuffix name="account" [form]="mo"></lib-form-clear>
           </mat-form-field>
           <mat-form-field>
             <input matInput type="password" formControlName="password" placeholder="密码">
-            <lib-clear matSuffix name="password" [form]="mo"></lib-clear>
+            <lib-form-clear matSuffix name="password" [form]="mo"></lib-form-clear>
           </mat-form-field>
         </form>
       </div>
@@ -26,7 +26,7 @@
         <form [formGroup]="noMo" class="lib-form">
           <mat-form-field>
             <input matInput formControlName="account" placeholder="邮箱/手机号">
-            <lib-clear matSuffix name="account" [form]="noMo"></lib-clear>
+            <lib-form-clear matSuffix name="account" [form]="noMo"></lib-form-clear>
             <mat-hint>当前只支持 +86 中国大陆手机号</mat-hint>
           </mat-form-field>
 
@@ -34,7 +34,7 @@
             <div class="flex1">
               <mat-form-field>
                 <input matInput formControlName="code" autocomplete="off" placeholder="验证码" minlength="6" maxlength="6">
-                <lib-clear [form]="noMo" name="code" matSuffix></lib-clear>
+                <lib-form-clear [form]="noMo" name="code" matSuffix></lib-form-clear>
               </mat-form-field>
             </div>
             <div style="width: 120px;" class="pt10 right">
@@ -42,7 +42,7 @@
                 [disabled]="isLoading || noMo.get('account')!.invalid"
                 (success)="bindSendCode($event)"
               >
-                <lib-resend [disabled]="noMo.get('account')!.invalid" [start]="senderState"></lib-resend>
+                <lib-button-resend [disabled]="noMo.get('account')!.invalid" [start]="senderState"></lib-button-resend>
               </lib-captcha>
             </div>
           </div>

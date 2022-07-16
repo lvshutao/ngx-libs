@@ -25,7 +25,7 @@ import {MyTextService} from "my-tsbase";
       <div class="flex1">
         <mat-form-field floatLabel="always">
           <input matInput formControlName="state_msg" placeholder="审核信息">
-          <lib-clear matSuffix [form]="form" name="state_msg"></lib-clear>
+          <lib-form-clear matSuffix [form]="form" name="state_msg"></lib-form-clear>
         </mat-form-field>
       </div>
     </div>`

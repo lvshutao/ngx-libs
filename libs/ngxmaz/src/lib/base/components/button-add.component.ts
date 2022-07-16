@@ -4,16 +4,22 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'lib-add-button',
   template: `
-    <button [disabled]="disabled" mat-button color="primary" (click)="bindAdd()">
+    <button [disabled]="disabled" mat-button color="primary" (click)="onclick()">
       <mat-icon>add</mat-icon>
       {{text}}</button>`
 })
-export class AddButtonComponent {
+export class ButtonAddComponent {
   @Input() text = '添加';
-  @Input() params = {};
   @Input() disabled = false;
-  @Input() path = '';
 
+  @Input() path = '';
+  /**
+   * 只有在设置了 path 后，params 才会生效
+   */
+  @Input() params = {};
+  /**
+   * path 为空时才会生效
+   */
   @Output() action = new EventEmitter();
 
   constructor(
@@ -21,7 +27,7 @@ export class AddButtonComponent {
     private router: Router) {
   }
 
-  bindAdd() {
+  onclick() {
     if (this.path) {
       this.router.navigate([this.path], {
         relativeTo: this.route,
@@ -31,4 +37,14 @@ export class AddButtonComponent {
       this.action.emit();
     }
   }
+}
+
+@Component({
+  selector: 'lib-circle-button',
+  template: `<a mat-icon-button>
+    <mat-icon>add_circle_outline</mat-icon>
+  </a>`
+})
+export class CircleButtonComponent {
+
 }

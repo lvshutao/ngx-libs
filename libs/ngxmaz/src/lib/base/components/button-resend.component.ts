@@ -5,10 +5,10 @@ import {Component, Input} from '@angular/core';
 倒计时： disabled 能够点击，start (开始倒计时), send 事件
  */
 @Component({
-  selector: 'lib-resend',
+  selector: 'lib-button-resend',
   template: `<a [disabled]="disabled || _running" mat-stroked-button>{{_title}}</a>`
 })
-export class ResendComponent {
+export class ButtonResendComponent {
 
   @Input() title = '发送验证码';
   @Input() seconds = 60; // 倒计时

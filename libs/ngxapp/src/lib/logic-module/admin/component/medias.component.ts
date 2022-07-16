@@ -57,7 +57,7 @@ import {MazMediaEditDialog} from "./media.dialg";
               <div class="flex1 pl20" *ngIf="layout=='list'">
                 <mat-form-field floatLabel="always">
                   <input matInput formControlName="title" placeholder="图片标题">
-                  <lib-clear matSuffix [form]="c" name="title"></lib-clear>
+                  <lib-form-clear matSuffix [form]="c" name="title"></lib-form-clear>
                 </mat-form-field>
                 <!--            <div class="row">-->
                 <!--              <div class="flex1">-->
@@ -70,7 +70,7 @@ import {MazMediaEditDialog} from "./media.dialg";
 
                 <mat-form-field floatLabel="always">
                   <textarea matInput formControlName="summary" placeholder="图片描述"></textarea>
-                  <lib-clear matSuffix [form]="c" name="summary"></lib-clear>
+                  <lib-form-clear matSuffix [form]="c" name="summary"></lib-form-clear>
                 </mat-form-field>
 
               </div>

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {MatDialog} from "@angular/material/dialog";
-import {ImageCaptchaDialog} from "./image-captcha.dialog";
+import {LibDialogService} from "@fsl/ngxmaz";
+import {MyAppxApiConfig} from "../../api-config";
 
 @Component({
   selector: 'lib-captcha',
@@ -16,7 +16,8 @@ export class LibCaptchaComponent {
   @Output() success = new EventEmitter<any>(); // 返回一个对象，与后端相对
 
   constructor(
-    private dialogSer: MatDialog,
+    private dialogSer: LibDialogService,
+    private apiConfig: MyAppxApiConfig,
   ) {
   }
 
@@ -26,7 +27,10 @@ export class LibCaptchaComponent {
       return;
     }
 
-    this.dialogSer.open(ImageCaptchaDialog).afterClosed().subscribe(data => {
+    this.dialogSer.imageCaptcha({
+      captchaId: this.apiConfig.captchaId,
+      captchaSrc: this.apiConfig.captchaSrc,
+    }).subscribe(data => {
       if (data) {
         this.success.emit({sec: data});
       }

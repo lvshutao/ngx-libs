@@ -20,10 +20,9 @@ export * from './lib/model/user.model'
 export * from './lib/logic-module/auth/component/abstract'
 export * from './lib/logic-module/auth/component/auth-layout.component'
 export * from './lib/logic-module/auth/component/captcha.component'
-export * from './lib/logic-module/auth/component/image-captcha.dialog'
-export * from './lib/logic-module/auth/component/login-btn.component'
-export * from './lib/logic-module/auth/component/wechat-login-btn.component'
-export * from './lib/logic-module/auth/component/wxwork-login-btn.component'
+export * from './lib/logic-module/auth/component/btn-login.component'
+export * from './lib/logic-module/auth/component/btn-login-wechat.component'
+export * from './lib/logic-module/auth/component/btn-login-wxwork.component'
 
 // page
 export * from './lib/logic-module/auth/page/login/index'

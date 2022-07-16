@@ -13,6 +13,7 @@ import {DialogShareSheetComponent, ShareSheetData} from "./share-sheet";
 import {DialogInputComponent, InputData} from "./input";
 import {DialogTextareaComponent} from "./textarea";
 import {ConfirmConfig, DialogConfirmComponent} from "./confirm";
+import {DialogImageCaptcha, ImageCaptchaConfig} from "./image-captcha";
 
 @Injectable()
 export class LibDialogService {
@@ -88,5 +89,13 @@ export class LibDialogService {
   share(data: ShareSheetData): Observable<string | null> {
     const dialog = this.bottomSheet.open(DialogShareSheetComponent, {data});
     return dialog.afterDismissed();
+  }
+
+  /**
+   * 图片验证码
+   * @param data
+   */
+  imageCaptcha(data: ImageCaptchaConfig): Observable<any> {
+    return this.dialog.open(DialogImageCaptcha, {data}).afterClosed();
   }
 }

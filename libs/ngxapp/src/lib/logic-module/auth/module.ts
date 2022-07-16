@@ -12,23 +12,22 @@ import {MatInputModule} from "@angular/material/input";
 
 import {MyNgxMazFormModule} from "@fsl/ngxmaz";
 
-import {LoginBtnComponent} from "./component/login-btn.component";
-import {LibAuthWechatBtnComponent} from "./component/wechat-login-btn.component";
-import {LibWxWorkSrcBtnComponent} from "./component/wxwork-login-btn.component";
+import {BtnLoginComponent} from "./component/btn-login.component";
+import {BtnLoginWechatComponent} from "./component/btn-login-wechat.component";
+import {BtnLoginWxworkComponent} from "./component/btn-login-wxwork.component";
 import {AuthLayoutComponent} from "./component/auth-layout.component";
 
 import {PageAuthToken} from "./page/token.page";
 import {PageAuthLogin} from "./page/login";
-import {ImageCaptchaDialog} from "./component/image-captcha.dialog";
 import {LibCaptchaComponent} from "./component/captcha.component";
 import {AbstractLoginComponent} from "./component/abstract";
 
 const COMPONENTS = [
-  LoginBtnComponent,
+  BtnLoginComponent,
 
   LibCaptchaComponent,
-  LibAuthWechatBtnComponent,
-  LibWxWorkSrcBtnComponent,
+  BtnLoginWechatComponent,
+  BtnLoginWxworkComponent,
   AuthLayoutComponent,
 
   PageAuthToken,
@@ -37,7 +36,6 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS,
-    ImageCaptchaDialog,
     AbstractLoginComponent,
   ],
   imports: [
@@ -55,7 +53,7 @@ const COMPONENTS = [
   ],
   exports: [
     ...COMPONENTS,
-  ]
+  ],
 })
 export class MyAppxAuthModule {
 
