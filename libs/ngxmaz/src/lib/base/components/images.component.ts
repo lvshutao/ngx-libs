@@ -27,7 +27,7 @@ import {LibDialogService} from "../dialog/dialog.service";
     height: 200px;
   }`]
 })
-export class LibImagesComponent {
+export class ImagesComponent {
   @Input() urls: string[] = [];
 
   /**

@@ -18,29 +18,27 @@ import {MyMgxMazImageViewerModule} from "../image-viewer/module";
 import {DialogActionSheetComponent} from "./dialog/action-sheet";
 import {DialogAlertComponent} from "./dialog/alter";
 import {DialogConfirmComponent} from "./dialog/confirm";
+import {LibDialogService} from "./dialog/dialog.service";
 import {DialogImageComponent} from "./dialog/image";
 import {DialogImageCaptcha} from "./dialog/image-captcha";
 import {DialogInputComponent} from "./dialog/input";
 import {DialogSelectComponent} from "./dialog/select";
 import {DialogShareSheetComponent} from "./dialog/share-sheet";
 import {DialogTextareaComponent} from "./dialog/textarea";
-import {LibDialogService} from "./dialog/dialog.service";
 
-import {ListtileComponent} from "./components/listtile.component";
-import {LinkComponent} from "./components/link.component";
-
-import {PaginatorComponent} from "./components/paginator.component";
-import {ButtonAddComponent, CircleButtonComponent} from "./components/button-add.component";
 import {BackBarComponent} from "./components/back-bar.component";
+import {BackBarSubmitComponent} from "./components/back-bar-submit.component";
 import {BackSubmitComponent} from "./components/back-submit.component";
-import {CardComponent} from "./components/card.component";
+import {ButtonAddComponent, CircleButtonComponent} from "./components/button-add.component";
 import {ButtonCloseComponent} from "./components/button-close.component";
+import {ButtonResendComponent} from "./components/button-resend.component";
+import {CardComponent} from "./components/card.component";
 import {DialogBarComponent} from "./components/dialog-bar.component";
 import {DialogCloseBarComponent} from "./components/dialog-close.component";
-
-import {ButtonResendComponent} from "./components/button-resend.component";
-import {BackBarSubmitComponent} from "./components/back-bar-submit.component";
-import {LibImagesComponent} from "./components/images.component";
+import {ImagesComponent} from "./components/images.component";
+import {LinkComponent} from "./components/link.component";
+import {ListtileComponent} from "./components/listtile.component";
+import {PaginatorComponent} from "./components/paginator.component";
 
 
 const DIALOGS = [
@@ -68,7 +66,7 @@ const COMPONENTS = [
   DialogBarComponent,
   DialogCloseBarComponent,
 
-  LibImagesComponent,
+  ImagesComponent,
 
   ListtileComponent,
   LinkComponent,

@@ -22,6 +22,10 @@ export interface ListPageConfig<T> {
    */
   editPath?: string;
   /**
+   * 属性修改路径
+   */
+  attrPath?: string;
+  /**
    * 编辑查询参数
    * @param o
    */
@@ -55,7 +59,7 @@ export class AbstractListPageComponent<T> {
 
   constructor(
     protected ws: LibWhereService,
-    protected route:ActivatedRoute,
+    protected route: ActivatedRoute,
   ) {
     this.table.setBackupWhere(this.config().backupWhere);
   }
@@ -69,7 +73,7 @@ export class AbstractListPageComponent<T> {
     const p = this.config().editParams;
     this.ws.router.navigate([path], {
       relativeTo: this.route,
-      queryParams: p ? p(o) : null,
+      queryParams: p(o),
     })
   }
 
@@ -94,6 +98,20 @@ export class AbstractListPageComponent<T> {
     this.ws.http.changeStatusWith(this.config().path, p).subscribe(() => {
       // @ts-ignore
       o['status'] = status;
+    })
+  }
+
+  /**
+   * 切换布尔值的属性
+   */
+  public onChangeAttr(o: T, name: string) {
+    // @ts-ignore
+    const v = o[name];
+    const path = this.config().attrPath || this.config().path + '/attr';
+    const p = this.config().editParams; // 编辑参数
+    this.ws.http.put(path, Object.assign(p(o), {attr: {name, value: !v}})).subscribe(() => {
+      // @ts-ignore
+      o[name] = !v;
     })
   }
 }

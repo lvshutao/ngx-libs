@@ -5,7 +5,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import {MyNgxUploadModule} from '@fsl/ngxupload';
 
-import {LibEditorComponent} from "./component/editor.component";
+import {EDITOR_CONFIG, LibEditorComponent} from "./component/editor.component";
 
 const COMPONENTS = [
   LibEditorComponent
@@ -24,6 +24,9 @@ const COMPONENTS = [
   ],
   exports: [
     ...COMPONENTS,
+  ],
+  providers: [
+    {provide: EDITOR_CONFIG, useValue: {}},
   ]
 })
 export class MyNgxEditorModule {

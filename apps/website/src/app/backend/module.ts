@@ -10,7 +10,7 @@ import {
   SidenavMenu, MyMazWhereModule
 } from "@fsl/ngxmaz";
 import {MyNgxAppModule} from "@fsl/ngxapp";
-import {MyNgxEditorModule} from "@fsl/ngxeditor";
+import {EDITOR_CONFIG, MyNgxEditorModule} from "@fsl/ngxeditor";
 
 import {LayoutComponent} from "./layout.component";
 import {HomeComponent} from "./home.component";
@@ -57,6 +57,8 @@ import {DemoWhereComponent} from "./demo/where.component";
   ],
   providers: [
     LayoutService,
+    // 测试，显示图片尺寸
+    {provide: EDITOR_CONFIG, useValue: {image_dimensions: true}}
   ]
 })
 export class BackendModule {

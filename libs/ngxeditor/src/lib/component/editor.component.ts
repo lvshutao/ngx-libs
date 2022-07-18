@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Inject, InjectionToken, Input, OnInit} from "@angular/core";
 import {FormGroup} from "@angular/forms";
 
-import {AlterService} from "@fsl/ngxbase";
 import {UploadEngine} from '@fsl/ngxupload';
 
 import {TinymceService} from "../service/tinymce.service";
 
+export const EDITOR_CONFIG = new InjectionToken('lib.editor');
 
 @Component({
   selector: 'lib-editor',
@@ -22,16 +22,18 @@ export class LibEditorComponent implements OnInit {
 
   public readonly editor: TinymceService;
 
-  constructor(private engine: UploadEngine, private showSer: AlterService) {
-    this.editor = new TinymceService(this.engine);
+  constructor(
+    private ue: UploadEngine,
+    @Inject(EDITOR_CONFIG) public config: any = {},
+  ) {
+    this.editor = new TinymceService(this.ue);
   }
 
   get editConfig() {
-    return this.height > 0 ?
-      this.editor.config({min_height: this.height}) : this.editor.initEditor;
+    return this.editor.mergeConfig(Object.assign({}, this.config, {min_height: this.height || 600}));
   }
 
   ngOnInit() {
-    this.engine.onInit();
+    this.ue.onInit();
   }
 }
