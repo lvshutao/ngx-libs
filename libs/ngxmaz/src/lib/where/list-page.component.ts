@@ -3,6 +3,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 
 import {MyTableService, MyTextService} from "my-tsbase";
 import {LibWhereService} from "./where.service";
+import {Observable} from "rxjs";
 
 export interface ListPageConfig<T> {
   /**
@@ -107,11 +108,18 @@ export class AbstractListPageComponent<T> {
   public onChangeAttr(o: T, name: string) {
     // @ts-ignore
     const v = o[name];
-    const path = this.config().attrPath || this.config().path + '/attr';
-    const p = this.config().editParams; // 编辑参数
-    this.ws.http.put(path, Object.assign(p(o), {attr: {name, value: !v}})).subscribe(() => {
+    this.toPostAttr(o, name, v).subscribe(() => {
       // @ts-ignore
       o[name] = !v;
     })
+  }
+
+  /**
+   * 提交更新属性数据
+   */
+  protected toPostAttr(o: T, name: string, value: any): Observable<any> {
+    const path = this.config().attrPath || this.config().path + '/attr';
+    const p = this.config().editParams; // 编辑参数
+    return this.ws.http.put(path, Object.assign(p(o), {attr: {name, value}}));
   }
 }
