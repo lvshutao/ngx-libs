@@ -108,7 +108,7 @@ export class AbstractListPageComponent<T> {
   public onChangeAttr(o: T, name: string) {
     // @ts-ignore
     const v = o[name];
-    this.toPostAttr(o, name, v).subscribe(() => {
+    this.toPostAttr(o, name, !v).subscribe(() => {
       // @ts-ignore
       o[name] = !v;
     })

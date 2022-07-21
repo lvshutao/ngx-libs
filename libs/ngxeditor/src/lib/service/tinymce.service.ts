@@ -26,18 +26,22 @@ export class TinymceService {
     // image_advtab: true, // 添加样式
     // https://www.tiny.cloud/docs-4x/plugins/image/#image_class_list
     image_class_list: [ // 为图片追加样式
-      // {title: '无', value: ''},
-      {title: 'full-width', value: 'lazy full-width'},
+      {title: 'lazy/full-width', value: 'lazy lazyload full-width'},
+      {title: '无', value: ''},
     ],
-    // setup: function (editor: any) {
-    //   editor.on('NodeChange', function (e: any) {
-    //     if (e.element.tagName === "IMG") {
-    //       console.log('e:', e.element)
-    //       e.element.setAttribute("data-original", e.element.currentSrc);
-    //       e.element.setAttribute("src", '/images/loading.gif');
-    //     }
-    //   });
-    // },
+    setup: function (editor: any) {
+      editor.on('NodeChange', function (e: any) {
+        if (e.element.tagName.upperCase() === "IMG") {
+          // console.log('e:', e.element)
+          // 图片懒加载需要 https://github.com/aFarkas/lazysizes 支持
+          // <script src="http://afarkas.github.io/lazysizes/lazysizes.min.js" async=""></script>
+          // e.element.setAttribute("data-src", e.element.currentSrc);
+          // e.element.setAttribute("data-sizes", "auto");
+          e.element.setAttribute("loading", "lazy"); // 延迟下载
+          // e.element.setAttribute("src", '/images/loading.gif');
+        }
+      });
+    },
     // https://www.tiny.cloud/docs/plugins/opensource/image/#images_file_types
     images_file_types: 'jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF',
     // 图片处理(不支持大写的文件扩展名，如 xxx.JPG 可能上传没有反应)
