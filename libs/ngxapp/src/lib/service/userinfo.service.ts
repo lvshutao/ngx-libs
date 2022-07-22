@@ -1,4 +1,4 @@
-import {UserBase} from "../model/user.model";
+import {UserBase} from "../model/model";
 
 const cacheKey = '_user';
 

@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {LibDialogService} from "@fsl/ngxmaz";
-import {MyAppxApiConfig} from "../../api-config";
+
+import {MyAppxApiConfig} from "../../config/api-config";
+
 
 @Component({
   selector: 'lib-captcha',
@@ -10,7 +12,7 @@ import {MyAppxApiConfig} from "../../api-config";
     </div>
   `
 })
-export class LibCaptchaComponent {
+export class CaptchaComponent {
   @Input() disabled = true; // 能否点击
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() success = new EventEmitter<any>(); // 返回一个对象，与后端相对

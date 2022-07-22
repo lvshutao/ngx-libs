@@ -4,10 +4,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AppBaseConfig, navigateBy} from "@fsl/ngxbase";
 import {LibSnackService} from "@fsl/ngxmaz";
 
-import {LoginHttpService} from "../service/login.service";
-import {CertService} from "../../../service/cert.service";
-import {RedirectService} from "../../../service/redirect.service";
-import {MyAppxRouteConfig} from "../../route-config";
+import {RedirectService} from "../../service/redirect.service";
+import {MyAppxRouteConfig} from "../../config/route-config";
+import {LoginHttpService} from "../../service/login-http.service";
+import {LoginStateService} from "../../service/login-state.service";
+
 
 @Component({
   template: `
@@ -18,14 +19,14 @@ export class PageAuthToken implements OnInit {
   text = '等待授权';
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private baseConfig: AppBaseConfig,
+    private config: AppBaseConfig,
     private routeConfig: MyAppxRouteConfig,
     private http: LoginHttpService,
-    private certSer: CertService,
+    private route: ActivatedRoute,
+    private router: Router,
     private msgSer: LibSnackService,
-    private redirect: RedirectService
+    private redirect: RedirectService,
+    private loginState: LoginStateService,
   ) {
   }
 
@@ -35,15 +36,14 @@ export class PageAuthToken implements OnInit {
       if (uid) {
 
         const user_sign = q.get('user_sign') || '';
-        const app_name = q.get('app_name') || this.baseConfig.name;
+        const app_name = q.get('app_name') || this.config.name;
         const app_sign = q.get('app_sign') || '';
 
         this.http.cert({uid, user_sign, app_name, app_sign}).subscribe(uc => {
-          const {success, msg} = this.certSer.saveCert(uc)
+          const {success, msg} = this.loginState.certSer.saveCert(uc)
           if (success) {
             this.msgSer.success('授权成功');
-            const path = this.redirect.read(true) || this.routeConfig.home;
-            navigateBy(this.router, path)
+            location.href = this.redirect.read(true) || this.routeConfig.home;
           } else {
             this.text = msg;
             this.msgSer.danger(msg);

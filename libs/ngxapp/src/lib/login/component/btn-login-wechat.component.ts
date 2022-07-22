@@ -1,9 +1,6 @@
 import {Component} from "@angular/core";
 
-import {MyBrowser} from "my-tsbase";
-
 import {AbstractLoginComponent} from "./abstract";
-import {OauthSrc} from "../model";
 
 @Component({
   selector: 'lib-login-btn-wechat',
@@ -33,12 +30,6 @@ import {OauthSrc} from "../model";
  */
 export class BtnLoginWechatComponent extends AbstractLoginComponent {
   bindOauth() {
-    const q = {
-      name: this.config.name,
-      gzh: MyBrowser.isWeiXin(),
-    };
-    this.http.getWith<OauthSrc>(this.apiConfig.authWechat, q).subscribe(res => {
-      location.href = res.url;
-    })
+    this.loginHttp.oauth3Wechat().subscribe(this.authSub);
   }
 }

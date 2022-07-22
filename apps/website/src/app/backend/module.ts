@@ -9,8 +9,9 @@ import {
   MyNgxMazMapModule,
   SidenavMenu, MyMazWhereModule
 } from "@fsl/ngxmaz";
-import {MyNgxAppModule} from "@fsl/ngxapp";
+
 import {EDITOR_CONFIG, MyNgxEditorModule} from "@fsl/ngxeditor";
+import {MyAppxAuthModule} from "@fsl/ngxapp";
 
 import {LayoutComponent} from "./layout.component";
 import {HomeComponent} from "./home.component";
@@ -20,6 +21,7 @@ import {DemoUploadComponent} from "./demo/upload.component";
 import {DemoServerUploadComponent} from "./demo/server-upload.component";
 import {DemoAlterComponent} from "./demo/alter.component";
 import {DemoWhereComponent} from "./demo/where.component";
+
 
 
 @NgModule({
@@ -49,11 +51,11 @@ import {DemoWhereComponent} from "./demo/where.component";
       }
     ]),
     MyNgxMazLayoutModule,
-    MyNgxAppModule,
     MyNgxMazFormModule,
     MyNgxMazMapModule,
     MyNgxEditorModule,
-    MyMazWhereModule
+    MyMazWhereModule,
+    MyAppxAuthModule
   ],
   providers: [
     LayoutService,

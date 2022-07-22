@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {AbstractLoginComponent} from "./abstract";
-import {OauthSrc} from "../model";
 
 @Component({
   selector: 'lib-login-btn-wxwork',
@@ -11,10 +10,6 @@ import {OauthSrc} from "../model";
 })
 export class BtnLoginWxworkComponent extends AbstractLoginComponent {
   openLogin() {
-    this.http.getWith<OauthSrc>(this.apiConfig.authWxWork, {
-      name: this.config.name,
-    }).subscribe(res => {
-      location.href = res.url;
-    });
+    this.loginHttp.oauth3Work().subscribe(this.authSub);
   }
 }

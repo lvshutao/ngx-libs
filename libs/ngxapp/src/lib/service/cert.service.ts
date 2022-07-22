@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 
 import {MyAssets, MyCache} from 'my-tsbase'
-import {UserCert} from "../model/cert.model";
+import {UserCert} from "../model/model";
 
 export const KEY_USER_CERT = 'cert';
 

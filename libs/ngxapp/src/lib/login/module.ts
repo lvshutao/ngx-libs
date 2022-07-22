@@ -9,26 +9,33 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
 
 import {MyNgxMazFormModule} from "@fsl/ngxmaz";
 
+import {AbstractLoginComponent} from "./component/abstract";
+import {AuthLayoutComponent} from "./component/auth-layout.component";
 import {BtnLoginComponent} from "./component/btn-login.component";
 import {BtnLoginWechatComponent} from "./component/btn-login-wechat.component";
 import {BtnLoginWxworkComponent} from "./component/btn-login-wxwork.component";
-import {AuthLayoutComponent} from "./component/auth-layout.component";
+import {CaptchaComponent} from "./component/captcha.component";
+import {SignerComponent} from "./component/signer.component";
 
 import {PageAuthToken} from "./page/token.page";
-import {PageAuthLogin} from "./page/login";
-import {LibCaptchaComponent} from "./component/captcha.component";
-import {AbstractLoginComponent} from "./component/abstract";
+import {PageAuthLogin} from "./page/login.page";
+
+
+
 
 const COMPONENTS = [
-  BtnLoginComponent,
+  AuthLayoutComponent,
 
-  LibCaptchaComponent,
+  BtnLoginComponent,
   BtnLoginWechatComponent,
   BtnLoginWxworkComponent,
-  AuthLayoutComponent,
+
+  CaptchaComponent,
+  SignerComponent,
 
   PageAuthToken,
   PageAuthLogin,
@@ -50,6 +57,7 @@ const COMPONENTS = [
     MatDialogModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
   ],
   exports: [
     ...COMPONENTS,

@@ -1,22 +1,24 @@
 import {Component} from "@angular/core";
-import {MyBrowser} from "my-tsbase";
-import {AppBaseConfig, AppHttpService} from "@fsl/ngxbase";
 
-import {OauthSrc} from "../model";
-import {MyAppxAuthPageConfig} from "../../authpage-config";
-import {MyAppxApiConfig} from "../../api-config";
-import {MyAppxRouteConfig} from "../../route-config";
+import {MyAppxAuthConfig} from "../../config/auth-config";
+import {MyAppxRouteConfig} from "../../config/route-config";
+
+import {LoginHttpService} from "../../service/login-http.service";
+import {OauthSrc} from "../../model/model";
+
+
 
 @Component({
   selector: 'lib-auth-layout',
-  template:`<div class="mat-card" style="text-align: center;max-width: 360px;margin: 0 auto;padding: 15px;margin-top: 60px;">
-    <div class="left">
-      <div>
-        <ng-content></ng-content>
-      </div>
-      <div style="margin-top: 20px;"></div>
-      <div class="placeholder center">其它登录方式</div>
-      <div style="margin: 5px 0;">
+  template: `
+    <div class="mat-card" style="text-align: center;max-width: 360px;margin: 0 auto;padding: 15px;margin-top: 60px;">
+      <div class="left">
+        <div>
+          <ng-content></ng-content>
+        </div>
+        <div style="margin-top: 20px;"></div>
+        <div class="placeholder center">其它登录方式</div>
+        <div style="margin: 5px 0;">
           <span *ngIf="authConfig.google" title="Google 登录">
           <svg (click)="bindOauth3('google')" t="1597896906343" style="width: 30px;height: 30px;" class="icon lib-svg"
                viewBox="0 0 1024 1024" version="1.1"
@@ -35,7 +37,7 @@ import {MyAppxRouteConfig} from "../../route-config";
               fill="#4285F4" p-id="2157"></path>
           </svg>
             </span>
-        <span *ngIf="authConfig.wechat" title="微信登录">
+          <span *ngIf="authConfig.wechat" title="微信登录">
           <svg (click)="bindOauth3('wechat')" t="1597897063799" class="icon lib-svg" viewBox="0 0 1024 1024"
                version="1.1"
                xmlns="http://www.w3.org/2000/svg" p-id="3099">
@@ -47,17 +49,17 @@ import {MyAppxRouteConfig} from "../../route-config";
               fill="#FFFFFF" p-id="3101"></path>
           </svg>
             </span>
-        <span *ngIf="authConfig.work" title="企业微信登录">
+          <span *ngIf="authConfig.work" title="企业微信登录">
             <div (click)="bindOauth3('work')" style="display: inline-block;width: 32px;height: 32px" class="work"></div>
           </span>
+        </div>
+        <div class="hint-div">
+          <p>未注册的手机号或邮箱地址，在验证后将自动登录</p>
+          <p>点击登录/注册即代表同意<a [routerLink]="routeConfig.terms">《用户协议》</a>
+          </p>
+        </div>
       </div>
-      <div class="hint-div">
-        <p>未注册的手机号或邮箱地址，在验证后将自动登录</p>
-        <p>点击登录/注册即代表同意<a [routerLink]="routeConfig.terms">《用户协议》</a>
-        </p>
-      </div>
-    </div>
-  </div>`,
+    </div>`,
   styles: [`
     .lib-svg {
       margin-right: 10px;
@@ -75,40 +77,29 @@ import {MyAppxRouteConfig} from "../../route-config";
   `]
 })
 export class AuthLayoutComponent {
-  constructor(public http: AppHttpService,
-              public config: AppBaseConfig,
-              public apiConfig: MyAppxApiConfig,
+  constructor(public http: LoginHttpService,
               public routeConfig: MyAppxRouteConfig,
-              public authConfig: MyAppxAuthPageConfig,
+              public authConfig: MyAppxAuthConfig,
   ) {
   }
 
   bindOauth3(name: string) {
     switch (name) {
       case 'wechat':
-        this.http.getWith<OauthSrc>(this.apiConfig.authWechat, {
-          name: this.config.name,
-          gzh: MyBrowser.isWeiXin(),
-          return: true,
-        }).subscribe(res => {
-          if (res) {
-            location.href = res.url;
-          }
-        });
+        this.http.oauth3Wechat().subscribe(this.authSub);
         break;
       case 'google':
         alert('暂未实现');
         break;
       case 'work':
-        this.http.getWith<OauthSrc>(this.apiConfig.authWxWork, {
-          name: this.config.name,
-          return: true,
-        }).subscribe(res => {
-          if (res) {
-            location.href = res.url;
-          }
-        });
+        this.http.oauth3Work().subscribe(this.authSub);
         break;
+    }
+  }
+
+  private authSub(res: OauthSrc) {
+    if (res) {
+      location.href = res.url;
     }
   }
 }

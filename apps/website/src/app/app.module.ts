@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
@@ -9,7 +10,8 @@ import {MatMenuModule} from "@angular/material/menu";
 
 import {AppBaseConfig, ResponseJsonInterceptor} from "@fsl/ngxbase";
 import {LayoutService, MyNgxMazLayoutModule, MyNgxMazMapConfig, MyNgxMazMapModule} from "@fsl/ngxmaz";
-import {MyAppxAuthModule, MyNgxAppModule, TokenInterceptor} from "@fsl/ngxapp";
+import {MyAppxAuthModule, TokenInterceptor} from "@fsl/ngxapp";
+import {MyNgxUploadConfig, QiniuEngine, UploadEngine} from "@fsl/ngxupload";
 
 
 import {AppComponent} from './app.component';
@@ -22,8 +24,8 @@ import {LayoutSidenavComponent} from "./frontend/demo/layout-sidenav.component";
 import {ChecksComponent} from "./frontend/demo/checks.component";
 import {LayoutSidenav2Component} from "./frontend/demo/layout-sidenav2.component";
 import {Layout2Component} from "./frontend/demo/layout2.component";
-import {MyNgxUploadConfig, QiniuEngine, UploadEngine} from "@fsl/ngxupload";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+
+
 
 
 @NgModule({
@@ -44,7 +46,6 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MyNgxAppModule,
     MyAppxAuthModule,
     MyNgxMazLayoutModule,
     MyNgxMazMapModule,

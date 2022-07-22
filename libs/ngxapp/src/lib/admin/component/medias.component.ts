@@ -16,7 +16,7 @@ import {MazMediaEditDialog} from "./media.dialg";
       <div [formArrayName]="name">
         <!-- 布局显示 -->
         <div class="">
-          <a mat-icon-button [class.layout]="layout == 'list'" (click)="layout='list'">
+          <a mat-icon-button [class.layout]="layout === 'list'" (click)="layout='list'">
             <mat-icon>view_list</mat-icon>
           </a>
           <a mat-icon-button [class.layout]="isModule" (click)="layout='module'">
@@ -46,15 +46,15 @@ import {MazMediaEditDialog} from "./media.dialg";
                   <a mat-icon-button [disabled]="nfa.disDownward(i)" (click)="nfa.downward(i)">
                     <mat-icon>arrow_downward</mat-icon>
                   </a>
-                  <a mat-icon-button *ngIf="c.get('status')!.value != 'delete'" (click)="bindDelete(i)">
+                  <a mat-icon-button *ngIf="c.get('status')!.value !== 'delete'" (click)="bindDelete(i)">
                     <mat-icon>delete</mat-icon>
                   </a>
-                  <a mat-icon-button *ngIf="c.get('status')!.value == 'delete'" (click)="bindUndo(i)">
+                  <a mat-icon-button *ngIf="c.get('status')!.value === 'delete'" (click)="bindUndo(i)">
                     <mat-icon>undo</mat-icon>
                   </a>
                 </div>
               </div>
-              <div class="flex1 pl20" *ngIf="layout=='list'">
+              <div class="flex1 pl20" *ngIf="layout === 'list'">
                 <mat-form-field floatLabel="always">
                   <input matInput formControlName="title" placeholder="图片标题">
                   <lib-form-clear matSuffix [form]="c" name="title"></lib-form-clear>
@@ -94,7 +94,7 @@ import {MazMediaEditDialog} from "./media.dialg";
         </a>
       </div>
     </div>
-    <lib-upload-trigger [trigger]="open" [multiple]="multiple"
+    <lib-upload-trigger [trigger]="open"
                         (action)="onUploadDone($event)"></lib-upload-trigger>
   `,
   styles: [`

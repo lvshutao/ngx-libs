@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {map, Observable, of} from "rxjs";
+import {map, Observable, of, pipe} from "rxjs";
 
-import {PingRst, UserHttpService} from "../login/service/user-http.service";
+import {PingRst, UserHttpService} from "../service/user-http.service";
 import {CertService} from "./cert.service";
 import {RoleService} from "./role.service";
 import {UserinfoService} from "./userinfo.service";
@@ -19,6 +19,10 @@ export class LoginStateService {
               public certSer: CertService) {
   }
 
+  /**
+   * ping ，请求用户的角色和基本信息
+   * @param done
+   */
   ping(done: (rst: PingRst) => void): Observable<boolean> {
     if (!!this.certSer.headerToken() && !this.hasPing) {
       return this.userHttp.ping().pipe(map(rst => {
@@ -33,6 +37,10 @@ export class LoginStateService {
     return of(this.isLogin);
   }
 
+  /**
+   * 退出登录
+   * @param done
+   */
   logout(done: () => void) {
     if (this.certSer.headerToken()) {
       this.userHttp.logout().subscribe(_ => {

@@ -1,14 +1,15 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from "@angular/core";
 import {Router} from "@angular/router";
 
-import {AppBaseConfig, AppHttpService} from '@fsl/ngxbase';
 import {LibSnackService} from "@fsl/ngxmaz";
 
-import {MyAppxApiConfig} from "../../api-config";
-import {MyAppxRouteConfig} from "../../route-config";
+import {CertService} from "../../service/cert.service";
+import {LoginStateService} from "../../service/login-state.service";
+import {LoginHttpService} from "../../service/login-http.service";
 
-import {CertService} from "../../../service/cert.service";
-import {LoginStateService} from "../../../service/login-state.service";
+import {MyAppxRouteConfig} from "../../config/route-config";
+import {OauthSrc} from "../../model/model";
+
 
 @Component({template: ``})
 export class AbstractLoginComponent implements OnInit {
@@ -22,13 +23,11 @@ export class AbstractLoginComponent implements OnInit {
   @Output() logout = new EventEmitter();
 
   constructor(
-    public config: AppBaseConfig,
-    public apiConfig: MyAppxApiConfig,
-    public routeConfig: MyAppxRouteConfig,
     public router: Router,
-    public http: AppHttpService,
-    public certSer: CertService,
     public loginStateSer: LoginStateService,
+    public loginHttp: LoginHttpService,
+    public routeConfig: MyAppxRouteConfig,
+    public certSer: CertService,
     public showSer: LibSnackService,
   ) {
   }
@@ -55,5 +54,12 @@ export class AbstractLoginComponent implements OnInit {
       this.showSer.success('退出成功');
       this.logout.emit();
     });
+  }
+
+
+  authSub(res: OauthSrc) {
+    if (res) {
+      location.href = res.url;
+    }
   }
 }

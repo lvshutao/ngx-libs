@@ -1,20 +1,21 @@
 import {FormBuilder, Validators} from "@angular/forms";
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {MySecret} from "my-tsbase";
-import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword} from "@fsl/ngxbase";
+import {AppBaseConfig, matchingAccount, matchingCaptcha, matchingPassword, navigateBy} from "@fsl/ngxbase";
 import {LibSnackService} from "@fsl/ngxmaz";
 
-import {MyAppxRouteConfig} from "../../../route-config";
+import {MyAppxRouteConfig} from "../../config/route-config";
 
-import {UserCert} from "../../../../model/cert.model";
-import {KEY_REDIRECT, RedirectService} from "../../../../service/redirect.service";
-import {LoginHttpService} from "../../service/login.service";
-import {CertService} from "../../../../service/cert.service";
+import {LoginHttpService} from "../../service/login-http.service";
+import {KEY_REDIRECT, RedirectService} from "../../service/redirect.service";
+import {UserCert} from "../../model/model";
+import {LoginStateService} from "../../service/login-state.service";
+
 
 @Component({
-  templateUrl: 'index.html',
+  templateUrl: 'login.page.html',
 })
 export class PageAuthLogin implements OnInit {
 
@@ -34,14 +35,15 @@ export class PageAuthLogin implements OnInit {
   });
 
   constructor(
+    private conf: AppBaseConfig,
+    private routeConfig: MyAppxRouteConfig,
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    public conf: AppBaseConfig,
-    public routeConfig: MyAppxRouteConfig,
     private http: LoginHttpService,
-    private certSer: CertService,
+    private route: ActivatedRoute,
+    private router: Router,
     private showSer: LibSnackService,
     private redirect: RedirectService,
+    private loginState: LoginStateService,
   ) {
     if (this.conf.name) {
       this.name = this.conf.name;
@@ -97,11 +99,10 @@ export class PageAuthLogin implements OnInit {
 
   private loginSuccess(uc: UserCert) {
     if (uc.uid) {
-      const {success, msg} = this.certSer.saveCert(uc);
+      const {success, msg} = this.loginState.certSer.saveCert(uc);
       if (success) {
-        this.showSer.success('登录成功', 1000).subscribe(() => {
-          location.href = this.redirect.read(true) || this.routeConfig.home;
-        });
+        this.showSer.success('登录成功');
+        location.href = this.redirect.read(true) || this.routeConfig.home;
       } else {
         this.showSer.danger(msg);
       }

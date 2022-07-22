@@ -4,9 +4,9 @@ import {Router} from "@angular/router";
 import {navigateBy} from '@fsl/ngxbase'
 import {LibSnackService} from "@fsl/ngxmaz";
 
-import {LoginStateService} from "../service/login-state.service";
-import {UserHttpService} from "../login/service/user-http.service";
-import {MyAppxRouteConfig} from "../login/route-config";
+import {LoginStateService} from "../../service/login-state.service";
+import {UserHttpService} from "../../service/user-http.service";
+import {MyAppxRouteConfig} from "../../config/route-config";
 
 
 @Component({
@@ -31,10 +31,10 @@ export class SignerComponent {
   @Output() ping = new EventEmitter<boolean>(); // 登录结果
 
   constructor(
+    public router: Router,
     public loginStateSer: LoginStateService,
     public routeConfig: MyAppxRouteConfig,
     public http: UserHttpService,
-    public router: Router,
     public showSer: LibSnackService,
   ) {
   }

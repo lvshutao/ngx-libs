@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core";
 import {map, Observable} from "rxjs";
 
 import {AppHttpService, httpResponseText, httpTextParams} from "@fsl/ngxbase";
-import {MyAppxApiConfig} from "../api-config";
-import {UserBase} from "../../model/user.model";
+import {MyAppxApiConfig} from "../config/api-config";
+import {UserBase} from "../model/model";
 
 export interface PingRst {
   login: boolean;

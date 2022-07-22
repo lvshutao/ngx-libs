@@ -19,11 +19,11 @@ export interface ListPageConfig<T> {
    */
   content?: string;
   /**
-   * 编辑路径，默认为 edit
+   * 编辑路径，默认为 path
    */
   editPath?: string;
   /**
-   * 属性修改路径
+   * 属性修改路径，默认为 path + '/attr'
    */
   attrPath?: string;
   /**
@@ -103,7 +103,7 @@ export class AbstractListPageComponent<T> {
   }
 
   /**
-   * 切换布尔值的属性
+   * 切换布尔值的属性，具体查看 toPostAttr 的注释
    */
   public onChangeAttr(o: T, name: string) {
     // @ts-ignore
@@ -115,7 +115,10 @@ export class AbstractListPageComponent<T> {
   }
 
   /**
-   * 提交更新属性数据
+   * 提交更新属性数据，修改时，会提取 editParams() 编辑参数，接口路径如果不指定，则为 config().path + '/attr'
+   * @param o {T} 待修改对象
+   * @param name {string} 修改的字段名
+   * @param value {any} 修改的值
    */
   protected toPostAttr(o: T, name: string, value: any): Observable<any> {
     const path = this.config().attrPath || this.config().path + '/attr';
